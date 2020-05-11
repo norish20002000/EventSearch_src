@@ -1,0 +1,84 @@
+.fl {
+    float: left;
+}
+
+.formsearch {
+    /* position: relative; */
+}
+  
+.formsearch-input {
+    box-sizing: border-box;
+    height: 30px;
+    padding: 0 10px 0 34px;
+    margin: 5px 0;
+    font-size: 1em;
+    color: #333;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    outline: 0;
+    transition: 0.3s;
+    -webkit-appearance: none;
+}
+
+.formsearch-input:focus {
+    border: 1px solid #00b5ad;
+}
+
+.formsearch-button {
+    top: 0;
+    left: 2px;
+    box-sizing: content-box;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: inherit;
+    border: solid 1px #ccc;
+    opacity: 0.54;
+}
+
+.p-btn {
+    color: #fff;
+    background-color: #444;
+    border-color: #444;
+    border-radius: 10px;
+    width: 20%;
+    display: inline-block;
+    margin: 0 0 0 8px;
+    padding: 10px 10px 10px 0;
+    text-align: center;
+}
+
+.hidden_box {
+    margin: 2em 0;
+    padding: 0;
+    display: inline;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
