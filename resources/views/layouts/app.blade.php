@@ -11,6 +11,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @if (env('APP_DEBUG'))
+        <script src="{{ asset('js/vue.js') }}"></script>
+    @else
+        <script src="{{ asset('js/vue.min.js') }}"></script>
+    @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
