@@ -15,7 +15,6 @@
                             <div>{{event.title | truncate(30, '...')}}</div>
                             <div>{{event.st_date}}</div>
                             <div>{{event.end_date}}</div>
-                            I'm an example component.
                         </div>
                             </a>
                     </div>
