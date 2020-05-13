@@ -8,10 +8,15 @@ use Illuminate\Support\Facades\DB;
 class Event extends Model
 {
     /**
-     * コンストラクタ
+     * event data by id
+     * @param int $id
+     * @return Event $eventdata
      */
-    public function __construct() {
+    public static function getEventDataById($id)
+    {
+        $eventData = DB::table('events')->find($id);
 
+        return $eventData;
     }
 
     /**
