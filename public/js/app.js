@@ -1848,6 +1848,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExampleComponent",
   props: {
@@ -1855,8 +1856,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      events: this.eventData
+      events: this.eventData,
+      isOpened: false
     };
+  },
+  methods: {
+    accordionToggle: function accordionToggle() {
+      this.isOpened = !this.isOpened;
+    }
   },
   mounted: function mounted() {
     // console.log("eventId : " + this.eventData[2].id)
@@ -37332,22 +37339,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "p-btn",
+        attrs: { type: "button" },
+        on: {
+          click: function($event) {
+            return _vm.accordionToggle()
+          }
+        }
+      },
+      [_vm._t("title")],
+      2
+    ),
+    _vm._v(" "),
+    _vm.isOpened ? _c("div", [_vm._t("body")], 2) : _vm._e()
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("p", [_vm._v("accordion vue")])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

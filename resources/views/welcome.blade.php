@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<div>
-<div>
-</div>
-</div>
 <div class='container'>
     <div>
         <form class="formsearch" method="GET" action="/">
@@ -11,26 +7,26 @@
             <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button>
         </form>
     </div>
-    <div class="search_list">
-        <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
-        <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
-        <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a>
-        <accordion-component></accordion-component>
-        <details>
-            <summary>test accorgion</summary>
-            <input type="text" >
-        </details>
-        <div class="hidden_box">
-            <label class="p-btn" for="label1">その他</label>
-            <input type="checkbox" id="label1"/>
-            <div class="hidden_show">
-                <p>sss</p>
-            <input class="input" type="text" name="name" size="30" maxlength="20" placeholder="開始日">
-                <input type="text" placeholder="終了日">
-                <p>見える</p>
-            </div>
+    <details>
+        <summary>詳細検索</summary>
+        <div class="search_list">
+            <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
+            <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
+            <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a>
+            <accordion-component slot="body">
+                <div slot="title">その他</div>
+                <div slot="body">
+                    <p>期間指定</p>
+                    <div>
+                        <input type="text" name="search_st_date" placeholder="開始">
+                        〜
+                        <input type="text" placeholder="終了">
+                        <button type="button">検索</button>
+                    </div>
+                </div>
+            </accordion-component>
         </div>
-    </div>
+    </details>
     <div class="categ_list">
 
     </div>

@@ -1,9 +1,10 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <p>accordion vue</p>
-            </div>
+    <div>
+        <button class="p-btn" type="button" @click="accordionToggle()">
+            <slot name="title"></slot>
+        </button>
+        <div v-if="isOpened">
+            <slot name="body"></slot>
         </div>
     </div>
 </template>
@@ -17,7 +18,13 @@
         data() {
             return {
                 events: this.eventData,
+                isOpened: false,
             }
+        },
+        methods: {
+            accordionToggle: function() {
+                this.isOpened = !this.isOpened
+            },
         },
         mounted() {
             // console.log("eventId : " + this.eventData[2].id)
