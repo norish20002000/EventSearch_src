@@ -73,3 +73,12 @@
     font-size: 1.0rem;
     line-height: 2.3rem;    
 }
+
+.footer {
+    background-color: #333;
+    color: #ccc;
+}
+
+.footer .copywrite {
+    text-align: center;
+}
