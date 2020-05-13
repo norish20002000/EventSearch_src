@@ -15,7 +15,7 @@
         <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
         <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
         <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a>
-        <accodion-component></accordion-component>
+        <accordion-component></accordion-component>
         <details>
             <summary>test accorgion</summary>
             <input type="text" >

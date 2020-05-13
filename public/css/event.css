@@ -1,5 +1,11 @@
 .fl {
     float: left;
+    margin: 2px;
+    width: 48%;
+}
+
+.icon .thumb_img {
+    width: 100%;
 }
 
 .formsearch {
@@ -81,4 +87,18 @@
     padding: 10px 0;
     height: auto;
     opacity: 1;
+}
+
+.article_mainimage .mainimage {
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+
+.article_content .title {
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.0rem;
+    line-height: 2.3rem;    
 }

@@ -1899,6 +1899,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+// Vue.filter('truncate', function(value, length, omission) {
+//     var length = length ? parseInt(length, 10) : 20;
+//     var ommision = omission ? omission.toString() : '...';
+//     if (value.length <= length) {
+//         return value;
+//     }
+//     return value.substring(0, length) + ommision;
+// });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExampleComponent",
   props: {
@@ -1908,6 +1919,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       events: this.eventData
     };
+  },
+  filters: {
+    truncate: function truncate(value, length, omission) {
+      var length = length ? parseInt(length, 10) : 20;
+      var ommision = omission ? omission.toString() : '...';
+
+      if (value.length <= length) {
+        return value;
+      }
+
+      return value.substring(0, length) + ommision;
+    }
   },
   mounted: function mounted() {
     // console.log("eventId : " + this.eventData[2].id)
@@ -37359,20 +37382,27 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "icon fl" }, [
-                _c("img", { attrs: { src: event.thumb_url } })
+                _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
+                  _c("img", {
+                    staticClass: "thumb_img",
+                    attrs: { src: event.thumb_url }
+                  })
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "fl", staticStyle: { margin: "2px" } }, [
-                _c("div", [_vm._v(_vm._s(event.id))]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(event.title))]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(event.st_date))]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(event.end_date))]),
-                _vm._v(
-                  "\n                        I'm an example component.\n                    "
-                )
+              _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
+                _c("div", { staticClass: "fl" }, [
+                  _c("div", [
+                    _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.st_date))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.end_date))]),
+                  _vm._v(
+                    "\n                        I'm an example component.\n                    "
+                  )
+                ])
               ])
             ])
           ])

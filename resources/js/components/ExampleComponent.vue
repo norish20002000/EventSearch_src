@@ -6,15 +6,18 @@
                     <div class="card-header">{{event.summary}}</div>
                     <div class="card-body">
                         <div class="icon fl">
-                            <img :src="event.thumb_url"/>
+                            <a :href="'/eventdetail/' + event.id">
+                                <img class="thumb_img" :src="event.thumb_url"/>
+                            </a>
                         </div>
-                        <div class="fl" style="margin: 2px">
-                            <div>{{event.id}}</div>
-                            <div>{{event.title}}</div>
+                            <a :href="'/eventdetail/' + event.id">
+                        <div class="fl">
+                            <div>{{event.title | truncate(30, '...')}}</div>
                             <div>{{event.st_date}}</div>
                             <div>{{event.end_date}}</div>
                             I'm an example component.
                         </div>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -23,6 +26,17 @@
 </template>
 
 <script>
+    // Vue.filter('truncate', function(value, length, omission) {
+    //     var length = length ? parseInt(length, 10) : 20;
+    //     var ommision = omission ? omission.toString() : '...';
+
+    //     if (value.length <= length) {
+    //         return value;
+    //     }
+
+    //     return value.substring(0, length) + ommision;
+    // });
+
     export default {
         name: "ExampleComponent",
         props: {
@@ -32,6 +46,18 @@
             return {
                 events: this.eventData,
             }
+        },
+        filters: {
+            truncate: function(value, length, omission) {
+                var length = length ? parseInt(length, 10) : 20;
+                var ommision = omission ? omission.toString() : '...';
+
+                if (value.length <= length) {
+                    return value;
+                }
+
+                return value.substring(0, length) + ommision;
+            },
         },
         mounted() {
             // console.log("eventId : " + this.eventData[2].id)

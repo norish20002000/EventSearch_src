@@ -15,6 +15,7 @@ class WelcomeController extends Controller
     public function index(Request $request)
     {
         $data['event_data'] = Event::getEventData($request);
+        // $data['event_data']->title_sum = substr($data['event_data']->title, 0, 30);
         $data['search'] = $request->search;
 
         return view("welcome", $data);
