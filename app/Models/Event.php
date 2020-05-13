@@ -14,8 +14,8 @@ class Event extends Model
      */
     public static function getEventDataById($id)
     {
-        $eventData = DB::table('events')->find($id);
-
+        $eventData = DB::table('events')->find($id)
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));;
         return $eventData;
     }
 
@@ -30,7 +30,10 @@ class Event extends Model
 
         // search event data
         if ($request->search === null) {
-            $eventData = DB::table('events')->where('status', 0)->get();
+            $eventData = DB::table('events')
+                        ->where('status', 0)
+                        ->paginate(config('app.PAGINATE.LINK_NUM'));
+            // ->get();
             // $eventData = Event::where('status', 0)->get();
             // var_dump($eventData);exit;
         } else {
@@ -38,7 +41,8 @@ class Event extends Model
                             ->where([
                                 ['status', 0],
                                 ['title', 'like', '%'.$request->search.'%'],
-                            ])->get();
+                            ])
+                            ->paginate(config('app.PAGINATE.LINK_NUM'));
         }
 
         return $eventData;
@@ -55,7 +59,8 @@ class Event extends Model
                         ->where([
                             ['st_date', '<=', $day],
                             ['end_date', '>=', $day]
-                        ])->get();
+                        ])
+                        ->paginate(config('app.PAGINATE.LINK_NUM'));
         
         return $eventData;
     }
@@ -78,7 +83,7 @@ class Event extends Model
                             ['st_date', '<=', $e_day],
                             ['end_date', '>=', $e_day]
                         ])
-                        ->get();
+                        ->paginate(config('app.PAGINATE.LINK_NUM'));
 
         return $eventData;
     }

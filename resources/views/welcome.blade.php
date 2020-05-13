@@ -31,7 +31,12 @@
 
     </div>
     <div>
-        <example-component :event-data="{{ $event_data }}"></example-component>
+{{--        @foreach ($event_data as $event)
+            <example-component :event-data={{ $event }}></example-component>
+        @endforeach
+--}}        
+        <example-component :event-data='@json($event_data)'></example-component>
+        {{ $event_data->links() }}
     </div>
     {{-- @foreach ($event_data as $event)
         {{$event->summary}}

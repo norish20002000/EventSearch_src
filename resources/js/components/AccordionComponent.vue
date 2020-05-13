@@ -28,7 +28,7 @@
         },
         mounted() {
             // console.log("eventId : " + this.eventData[2].id)
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
         }
     }
 </script>

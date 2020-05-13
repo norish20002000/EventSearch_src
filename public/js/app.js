@@ -1865,9 +1865,8 @@ __webpack_require__.r(__webpack_exports__);
       this.isOpened = !this.isOpened;
     }
   },
-  mounted: function mounted() {
-    // console.log("eventId : " + this.eventData[2].id)
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log("eventId : " + this.eventData[2].id)
+    // console.log('Component mounted.')
   }
 });
 
@@ -1882,6 +1881,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -1938,8 +1938,14 @@ __webpack_require__.r(__webpack_exports__);
       return value.substring(0, length) + ommision;
     }
   },
+  beforeCreate: function beforeCreate() {
+    console.log('beforeCreate: ' + this.events);
+  },
+  created: function created() {
+    console.log('created: ' + this.events);
+  },
   mounted: function mounted() {
-    // console.log("eventId : " + this.eventData[2].id)
+    console.log("test: " + this.events);
     console.log('Component mounted.');
   }
 });
@@ -37384,7 +37390,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-md-8" },
-        _vm._l(_vm.events, function(event) {
+        _vm._l(_vm.events.data, function(event) {
           return _c("div", { key: event.id, staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(_vm._s(event.summary))
@@ -37408,7 +37414,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", [_vm._v(_vm._s(event.st_date))]),
                   _vm._v(" "),
-                  _c("div", [_vm._v(_vm._s(event.end_date))])
+                  _c("div", [_vm._v(_vm._s(event.end_date))]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(_vm._s(_vm._f("truncate")(event.detail, 50, "...")))
+                  ])
                 ])
               ])
             ])

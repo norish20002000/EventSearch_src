@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card" v-for="event in events" :key="event.id">
+                <div class="card" v-for="event in events.data" :key="event.id">
                     <div class="card-header">{{event.summary}}</div>
                     <div class="card-body">
                         <div class="icon fl">
@@ -15,6 +15,7 @@
                             <div>{{event.title | truncate(30, '...')}}</div>
                             <div>{{event.st_date}}</div>
                             <div>{{event.end_date}}</div>
+                            <div>{{event.detail | truncate(50, '...')}}</div>
                         </div>
                             </a>
                     </div>
@@ -58,8 +59,14 @@
                 return value.substring(0, length) + ommision;
             },
         },
+        beforeCreate () {
+            console.log('beforeCreate: ' + this.events)
+        },
+        created () {
+            console.log('created: ' + this.events)
+        },
         mounted() {
-            // console.log("eventId : " + this.eventData[2].id)
+            console.log("test: " + this.events)
             console.log('Component mounted.')
         }
     }
