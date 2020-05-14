@@ -80,11 +80,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-            <div class="footer">
-                <div class="copywrite">
-                    <p>© EventBank / All Rights Reserved.</p>
-            </div>
-        </div>
+        @include('layouts.footer')
     </div>
 </body>
 </html>
