@@ -14,7 +14,8 @@ class Event extends Model
      */
     public static function getEventDataById($id)
     {
-        $eventData = DB::table('events')->find($id)
+        $eventData = DB::table('events')
+                    ->find($id)
                     ->paginate(config('app.PAGINATE.LINK_NUM'));;
         return $eventData;
     }

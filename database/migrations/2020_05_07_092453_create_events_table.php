@@ -14,18 +14,24 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title')->comment("タイトル");
-            $table->string('detail')->comment("詳細");
-            $table->string('thumb_url')->comment("サムネイルurl");
-            $table->string('image_url')->comment("画像url");
-            $table->string('summary')->comment("概要");
-            $table->date('st_date')->comment("開始日");
-            $table->date('end_date')->comment("終了日");
-            $table->time('st_time')->comment("開始時間");
-            $table->time('end_time')->comment("終了時間");
-            $table->bigInteger('fee')->comment("料金");
-            $table->text('deli_format')->comment("提供形式");
+            $table->bigIncrements('id')->comment('ID');
+            $table->string('title')->comment('イベント名');
+            $table->string('introduction')->comment('紹介文');
+            $table->time('st_time')->nullable()->comment('開始時間');
+            $table->time('end_time')->nullable()->comment('終了時間');
+            $table->string('summary_date')->nullable()->comment('日時備考');
+            $table->string('web_name')->comment('視聴サイト名');
+            $table->string('web_url')->nullable()->comment('視聴URL');
+            $table->string('fee_type')->comment('料金種別');
+            $table->bigInteger('fee')->nullable()->comment('料金');
+            $table->string('image_url')->nullable()->comment('画像url');
+            $table->string('reference_name')->nullable()->comment('参考サイト名称');
+            $table->string('reference_url')->nullable()->comment('参考URL');
+            $table->date('release_date')->comment('公開日');
+            $table->string('regi_group_name')->comment('登録者団体名');
+            $table->string('regi_name')->comment('登録者担当者名');
+            $table->string('regi_tel')->comment('登録者電話番号');
+            $table->string('regi_mail')->comment('登録者メールアドレス');
             $table->integer('status')->default(0)->comment("ステータス");
             $table->timestamps();
         });
