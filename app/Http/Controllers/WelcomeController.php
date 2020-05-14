@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventDate;
 
 class WelcomeController extends Controller
 {
@@ -14,8 +15,11 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
-        $data['event_data'] = Event::getEventData($request);
-        // $data['event_data']->title_sum = substr($data['event_data']->title, 0, 30);
+        $data['event_data'] = Event::getEventFromToday();
+
+        // var_dump($data['event_data']);exit;
+        // $data['event_data'] = Event::getEventData($request);
+
         $data['search'] = $request->search;
 
         return view("welcome", $data);

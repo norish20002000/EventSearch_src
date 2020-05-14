@@ -35,7 +35,7 @@
             <example-component :event-data={{ $event }}></example-component>
         @endforeach
 --}}        
-        <example-component :event-data='@json($event_data)'></example-component>
+       <example-component :event-data='@json($event_data)'></example-component>
         {{ $event_data->links() }}
     </div>
     {{-- @foreach ($event_data as $event)

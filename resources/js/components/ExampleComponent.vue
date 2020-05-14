@@ -3,19 +3,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card" v-for="event in events.data" :key="event.id">
-                    <div class="card-header">{{event.summary}}</div>
+                    <div class="card-header">{{event.id}}</div>
                     <div class="card-body">
                         <div class="icon fl">
                             <a :href="'/eventdetail/' + event.id">
-                                <img class="thumb_img" :src="event.thumb_url"/>
+                                <img class="thumb_img" :src="event.image_url"/>
                             </a>
                         </div>
                             <a :href="'/eventdetail/' + event.id">
                         <div class="fl">
                             <div>{{event.title | truncate(30, '...')}}</div>
-                            <div>{{event.st_date}}</div>
-                            <div>{{event.end_date}}</div>
-                            <div>{{event.detail | truncate(50, '...')}}</div>
+                            <div class="days">
+                                <div>開催日</div>
+                                <div>
+                                    <div v-for="date in event.date" :key="date.id">
+                                        <div>{{date.event_date}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div>{{event.st_date}}</div> -->
+                            <!-- <div>{{event.end_date}}</div> -->
+                            <div>{{event.introduction | truncate(50, '...')}}</div>
                         </div>
                             </a>
                     </div>
@@ -52,6 +60,10 @@
                 var length = length ? parseInt(length, 10) : 20;
                 var ommision = omission ? omission.toString() : '...';
 
+                if (value == undefined) {
+                    return value;
+                }
+
                 if (value.length <= length) {
                     return value;
                 }
@@ -63,7 +75,7 @@
             console.log('beforeCreate: ' + this.events)
         },
         created () {
-            console.log('created: ' + this.events)
+            console.log('created: ' + this.events.data)
         },
         mounted() {
             console.log("test: " + this.events)

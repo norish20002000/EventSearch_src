@@ -82,3 +82,12 @@
 .footer .copywrite {
     text-align: center;
 }
+
+.days {
+    display: flex;
+    border: 2px solid black;
+    outline: #4CAF50 solid 2px;
+    margin: auto;  
+    padding: 20px;
+    text-align: center;
+  }

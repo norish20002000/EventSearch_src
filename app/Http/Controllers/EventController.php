@@ -24,9 +24,16 @@ class EventController extends Controller
     {
         $data['event_data'] = Event::getEventDataById($id);
         // $data['event_data']->sub = $data['event_data']->detail;
-        $data['event_data']->summary = substr($data['event_data']->detail, 0, 20);
+
+        // 概要作成
+        $data['event_data']->summary = substr($data['event_data']->introduction, 0, 20);
+        
+        // 曜日変換
         $weekList = ["日", "月", "火", "水", "木", "金", "土"];
-        $data['event_data']->st_week = $weekList[date('w', strtotime($data['event_data']->st_date))];
+        foreach ($data['event_data']->date as $event) {
+            // var_dump($event);exit;
+            $event->st_week = $weekList[date('w', strtotime($event->event_date))];
+        }
         // var_dump($data['event_data']);exit;
 
         return View('event', $data);

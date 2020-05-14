@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\DB;
 class Event extends Model
 {
     /**
+     * 
+     */
+    public static function getEventFromToday()
+    {
+        $eventData = DB::table('events')
+                    ->select('events.*')
+                    ->leftJoin('event_dates', 'events.id', '=', 'event_dates.event_id')
+                    ->where('event_dates.event_date', '>=', date("Y-m-d"))
+                    ->groupBy(\DB::raw('events.id'))
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+        $eventData = self::getDays($eventData);
+
+        return $eventData;
+        ;
+    }
+
+    /**
      * event data by id
      * @param int $id
      * @return Event $eventdata
@@ -15,8 +32,9 @@ class Event extends Model
     public static function getEventDataById($id)
     {
         $eventData = DB::table('events')
-                    ->find($id)
-                    ->paginate(config('app.PAGINATE.LINK_NUM'));;
+                    ->find($id);
+        $eventData->date = EventDate::getDate($id);
+
         return $eventData;
     }
 
@@ -56,12 +74,24 @@ class Event extends Model
      */
     public static function getEventByDate($request, $day)
     {
+        $eventIdList = DB::table('event_dates')
+                    ->where('event_date', '=', $day)
+                    ->pluck('event_id');
         $eventData = DB::table('events')
-                        ->where([
-                            ['st_date', '<=', $day],
-                            ['end_date', '>=', $day]
-                        ])
-                        ->paginate(config('app.PAGINATE.LINK_NUM'));
+                    ->whereIn('id', $eventIdList)
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+        
+        $eventData = self::getDays($eventData);
+
+        // foreach ($eventData as $event) {
+        //     $event->date = EventDate::getDate($event->id);
+        // }
+        // $eventData = DB::table('events')
+        //                 ->where([
+        //                     ['st_date', '<=', $day],
+        //                     ['end_date', '>=', $day]
+        //                 ])
+        //                 ->paginate(config('app.PAGINATE.LINK_NUM'));
         
         return $eventData;
     }
@@ -75,17 +105,42 @@ class Event extends Model
     public static function getEventByDays($request, $s_day, $e_day) {
         $eventData = "";
 
+        $eventIdList = DB::table('event_dates')
+                    ->where('event_date', '=', $s_day)
+                    ->orWhere('event_date', '=', $e_day)
+                    ->pluck('event_id');
         $eventData = DB::table('events')
-                        ->where([
-                            ['st_date', '<=', $s_day],
-                            ['end_date', '>=', $s_day]
-                        ])
-                        ->orwhere([
-                            ['st_date', '<=', $e_day],
-                            ['end_date', '>=', $e_day]
-                        ])
-                        ->paginate(config('app.PAGINATE.LINK_NUM'));
+                    ->whereIn('id', $eventIdList)
+                    ->groupBy('id')
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+
+        $eventData = self::getDays($eventData);
+
+        // $eventData = DB::table('events')
+        //                 ->where([
+        //                     ['st_date', '<=', $s_day],
+        //                     ['end_date', '>=', $s_day]
+        //                 ])
+        //                 ->orwhere([
+        //                     ['st_date', '<=', $e_day],
+        //                     ['end_date', '>=', $e_day]
+        //                 ])
+        //                 ->paginate(config('app.PAGINATE.LINK_NUM'));
 
         return $eventData;
+    }
+
+    /**
+     * 
+     */
+    private static function getDays($eventData)
+    {
+        $resultEventData = $eventData;
+
+        foreach ($resultEventData as $event) {
+            $event->date = EventDate::getDate($event->id);
+        }
+
+        return $resultEventData;
     }
 }
