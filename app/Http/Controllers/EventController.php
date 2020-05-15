@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Genre;
 
 class EventController extends Controller
 {
@@ -48,6 +49,9 @@ class EventController extends Controller
     public function genre(Request $request, $genre_id)
     {
         $data['event_data'] = Event::getEventFromGenreId($genre_id);
+        $data['event_data']->genre = Genre::getGenreById($genre_id);
+
+        // var_dump($data['event_data']->genre);exit;
 
         return view('eventgenre', $data);
     }

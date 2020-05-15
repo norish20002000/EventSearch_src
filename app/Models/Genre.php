@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class Genre extends Model
 {
-    public static function getEvnetId($id)
+    public static function getGenreById($id)
     {
+        $genreData = DB::table('genres')->find($id);
+                
+        return $genreData;
     }
 }

@@ -11,20 +11,18 @@
                             </a>
                         </div>
                             <a :href="'/eventdetail/' + event.id">
-                        <div class="fl">
-                            <div>{{event.title | truncate(30, '...')}}</div>
-                            <div class="days">
-                                <div>開催日</div>
-                                <div>
-                                    <div v-for="date in event.date" :key="date.id">
-                                        <div>{{date.event_date}}</div>
+                                <div class="fl">
+                                    <div>{{event.title | truncate(30, '...')}}</div>
+                                    <div class="days">
+                                        <div>開催日</div>
+                                        <div>
+                                            <div v-for="date in event.date" :key="date.id">
+                                                <div>{{date.event_date}}</div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div>{{event.introduction | truncate(50, '...')}}</div>
                                 </div>
-                            </div>
-                            <div>{{event.st_date}}</div>
-                            <div>{{event.end_date}}</div>
-                            <div>{{event.introduction | truncate(50, '...')}}</div>
-                        </div>
                             </a>
                     </div>
                 </div>

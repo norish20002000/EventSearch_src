@@ -30,33 +30,38 @@
     <div class="genre">
         <div class='music'>
             <a href="{{ route('eventgenre', ['genre_id' => '1']) }}">
-            <img src="{{ asset('image/genre/music.jpg') }}">
-            <h3>音楽</h3>
-            <input type="hidden" name="genre1">
+                <img src="{{ asset('image/genre/music.jpg') }}">
+                <h3>音楽</h3>
+                <input type="hidden" name="genre1">
+            </a>
         </div>
         <div class='fes'>
             <a href="{{ route('eventgenre', ['genre_id' => '2']) }}">
-            <img src="{{ asset('image/genre/fes.jpg') }}">
-            <h3>フェス</h3>
-            <input type="hidden" name="genre1">
+                <img src="{{ asset('image/genre/fes.jpg') }}">
+                <h3>フェス</h3>
+                <input type="hidden" name="genre1">
+            </a>
         </div>
         <div class='live_delivery'>
             <a href="{{ route('eventgenre', ['genre_id' => '3']) }}">
-            <img src="{{ asset('image/genre/live_delivery.jpg') }}">
-            <h3>ライブ配信</h3>
-            <input type="hidden" name="genre1">
+                <img src="{{ asset('image/genre/live_delivery.jpg') }}">
+                <h3>ライブ配信</h3>
+                <input type="hidden" name="genre1">
+            </a>
         </div>
         <div class='family'>
             <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
-            <img src="{{ asset('image/genre/family.jpg') }}">
-            <h3>ライブ配信</h3>
-            <input type="hidden" name="genre1">
+                <img src="{{ asset('image/genre/family.jpg') }}">
+                <h3>ライブ配信</h3>
+                <input type="hidden" name="genre1">
+            </a>
         </div>
         <div class='e_sports'>
             <a href="{{ route('eventgenre', ['genre_id' => '5']) }}">
-            <img src="{{ asset('image/genre/e_sports.jpg') }}">
-            <h3>eスポーツ</h3>
-            <input type="hidden" name="genre1">
+                <img src="{{ asset('image/genre/e_sports.jpg') }}">
+                <h3>eスポーツ</h3>
+                <input type="hidden" name="genre1">
+            </a>
         </div>
     </div>
     <div class="categ_list">
@@ -66,15 +71,15 @@
 {{--        @foreach ($event_data as $event)
             <example-component :event-data={{ $event }}></example-component>
         @endforeach
---}}        
+--}}
+        <div>
+            <p>表示件数　：　{{ $event_data->total() }}</p>
+        </div>
        <example-component :event-data='@json($event_data)'></example-component>
-        {{ $event_data->links() }}
+        <div>
+            {{ $event_data->links() }}
+        </div>
     </div>
-    {{-- @foreach ($event_data as $event)
-        {{$event->summary}}
-        <example-component :event-data="{{ $event }}"></example-component>
-    @endforeach
-    --}}
 </div>
 
 @endsection

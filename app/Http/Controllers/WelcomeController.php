@@ -15,7 +15,7 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
-        $data['event_data'] = Event::getEventFromToday();
+        $data['event_data'] = Event::getEventFromToday($request);
 
         // var_dump($data['event_data']);exit;
         // $data['event_data'] = Event::getEventData($request);

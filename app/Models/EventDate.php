@@ -25,11 +25,31 @@ class EventDate extends Model
      * eventId list from today
      */
     public static function getEventIdListFromToday() {
-        $eventIdList = DB::table('event_dates')
+        $eventData = DB::table('event_dates')
+                    ->where('status', '=', 0)
                     ->where('event_date', '>=', date('Y-m-d'))
-                    ->groupBy('event_id')
+                    ->orderBy('event_date')
                     ->pluck('event_id');
-                    
+                    // ->get();
+                    // var_dump($eventData->groupBy('event_id'));exit;
+
+        $eventIdList = $eventData->unique();
+// var_dump($eventIdList);exit;
+        return $eventIdList;
+    }
+
+    /**
+     * eventId list from today by eventId
+     */
+    public static function getEventIdListById($eventIdList) {
+        $eventData = DB::table('event_dates')
+                    ->where('status', '=', 0)
+                    ->whereIn('event_id', $eventIdList)
+                    ->where('event_date', '>=', date('Y-m-d'))
+                    ->orderBy('event_date')
+                    ->pluck('event_id');
+        $eventIdList = $eventData->unique();
+          
         return $eventIdList;
     }
 }
