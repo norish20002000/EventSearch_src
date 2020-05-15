@@ -37438,6 +37438,10 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.st_date))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.end_date))]),
+                  _vm._v(" "),
                   _c("div", [
                     _vm._v(
                       _vm._s(_vm._f("truncate")(event.introduction, 50, "..."))

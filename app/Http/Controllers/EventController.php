@@ -40,6 +40,19 @@ class EventController extends Controller
     }
 
     /**
+     * event genre
+     * @param Request $request
+     * @param int $id
+     * @return View
+     */
+    public function genre(Request $request, $genre_id)
+    {
+        $data['event_data'] = Event::getEventFromGenreId($genre_id);
+
+        return view('eventgenre', $data);
+    }
+
+    /**
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request

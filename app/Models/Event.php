@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\GenreMap;
+use App\Models\EventDate;
 
 class Event extends Model
 {
@@ -12,6 +14,12 @@ class Event extends Model
      */
     public static function getEventFromToday()
     {
+        $eventIdList = EventDate::getEventIdListFromToday();
+        // var_dump($eventIdList);exit;
+        $eventData = DB::table('events')
+                    ->whereIn('id', $eventIdList)
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+// var_dump($eventData);exit;
         $eventData = DB::table('events')
                     ->select('events.*')
                     ->leftJoin('event_dates', 'events.id', '=', 'event_dates.event_id')
@@ -126,6 +134,36 @@ class Event extends Model
         //                     ['end_date', '>=', $e_day]
         //                 ])
         //                 ->paginate(config('app.PAGINATE.LINK_NUM'));
+
+        return $eventData;
+    }
+
+    /**
+     * getEvent from genre
+     * @param int $genre_id
+     * @return data eventData
+     */
+    public static function getEventFromGenreId($genre_id)
+    {
+        // イベントid取得
+        $eventIdList = GenreMap::getEventId($genre_id);
+        // var_dump($eventIdList);exit;
+        // $eventData = DB::table('events')
+        //             ->whereIn('id', $eventIdList)
+        //             ->get();
+        // var_dump($eventData);exit;
+        $eventIdListFromToday = DB::table('event_dates')
+                            ->whereIn('event_id', $eventIdList)
+                            ->where('event_date', '>=', date('Y-m-d'))
+                            ->groupBy('event_id')
+                            ->pluck('event_id');
+                            // ->get();
+        // var_dump($eventIdListFromToday);exit;
+        $eventData = DB::table('events')
+                    ->whereIn('id', $eventIdListFromToday)
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+        $eventData = self::getDays($eventData);
+        // var_dump($eventData);exit;
 
         return $eventData;
     }

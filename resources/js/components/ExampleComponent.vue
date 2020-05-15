@@ -21,8 +21,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div>{{event.st_date}}</div> -->
-                            <!-- <div>{{event.end_date}}</div> -->
+                            <div>{{event.st_date}}</div>
+                            <div>{{event.end_date}}</div>
                             <div>{{event.introduction | truncate(50, '...')}}</div>
                         </div>
                             </a>

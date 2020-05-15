@@ -21,4 +21,15 @@ class EventDate extends Model
         return $eventDate;
     }
 
+    /**
+     * eventId list from today
+     */
+    public static function getEventIdListFromToday() {
+        $eventIdList = DB::table('event_dates')
+                    ->where('event_date', '>=', date('Y-m-d'))
+                    ->groupBy('event_id')
+                    ->pluck('event_id');
+                    
+        return $eventIdList;
+    }
 }
