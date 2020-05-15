@@ -52,7 +52,7 @@
         <div class='family'>
             <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
                 <img src="{{ asset('image/genre/family.jpg') }}">
-                <h3>ライブ配信</h3>
+                <h3>家族</h3>
                 <input type="hidden" name="genre1">
             </a>
         </div>
