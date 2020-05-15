@@ -12,19 +12,19 @@ class GenreSeeder extends Seeder
     public function run()
     {
         DB::table('genres')->insert([
-            'name' => 'music',
+            'name' => '音楽',
         ]);
         DB::table('genres')->insert([
-            'name' => 'fes',
+            'name' => 'フェス',
         ]);
         DB::table('genres')->insert([
-            'name' => 'live_delivery',
+            'name' => 'ライブ配信',
         ]);
         DB::table('genres')->insert([
-            'name' => 'family',
+            'name' => '家族',
         ]);
         DB::table('genres')->insert([
-            'name' => 'e_sports',
+            'name' => 'eスポーツ',
         ]);
     }
 }
