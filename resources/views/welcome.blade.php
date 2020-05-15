@@ -55,7 +55,7 @@
         <div class='e_sports'>
             <a href="{{ route('eventgenre', ['genre_id' => '5']) }}">
             <img src="{{ asset('image/genre/e_sports.jpg') }}">
-            <h3>ライブ配信</h3>
+            <h3>eスポーツ</h3>
             <input type="hidden" name="genre1">
         </div>
     </div>
