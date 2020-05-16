@@ -16,6 +16,9 @@ class EventDate extends Model
     {
         $eventDate = DB::table('event_dates')
                     ->where('event_id', $event_id)
+                    ->where('status', '=', 0)
+                    ->where('event_date', '>=', date('Y-m-d'))
+                    ->orderBy('event_date')
                     ->get();
 
         return $eventDate;

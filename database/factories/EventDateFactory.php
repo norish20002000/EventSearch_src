@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(EventDate::class, function (Faker $faker) {
     return [
         'event_id'=>$faker->numberBetween(1, 10),
-        'event_date'=>$faker->dateTimeBetween('-5 days', '+5 days')
+        'event_date'=>$faker->dateTimeBetween('-1 days', '+5 days')
     ];
 });
