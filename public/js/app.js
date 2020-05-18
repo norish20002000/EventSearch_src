@@ -1929,7 +1929,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      events: this.eventData
+      events: this.eventData,
+      genreData: this.genre
     };
   },
   filters: {
@@ -1952,7 +1953,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log('beforeCreate: ' + this.events);
   },
   created: function created() {
-    console.log('created: ' + this.events.data);
+    console.log(this.events);
   },
   mounted: function mounted() {
     console.log("test: " + this.events);

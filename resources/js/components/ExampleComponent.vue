@@ -51,6 +51,7 @@
         data() {
             return {
                 events: this.eventData,
+                genreData: this.genre,
             }
         },
         filters: {
@@ -73,7 +74,7 @@
             console.log('beforeCreate: ' + this.events)
         },
         created () {
-            console.log('created: ' + this.events.data)
+            console.log(this.events)
         },
         mounted() {
             console.log("test: " + this.events)

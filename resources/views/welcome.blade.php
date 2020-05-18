@@ -2,6 +2,7 @@
 @section('content')
 <div class='container'>
     <div>
+        @section('breadcrumbs', Breadcrumbs::render('home'))
         <form class="formsearch" method="GET" action="/">
             <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
             <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button>

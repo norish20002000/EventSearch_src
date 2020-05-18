@@ -4,6 +4,11 @@
 <div>
 </div>
 </div>
+@if ($event_data->prePage === "genres")
+@section('breadcrumbs', Breadcrumbs::render('eventgenre', $event_data))
+@else
+@section('breadcrumbs', Breadcrumbs::render('event', $event_data))
+@endif
 <div class='container'>
     <div class="article_title">
         <p class="title">{{ $event_data->title }}</p>
@@ -22,5 +27,4 @@
         </div>
     </div>
 </div>
-
 @endsection

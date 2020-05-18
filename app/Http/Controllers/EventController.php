@@ -37,6 +37,16 @@ class EventController extends Controller
         }
         // var_dump($data['event_data']);exit;
 
+        // referer
+        if(strpos(url()->previous(), 'eventgenre') !== false) {
+            $urlPathList = explode('/', parse_url(url()->previous())['path']);
+            $genreId = (int)$urlPathList[2];
+            $data['event_data']->genre = Genre::getGenreById($genreId);
+            $data['event_data']->prePage = "genres";
+        } else {
+            $data['event_data']->prePage = "";
+        }
+
         return View('event', $data);
     }
 
@@ -50,8 +60,6 @@ class EventController extends Controller
     {
         $data['event_data'] = Event::getEventFromGenreId($genre_id);
         $data['event_data']->genre = Genre::getGenreById($genre_id);
-
-        // var_dump($data['event_data']->genre);exit;
 
         return view('eventgenre', $data);
     }
