@@ -15,12 +15,24 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
-        $data['event_data'] = Event::getEventFromToday($request);
+        $searchFlg = false;
 
-        // var_dump($data['event_data']);exit;
-        // $data['event_data'] = Event::getEventData($request);
+        if(isset($request->today)) {
+            $data['event_data'] = self::searchToday($request);
+            $searchFlg = true;
+        } elseif (isset($request->tomorrow)) {
+            $data['event_data'] = self::searchTomorrow($request);
+            $searchFlg = true;
+        } elseif (isset($request->weekend)) {
+            $data['event_data'] = self::searchWeekend($request);
+            $searchFlg = true;
+        } else {
+            $data['event_data'] = Event::getEventFromToday($request);
+            $searchFlg = $request->search ? true : false;
+        }
 
         $data['search'] = $request->search;
+        $data['search_flg'] = $searchFlg;
 
         return view("welcome", $data);
     }
@@ -29,30 +41,30 @@ class WelcomeController extends Controller
      * today event
      * @param Request $request
      */
-    public function searchToday(Request $request)
+    private function searchToday($request)
     {
         $today = date("Y-m-d");
         $data['event_data'] = Event::getEventByDate($request, $today);
 
-        return view("welcome", $data);
+        return $data['event_data'];
     }
 
     /**
      * tomorrow event
      * @param Request $request
      */
-    public function searchTomorrow(Request $request)
+    private function searchTomorrow($request)
     {
         $tomorrow = date("Y-m-d", strtotime('+1 day'));
         $data['event_data'] = Event::getEventByDate($request, $tomorrow);
 
-        return view("welcome", $data);
+        return $data['event_data'];
     }
 
     /**
      * weekend event
      */
-    public function searchWeekend(Request $request)
+    private function searchWeekend($request)
     {
         $today = date("Y-m-d");
         $tomorrow = date("Y-m-d", strtotime('+1 day'));
@@ -68,7 +80,7 @@ class WelcomeController extends Controller
             $data['event_data'] = Event::getEventByDate($request, $today);
         }
 
-        return view("welcome", $data);
+        return $data['event_data'];
     }
 
     /**

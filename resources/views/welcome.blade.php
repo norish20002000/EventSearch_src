@@ -1,33 +1,36 @@
 @extends('layouts.app')
 @section('content')
 <div class='container'>
-    <div>
-        @section('breadcrumbs', Breadcrumbs::render('home'))
-        <form class="formsearch" method="GET" action="/">
-            <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
-            <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <details>
-        <summary>詳細検索</summary>
-        <div class="search_list">
-            <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
-            <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
-            <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a>
-            <accordion-component slot="body">
-                <div slot="title">その他</div>
-                <div slot="body">
-                    <p>期間指定</p>
-                    <div>
-                        <input type="text" name="search_st_date" placeholder="開始">
-                        〜
-                        <input type="text" placeholder="終了">
-                        <button type="button">検索</button>
+    @section('breadcrumbs', Breadcrumbs::render('home'))
+    <form class="formsearch" method="GET" action="/">
+        <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
+        <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button>
+        <details>
+            <summary>詳細検索</summary>
+            <div class="search_list">
+                <button name="today" value="today" type="submit" class="p-btn">今日</button>
+                <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
+                <button name="weekend" value="weekend" type="submit" class="p-btn">週末</button>
+                <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
+                <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
+                <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
+                <accordion-component slot="body">
+                    <div slot="title">その他</div>
+                    <div slot="body">
+                        <p>期間指定</p>
+                        <div>
+                            <input type="text" name="search_st_date" placeholder="開始">
+                            〜
+                            <input type="text" placeholder="終了">
+                            <button type="button">検索</button>
+                        </div>
                     </div>
-                </div>
-            </accordion-component>
-        </div>
-    </details>
+                </accordion-component>
+            </div>
+        </details>
+    </form>
+    @if ($search_flg != "1")
+    <p>{{$search_flg}}</p>
     <div class="genre">
         <div class='music'>
             <a href="{{ route('eventgenre', ['genre_id' => '1']) }}">
@@ -65,6 +68,7 @@
             </a>
         </div>
     </div>
+    @endif
     <div class="categ_list">
 
     </div>

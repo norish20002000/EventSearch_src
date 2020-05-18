@@ -75,11 +75,21 @@ class Event extends Model
                     ->where('event_date', '=', $day)
                     ->pluck('event_id');
         $eventIdStr = implode(',', $eventIdList->toArray());
-        $eventData = DB::table('events')
+
+        if($request->search === null) {
+            $eventData = DB::table('events')
                     ->where('status', '=', 0)
                     ->whereIn('id', $eventIdList)
                     ->orderByRaw("FIELD(id, $eventIdStr)")
                     ->paginate(config('app.PAGINATE.LINK_NUM'));
+        } else {
+            $eventData = DB::table('events')
+                    ->where('status', '=', 0)
+                    ->whereIn('id', $eventIdList)
+                    ->where('title', 'LIKE', '%'.$request->search.'%')
+                    ->orderByRaw("FIELD(id, $eventIdStr)")
+                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+        }
         
         $eventData = self::getDays($eventData);
 
@@ -102,11 +112,21 @@ class Event extends Model
                     ->pluck('event_id');
         $eventIdList = $eventIdList->unique();
         $eventIdStr = implode(',', $eventIdList->toArray());
-        $eventData = DB::table('events')
-                    ->where('status', '=', 0)
-                    ->whereIn('id', $eventIdList)
-                    ->orderByRaw("FIELD(id, $eventIdStr)")
-                    ->paginate(config('app.PAGINATE.LINK_NUM'));
+
+        if($request->search === null) {
+            $eventData = DB::table('events')
+                        ->where('status', '=', 0)
+                        ->whereIn('id', $eventIdList)
+                        ->orderByRaw("FIELD(id, $eventIdStr)")
+                        ->paginate(config('app.PAGINATE.LINK_NUM'));
+        } else {
+            $eventData = DB::table('events')
+                        ->where('status', '=', 0)
+                        ->whereIn('id', $eventIdList)
+                        ->where('title', 'LIKE', '%'.$request->search.'%')
+                        ->orderByRaw("FIELD(id, $eventIdStr)")
+                        ->paginate(config('app.PAGINATE.LINK_NUM'));
+        }
 
         $eventData = self::getDays($eventData);
 
