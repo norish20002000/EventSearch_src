@@ -23,7 +23,7 @@
     </div>
     <div class="article_content">
         <div>
-            <div> {{ $event_data->introduction}} </div>
+            <div> {!! nl2br($event_data->introduction) !!} </div>
         </div>
     </div>
 </div>

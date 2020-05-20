@@ -55,4 +55,15 @@ class EventDate extends Model
           
         return $eventIdList;
     }
+
+    /**
+     * event date register
+     */
+    public static function saveEventDate($eventId, $date)
+    {
+        $eventDate = new EventDate();
+        $eventDate->event_id = $eventId;
+        $eventDate->event_date = $date;
+        $eventDate->save();
+    }
 }

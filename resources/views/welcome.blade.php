@@ -14,7 +14,7 @@
                 <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
                 <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
                 <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
-                <accordion-component slot="body">
+                <accordion-component>
                     <div slot="title">その他</div>
                     <div slot="body">
                         <p>期間指定</p>

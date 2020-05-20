@@ -28,11 +28,30 @@ class GenreMap extends Model
      */
     public static function getGenreId($event_id)
     {
-        $genreIdList = DB::table(genre_maps)
+        $genreIdList = DB::table('genre_maps')
                     ->where('status', '=', 0)
                     ->where('event_id', '=', $event_id)
                     ->pluck('genre_id');
 
         return $genreIdList;
+    }
+
+    /**
+     * save genreMap
+     * @param int $eventId
+     */
+    public static function saveGenreMap($eventId, $request)
+    {
+        $genreMap = new GenreMap();
+        $genreMap->genre_id = $request->genre_id;
+        $genreMap->event_id = $eventId;
+
+        DB::beginTransaction();
+        try {
+            $result = $genreMap->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
     }
 }

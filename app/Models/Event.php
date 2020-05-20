@@ -171,6 +171,44 @@ class Event extends Model
     }
 
     /**
+     * save event data
+     * @param Request $request
+     */
+    public static function saveEventData($request)
+    {
+        $event = new Event();
+        $event->title = $request->title;
+        $event->introduction = $request->introduction;
+        $event->st_time = $request->st_time;
+        $event->end_time = $request->end_time;
+        $event->summary_date = $request->summary_date;
+        $event->web_name = $request->web_name;
+        $event->web_url = $request->web_url;
+        $event->fee_type = $request->fee_type; 
+        $event->fee = $request->fee;
+        $event->image_url = $request->image_url;
+        $event->reference_name = $request->reference_name;
+        $event->reference_url = $request->reference_url;
+        $event->release_date = $request->release_date;
+        $event->regi_group_name = $request->regi_group_name;
+        $event->regi_name = $request->regi_name;
+        $event->regi_tel = $request->regi_tel;
+        $event->regi_mail = $request->regi_mail;
+        $event->status = (int)$request->status;
+    
+        DB::transaction(function () use ($event, $request) {
+            $event->save();
+
+            foreach($request->event_date as $date) {
+                if($date == "") continue;
+                EventDate::saveEventDate($event->id, $date);
+            }
+        });
+
+        return $event->id;
+    }
+
+    /**
      * 
      */
     private static function getDays($eventData)

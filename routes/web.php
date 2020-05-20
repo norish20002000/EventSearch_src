@@ -30,4 +30,5 @@ Route::get('weekendevent', 'WelcomeController@searchWeekend')->name('weekendeven
 Route::get('eventdetail/{id}', 'EventController@show')->name('eventdetail');
 Route::get('eventgenre/{genre_id}', 'EventController@genre')->name('eventgenre');
 
-Route::post('eventedit', 'EventController@register')->name('eventedit');
+Route::get('eventbank/event/edit/{id?}', 'EventBankController@edit')->name('eventedit');
+Route::post('/eventbank/event/register', 'EventBankController@register')->name('eventregister');
