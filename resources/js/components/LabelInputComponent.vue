@@ -8,8 +8,8 @@
                     </label>
                 </div>
                 <div>
-                    <input  :name="'data[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date">
-                    <input type="hidden" :name="'data[' + index + '][event_date_id]'" :value="element.id">
+                    <input  :name="'date[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date">
+                    <input type="hidden" :name="'date[' + index + '][event_date_id]'" :value="element.id">
                     <!-- <p v-if="errors && errors[0][attribute]" erroclass="validation">※{{errors[0][attribute]}}</p> -->
                 </div>
             </div>
@@ -28,13 +28,14 @@
             attributeName: "",
         },
         data() {
-            var now =new Date()
-            var todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()
+            // var now =new Date()
+            // var todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()
             return {
                 attribute: this.attributeName,
                 elements: this.eventDate.length != 0 ? this.eventDate : [
                     {
-                        event_date: todayStr,
+                        event_date: "",
+                        // todayStr,
                     },
                 ],
             }

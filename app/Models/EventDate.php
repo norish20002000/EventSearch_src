@@ -63,7 +63,7 @@ class EventDate extends Model
     {
         $eventDate = new EventDate();
         $eventDate->event_id = $eventId;
-        $eventDate->event_date = $date;
+        $eventDate->event_date = $date['event_date'];
         $eventDate->save();
     }
 
@@ -93,9 +93,21 @@ class EventDate extends Model
             // insert
             $eventDate = new EventDate();
             $eventDate->event_id = $eventId;
-            $eventDate->event_date = $date['event_date']    ;
+            $eventDate->event_date = $date['event_date'];
         }
 
         return $eventDate->save();
+    }
+
+    /**
+     * delete by id
+     */
+    public static function deleteById($id)
+    {
+        $result = DB::transaction(function () use ($id) {
+            EventDate::find($id)->delete();
+        });
+
+        return $result;
     }
 }

@@ -13,6 +13,18 @@
 @endif
 <div class='container'>
     <div class="article_title">
+        @if (isset($event_data->id))
+        <div class="btn_row">
+            <div>
+                <a href="{{route('eventedit')}}" >
+                <button type="button" class="btn btn-secondary">新規作成画面へ移動</button>
+                </a>
+            </div>
+            <div>
+                <button name="copyevent" value="copyevent" type="submit" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>はコピーされません。" data-html="true">イベントコピー</button>
+            </div>
+        </div>
+        @endif
         <div class="label_input">
             <div>
                 <label class='edit_label'>タイトル</label>
@@ -41,8 +53,8 @@
         <labelinput-component :event-date='@json(isset($event_data->date) ? $event_data->date : '')' attribute-name="event_date">
             <div slot='column_name'>開催日</div>
         </labelinput-component>
-        @if ($errors->first('event_date'))
-            <p class="validation">※{{$errors->first('event_date')}}</p>
+        @if ($errors->first('date.0.event_date'))
+            <p class="validation">※{{$errors->first('date.0.event_date')}}</p>
         @endif
         <div class="label_input">
             <div>
@@ -170,15 +182,15 @@
                 <label class='edit_label'>ジャンル</label>
             </div>
             <div class="input_area">
-                <select name="genre_id" value="{{isset($event_data->genre_id) ? $event_data->genre_id : ''}}">
+                <select name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
                     @foreach($genre as $g)
                         <option value="{{$g->id}}" 
-                            {{isset($event_data->genre_id) && $event_data->genre_id == $g->id ? 'selected':''}}>
+                            {{isset($event_data->genre) && isset($event_data->genre->genre_id) && $event_data->genre->genre_id == $g->id ? 'selected':''}}>
                             {{$g->disp_name}}
                         </option>
                     @endforeach
                 </select>
-                <input name="genre_name" type="text"></input>
+                <input type="hidden" name="genre_map_id" value="{{isset($event_data->genre) && isset($event_data->genre->id) ? $event_data->genre->id : ''}}">
                 @if ($errors->first('genre_naem'))
                     <p class="validation">※{{$errors->first('genre_name')}}</p>
                 @endif

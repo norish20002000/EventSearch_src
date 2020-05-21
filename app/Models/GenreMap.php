@@ -31,9 +31,19 @@ class GenreMap extends Model
         $genreIdList = DB::table('genre_maps')
                     ->where('status', '=', 0)
                     ->where('event_id', '=', $event_id)
-                    ->pluck('genre_id');
+                    ->get();
 
         return $genreIdList;
+    }
+
+    /**
+     * get genre data
+     */
+    public static function getGenredata($event_id)
+    {
+        $genreMapList = GenreMap::where('status', '=', 0)
+                    ->where('event_id', '=', $event_id)
+                    ->get();
     }
 
     /**
@@ -50,8 +60,36 @@ class GenreMap extends Model
         try {
             $result = $genreMap->save();
             DB::commit();
+
+            return $result;
         } catch (\Exception $e) {
             DB::rollback();
         }
+    }
+
+    /**
+     * update genreMap
+     */
+    public static function updateGenreMap($eventId, $request)
+    {
+        if($request->genre_map_id) {
+            // update
+            $genreMap = GenreMap::find($request->genre_map_id);
+            $genreMap->event_id = $eventId;
+            $genreMap->genre_id = $request->genre_id;
+        } else {
+            // insert
+            $genreMap = new GenreMap();
+            $genreMap->event_id = $eventId;
+            $genreMap->genre_id = $request->genre_id;
+        }
+// var_dump($genreMap);exit;
+        $result = DB::transaction(function () use ($genreMap) {
+            $result = $genreMap->save();
+
+            return $result;
+        });
+
+        return $result;
     }
 }

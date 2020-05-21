@@ -2002,12 +2002,13 @@ __webpack_require__.r(__webpack_exports__);
     attributeName: ""
   },
   data: function data() {
-    var now = new Date();
-    var todayStr = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+    // var now =new Date()
+    // var todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()
     return {
       attribute: this.attributeName,
       elements: this.eventDate.length != 0 ? this.eventDate : [{
-        event_date: todayStr
+        event_date: "" // todayStr,
+
       }]
     };
   },
@@ -37706,7 +37707,7 @@ var render = function() {
                   }
                 ],
                 attrs: {
-                  name: "data[" + index + "][" + _vm.attribute + "]",
+                  name: "date[" + index + "][" + _vm.attribute + "]",
                   type: "text"
                 },
                 domProps: { value: element.event_date },
@@ -37723,7 +37724,7 @@ var render = function() {
               _c("input", {
                 attrs: {
                   type: "hidden",
-                  name: "data[" + index + "][event_date_id]"
+                  name: "date[" + index + "][event_date_id]"
                 },
                 domProps: { value: element.id }
               })

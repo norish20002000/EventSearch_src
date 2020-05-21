@@ -26,7 +26,7 @@ class EventFormSendRequest extends FormRequest
         return [
             "title" => "required",
             "introduction" => "required",
-            "event_date" => "required",
+            'date.0.event_date' => "required",
             "st_time" => "",
             "end_time" => "",
             "summary_date" => "",
@@ -55,7 +55,7 @@ class EventFormSendRequest extends FormRequest
         return [
             "title" => "タイトル",
             "introduction" => "紹介文",
-            "event_date" => "開催日",
+            'date.0.event_date' => "開催日",
             "st_time" => "開始時間",
             "end_time" => "終了時間",
             "summary_date" => "日付概要",

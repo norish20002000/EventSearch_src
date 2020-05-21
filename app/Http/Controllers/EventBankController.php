@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
@@ -25,7 +26,10 @@ class EventBankController extends Controller
             $data['event_data']->upType = 'register';
         } else {
             $data['event_data'] = Event::getEventDataByIdAllday($id);
-            $data['event_data']->genre_id = GenreMap::getGenreId($id)->first();
+            $data['event_data']->genre = GenreMap::getGenreId($id)->first();
+            // var_dump($data['event_data']->genre);exit;
+            // var_dump("id : ");var_dump($id);
+            // var_dump($data['event_data']->date);exit;
             $data['event_data']->upType = 'update';
             // var_dump($data['event_data']->id);exit;
         }
@@ -39,17 +43,21 @@ class EventBankController extends Controller
     /**
      * イベント登録
      */
-    public function register(Request $request)
-        // EventFormSendRequest $request)
+    public function register(
+        // Request $request)
+        EventFormSendRequest $request)
     {
         // $this->validation($request);
 
         if($request->update) {
             $eventId = $request->event_id;
             Event::updateEventData($request);
+            GenreMap::updateGenreMap($eventId, $request);
         } elseif ($request->register) {
             $eventId = Event::saveEventData($request);
             GenreMap::saveGenreMap($eventId, $request);
+        } elseif ($request->copyevent) {
+            $eventId = $this->copyEventData($request);
         }
 
         // $request->session()->put('success',"イベントデータが保存されました。");
@@ -92,6 +100,24 @@ class EventBankController extends Controller
         // $request->name;
 
         return $data;
+    }
+
+    /**
+     * replicate event data
+     */
+    public function copyEventData(Request $request)
+    {
+        $preEvent = Event::find($request->event_id);
+        $event = $preEvent->replicate();
+
+        DB::transaction(function () use ($event, $request){
+            $event->save();
+
+            // genre_map insert
+            $result = GenreMap::saveGenreMap($event->id, $request);
+        });
+
+        return $event->id;
     }
 
     /**

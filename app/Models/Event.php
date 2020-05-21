@@ -241,12 +241,12 @@ class Event extends Model
         $event->regi_tel = $request->regi_tel;
         $event->regi_mail = $request->regi_mail;
         $event->status = (int)$request->status;
-    
+
         DB::transaction(function () use ($event, $request) {
             $event->save();
 
-            foreach($request->event_date as $date) {
-                if($date == "") continue;
+            foreach($request->date as $date) {
+                if($date['event_date'] == null) continue;
                 EventDate::saveEventDate($event->id, $date);
             }
         });
@@ -264,10 +264,15 @@ class Event extends Model
 
         DB::transaction(function () use ($event, $request) {
             $resultEvent = $event->fill($request->all())->save();
-
-            foreach($request->data as $date) {
-                if($date['event_date'] == null) continue;
-                $resutlDate = EventDate::updateEventDate($request->event_id, $date);
+            $cnt = 0;
+            foreach($request->date as $date) {
+                if($date['event_date'] == null) {
+                    if($date['event_date_id']) {
+                        $result = EventDate::deleteById($date['event_date_id']);
+                    }
+                } else {
+                    $resutl = EventDate::updateEventDate($request->event_id, $date);
+                }
             }
         });
     }
