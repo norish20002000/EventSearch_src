@@ -2,18 +2,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-        <div>
-            <button type='button' class="btn btn-outline-primary" @click="getData">get data</button>
-        </div>
-                <div class="card" v-for="event in events.data" :key="event.id">
+                <div class="btn_row">
+                    <div>
+                        <button type='button' class="btn btn-outline-primary" @click="getDataOpened">公開data</button>
+                    </div>
+                    <div>
+                        <button type='button' class="btn btn-outline-primary" @click="getDataClosed">非公開data</button>
+                    </div>
+                </div>
+                <div>
+                    <h5>{{eventCount}}件</h5>
+                    <h5>{{eventType}}</h5>
+                </div>
+                <div class="card" v-for="event in events" :key="event.id">
                     <div class="card-header">{{event.id}}</div>
                     <div class="card-body">
                         <div class="icon fl">
-                            <a :href="'/eventdetail/' + event.id">
+                            <a :href="'/eventbank/event/edit/' + event.id">
                                 <img class="thumb_img" :src="event.image_url"/>
                             </a>
                         </div>
-                            <a :href="'/eventdetail/' + event.id">
+                            <a :href="'/eventbank/event/edit/' + event.id">
                                 <div class="fl">
                                     <div>{{event.title | truncate(30, '...')}}</div>
                                     <div class="days">
@@ -54,17 +63,41 @@
         data() {
             return {
                 events: this.eventData,
-                genreData: this.genre,
+                eventType: "非公開データ表示中",
+                eventCount: this.eventData.length,
             }
         },
         methods: {
-            getData: function() {
+            getDataOpened: function() {
                 let data = {
-                    name: "test",
-                    }
+                            params: {
+                                status: 0,
+                                }
+                            }
+                data._token = document.getElementsByName('csrf-token')[0].content;
+                axios.get("/api/eventdata", data,).then((result)=>{
+                    console.log(result.data)
+                    this.events = result.data.event_data
+
+                    this.eventType = "公開データ表示中"
+                    this.eventCount = this.events.length
+                }).catch(error => {
+                    console.log(error.message)
+                })
+            },
+            getDataClosed: function() {
+                let data = {
+                            params:{
+                                status: 1,
+                                }
+                            }
                 data._token = document.getElementsByName('csrf-token')[0].content;
                 axios.get("/api/eventdata", data).then((result)=>{
-                    console.log(result.data);
+                    console.log(result.data)
+                    this.events = result.data.event_data
+
+                    this.eventType = "非公開データ表示中"
+                    this.eventCount = this.events.length
                 }).catch(error => {
                     console.log(error.message)
                 })
@@ -90,7 +123,7 @@
             console.log('beforeCreate: ' + this.events)
         },
         created () {
-            console.log(this.events)
+            console.log('created: ' + this.events)
         },
         mounted() {
             console.log("test: " + this.events)

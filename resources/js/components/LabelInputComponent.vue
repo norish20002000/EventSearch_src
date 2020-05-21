@@ -8,7 +8,8 @@
                     </label>
                 </div>
                 <div>
-                    <input :name="attribute + '[' + index + ']'" type="text" :value="element.event_date">
+                    <input :name="'data[' + index + '][' + attribute + ']'" type="text" :value="element.event_date">
+                    <input type="hidden" :name="'data[' + index + '][event_date_id]'" :value="element.id">
                     <!-- <p v-if="errors && errors[0][attribute]" erroclass="validation">※{{errors[0][attribute]}}</p> -->
                 </div>
             </div>
@@ -29,7 +30,7 @@
         data() {
             return {
                 attribute: this.attributeName,
-                elements: this.eventDate ? this.eventDate : [
+                elements: this.eventDate.length != 0 ? this.eventDate : [
                     {
                     'name' : "test",
                     },

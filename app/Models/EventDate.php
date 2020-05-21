@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class EventDate extends Model
-{
+{    
     /**
      * event date取得
      * @param int $event_id
@@ -65,5 +65,37 @@ class EventDate extends Model
         $eventDate->event_id = $eventId;
         $eventDate->event_date = $date;
         $eventDate->save();
+    }
+
+    /**
+     * get eventDate all for update
+     */
+    public static function getEventDateAll($eventData)
+    {
+        $eventData->date = EventDate::where('status', '=', 0)
+                    ->where('event_id', '=', $eventData->id)
+                    ->orderBy('event_date')
+                    ->get();
+
+        return $eventData;
+    }
+
+    /**
+     * update date
+     */
+    public static function updateEventDate($eventId, $date)
+    {
+        if($date['event_date_id']) {
+            // update
+            $eventDate = EventDate::find($date['event_date_id']);
+            $eventDate->event_date = $date['event_date'];
+        } else {
+            // insert
+            $eventDate = new EventDate();
+            $eventDate->event_id = $eventId;
+            $eventDate->event_date = $date['event_date']    ;
+        }
+
+        return $eventDate->save();
     }
 }

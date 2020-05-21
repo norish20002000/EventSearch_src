@@ -9,6 +9,27 @@ use App\Models\EventDate;
 
 class Event extends Model
 {
+    protected $fillable = [
+        "title",
+        "introduction",
+        "st_time",
+        "end_time",
+        "summary_date",
+        "web_name",
+        "web_url",
+        "fee_type",
+        "fee_type",
+        "image_url",
+        "reference_name",
+        "reference_name",
+        "release_date",
+        "regi_group_name",
+        "regi_name",
+        "regi_name",
+        "regi_mail",
+        "status",
+    ];
+
     /**
      * 
      */
@@ -50,6 +71,19 @@ class Event extends Model
     }
 
     /**
+     * for ope
+     */
+    public static function getEventDataAllday($request, $status)
+    {
+        $eventData = Event::where('status', '=', $status)
+                    ->orderBy('id', 'desc')
+                    ->get();
+        $eventData = self::getDaysAllday($eventData);
+
+        return $eventData;
+    }
+
+    /**
      * event data by id
      * @param int $id
      * @return Event $eventdata
@@ -59,6 +93,18 @@ class Event extends Model
         $eventData = DB::table('events')
                     ->find($id);
         $eventData->date = EventDate::getDate($id);
+
+        return $eventData;
+    }
+
+    /**
+     * 
+     */
+    public static function getEventDataByIdAllday($id)
+    {
+        $eventData = DB::table('events')
+                    ->find($id);
+        $eventData = EventDate::getEventDateAll($eventData);
 
         return $eventData;
     }
@@ -209,6 +255,52 @@ class Event extends Model
     }
 
     /**
+     * update event
+     */
+    public static function updateEventData($request)
+    {
+        // $event = self::registerInstance($request);
+        $event = Event::find($request->event_id);
+
+        DB::transaction(function () use ($event, $request) {
+            $resultEvent = $event->fill($request->all())->save();
+
+            foreach($request->data as $date) {
+                if($date == "") continue;
+                $resutlDate = EventDate::updateEventDate($request->event_id, $date);
+            }
+        });
+    }
+
+    /**
+     * make instance
+     */
+    private static function registerInstance($request)
+    {
+        $event = new Event();
+        $event->title = $request->title;
+        $event->introduction = $request->introduction;
+        $event->st_time = $request->st_time;
+        $event->end_time = $request->end_time;
+        $event->summary_date = $request->summary_date;
+        $event->web_name = $request->web_name;
+        $event->web_url = $request->web_url;
+        $event->fee_type = $request->fee_type; 
+        $event->fee = $request->fee;
+        $event->image_url = $request->image_url;
+        $event->reference_name = $request->reference_name;
+        $event->reference_url = $request->reference_url;
+        $event->release_date = $request->release_date;
+        $event->regi_group_name = $request->regi_group_name;
+        $event->regi_name = $request->regi_name;
+        $event->regi_tel = $request->regi_tel;
+        $event->regi_mail = $request->regi_mail;
+        $event->status = (int)$request->status;
+
+        return $event;
+    }
+
+    /**
      * 
      */
     private static function getDays($eventData)
@@ -220,5 +312,17 @@ class Event extends Model
         }
 
         return $resultEventData;
+    }
+
+    /**
+     * 
+     */
+    private static function getDaysAllday($eventData)
+    {
+        foreach($eventData as $event){
+            $event = EventDate::getEventDateAll($event);
+        }
+
+        return $eventData;
     }
 }

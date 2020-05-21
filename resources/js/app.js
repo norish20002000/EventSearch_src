@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('accordion-component', require('./components/AccordionComponent.vue').default);
 Vue.component('labelinput-component', require('./components/LabelInputComponent.vue').default);
+Vue.component('operation-component', require('./components/OperationComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
