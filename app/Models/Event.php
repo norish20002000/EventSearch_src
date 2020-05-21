@@ -266,7 +266,7 @@ class Event extends Model
             $resultEvent = $event->fill($request->all())->save();
 
             foreach($request->data as $date) {
-                if($date == "") continue;
+                if($date['event_date'] == null) continue;
                 $resutlDate = EventDate::updateEventDate($request->event_id, $date);
             }
         });

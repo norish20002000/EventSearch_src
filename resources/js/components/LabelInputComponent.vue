@@ -8,7 +8,7 @@
                     </label>
                 </div>
                 <div>
-                    <input :name="'data[' + index + '][' + attribute + ']'" type="text" :value="element.event_date">
+                    <input  :name="'data[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date">
                     <input type="hidden" :name="'data[' + index + '][event_date_id]'" :value="element.id">
                     <!-- <p v-if="errors && errors[0][attribute]" erroclass="validation">※{{errors[0][attribute]}}</p> -->
                 </div>
@@ -28,11 +28,13 @@
             attributeName: "",
         },
         data() {
+            var now =new Date()
+            var todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()
             return {
                 attribute: this.attributeName,
                 elements: this.eventDate.length != 0 ? this.eventDate : [
                     {
-                    'name' : "test",
+                        event_date: todayStr,
                     },
                 ],
             }
@@ -40,7 +42,8 @@
         methods: {
             append: function() {
                 this.elements.push({
-                    name: $('.label_input').val(),
+                    event_date: ""
+                    // $('.label_input').val()
                 })
             }
         },

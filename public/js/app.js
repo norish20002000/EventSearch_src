@@ -2002,17 +2002,20 @@ __webpack_require__.r(__webpack_exports__);
     attributeName: ""
   },
   data: function data() {
+    var now = new Date();
+    var todayStr = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
     return {
       attribute: this.attributeName,
       elements: this.eventDate.length != 0 ? this.eventDate : [{
-        'name': "test"
+        event_date: todayStr
       }]
     };
   },
   methods: {
     append: function append() {
       this.elements.push({
-        name: $('.label_input').val()
+        event_date: "" // $('.label_input').val()
+
       });
     }
   },
@@ -37694,11 +37697,27 @@ var render = function() {
             _vm._v(" "),
             _c("div", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: element.event_date,
+                    expression: "element.event_date"
+                  }
+                ],
                 attrs: {
                   name: "data[" + index + "][" + _vm.attribute + "]",
                   type: "text"
                 },
-                domProps: { value: element.event_date }
+                domProps: { value: element.event_date },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(element, "event_date", $event.target.value)
+                  }
+                }
               }),
               _vm._v(" "),
               _c("input", {
