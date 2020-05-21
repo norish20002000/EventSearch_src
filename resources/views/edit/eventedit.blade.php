@@ -16,12 +16,17 @@
         @if (isset($event_data->id))
         <div class="btn_row">
             <div>
-                <a href="{{route('eventedit')}}" >
-                <button type="button" class="btn btn-secondary">新規作成画面へ移動</button>
+                <a href="{{route('eventopelist')}}" >
+                <button type="button" class="btn btn-secondary">一覧画面</button>
                 </a>
             </div>
             <div>
                 <button name="copyevent" value="copyevent" type="submit" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>はコピーされません。" data-html="true">イベントコピー</button>
+            </div>
+            <div>
+                <a href="{{route('eventedit')}}" >
+                <button type="button" class="btn btn-secondary">新規作成画面へ移動</button>
+                </a>
             </div>
         </div>
         @endif
