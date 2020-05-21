@@ -2,9 +2,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-        <div>
-            <button type='button' class="btn btn-outline-primary" @click="getData">get data</button>
-        </div>
                 <div class="card" v-for="event in events.data" :key="event.id">
                     <div class="card-header">{{event.id}}</div>
                     <div class="card-body">
@@ -58,17 +55,6 @@
             }
         },
         methods: {
-            getData: function() {
-                let data = {
-                    name: "test",
-                    }
-                data._token = document.getElementsByName('csrf-token')[0].content;
-                axios.get("/api/eventdata", data).then((result)=>{
-                    console.log(result.data);
-                }).catch(error => {
-                    console.log(error.message)
-                })
-            },
         },
         filters: {
             truncate: function(value, length, omission) {

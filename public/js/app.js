@@ -1914,9 +1914,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1936,19 +1933,7 @@ __webpack_require__.r(__webpack_exports__);
       genreData: this.genre
     };
   },
-  methods: {
-    getData: function getData() {
-      var data = {
-        name: "test"
-      };
-      data._token = document.getElementsByName('csrf-token')[0].content;
-      axios.get("/api/eventdata", data).then(function (result) {
-        console.log(result.data);
-      })["catch"](function (error) {
-        console.log(error.message);
-      });
-    }
-  },
+  methods: {},
   filters: {
     truncate: function truncate(value, length, omission) {
       var length = length ? parseInt(length, 10) : 20;
@@ -37619,69 +37604,53 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-md-8" },
-        [
-          _c("div", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-outline-primary",
-                attrs: { type: "button" },
-                on: { click: _vm.getData }
-              },
-              [_vm._v("get data")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.events.data, function(event) {
-            return _c("div", { key: event.id, staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(_vm._s(event.id))
+        _vm._l(_vm.events.data, function(event) {
+          return _c("div", { key: event.id, staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v(_vm._s(event.id))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "icon fl" }, [
+                _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
+                  _c("img", {
+                    staticClass: "thumb_img",
+                    attrs: { src: event.image_url }
+                  })
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "icon fl" }, [
-                  _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                    _c("img", {
-                      staticClass: "thumb_img",
-                      attrs: { src: event.image_url }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                  _c("div", { staticClass: "fl" }, [
-                    _c("div", [
-                      _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
-                    ]),
+              _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
+                _c("div", { staticClass: "fl" }, [
+                  _c("div", [
+                    _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "days" }, [
+                    _c("div", [_vm._v("開催日")]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "days" }, [
-                      _c("div", [_vm._v("開催日")]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        _vm._l(event.date, function(date) {
-                          return _c("div", { key: date.id }, [
-                            _c("div", [_vm._v(_vm._s(date.event_date))])
-                          ])
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        _vm._s(
-                          _vm._f("truncate")(event.introduction, 50, "...")
-                        )
-                      )
-                    ])
+                    _c(
+                      "div",
+                      _vm._l(event.date, function(date) {
+                        return _c("div", { key: date.id }, [
+                          _c("div", [_vm._v(_vm._s(date.event_date))])
+                        ])
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      _vm._s(_vm._f("truncate")(event.introduction, 50, "..."))
+                    )
                   ])
                 ])
               ])
             ])
-          })
-        ],
-        2
+          ])
+        }),
+        0
       )
     ])
   ])
