@@ -37708,7 +37708,8 @@ var render = function() {
                 ],
                 attrs: {
                   name: "date[" + index + "][" + _vm.attribute + "]",
-                  type: "text"
+                  type: "text",
+                  placeholder: "2020-01-01"
                 },
                 domProps: { value: element.event_date },
                 on: {

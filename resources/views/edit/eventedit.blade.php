@@ -61,7 +61,7 @@
                 <label class='edit_label'>開始時間</label>
             </div>
             <div class="input_area" >
-                <input name="st_time" type="text" value="{{isset($event_data->st_time) ? $event_data->st_time : ''}}"></input>
+                <input name="st_time" type="text" value="{{isset($event_data->st_time) ? $event_data->st_time : ''}}" placeholder="10:00"></input>
                 @if ($errors->first('st_time'))
                     <p class="validation">※{{$errors->first('st_time')}}</p>
                 @endif
@@ -72,7 +72,7 @@
                 <label class='edit_label'>終了時間</label>
             </div>
             <div class="input_area">
-                <input name="end_time" type="text" value="{{isset($event_data->end_time) ? $event_data->end_time : ''}}"></input>
+                <input name="end_time" type="text" value="{{isset($event_data->end_time) ? $event_data->end_time : ''}}" placeholder="17:00"></input>
                 @if ($errors->first('end_time'))
                     <p class="validation">※{{$errors->first('end_time')}}</p>
                 @endif
@@ -171,7 +171,7 @@
                 <label class='edit_label'>公開日</label>
             </div>
             <div class="input_area">
-                <input name="release_date" type="text" value="{{isset($event_data->release_date) ? $event_data->release_date : ''}}"></input>
+                <input name="release_date" type="text" value="{{isset($event_data->release_date) ? $event_data->release_date : ''}}" placeholder="2020-01-01"></input>
                 @if ($errors->first('release_date'))
                     <p class="validation">※{{$errors->first('release_date')}}</p>
                 @endif

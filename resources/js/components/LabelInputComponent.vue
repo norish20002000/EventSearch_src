@@ -8,7 +8,7 @@
                     </label>
                 </div>
                 <div>
-                    <input  :name="'date[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date">
+                    <input  :name="'date[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date" placeholder="2020-01-01">
                     <input type="hidden" :name="'date[' + index + '][event_date_id]'" :value="element.id">
                     <!-- <p v-if="errors && errors[0][attribute]" erroclass="validation">※{{errors[0][attribute]}}</p> -->
                 </div>
