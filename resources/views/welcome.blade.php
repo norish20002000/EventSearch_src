@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+<form class="formsearch" method="GET" action="/">
+<section class="top_banner">
+    <img class="header_image" src="/image/top/top.jpg">
+    <div class="content_header">
+        <div class="search_div">
+            <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
+            <button type="submit" >検索</button>
+        </div>
+        <p>気になるイベントを探してみよう</p>
+    </div>
+</section>
+</form>
 <div class='container'>
     @section('breadcrumbs', Breadcrumbs::render('home'))
     <form class="formsearch" method="GET" action="/">
@@ -14,7 +26,7 @@
                 <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
                 <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
                 <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
-                <accordion-component>
+                {{-- <accordion-component>
                     <div slot="title">その他</div>
                     <div slot="body">
                         <p>期間指定</p>
@@ -25,7 +37,7 @@
                             <button type="button">検索</button>
                         </div>
                     </div>
-                </accordion-component>
+                </accordion-component> --}}
             </div>
         </details>
     </form>

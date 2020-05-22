@@ -30,9 +30,10 @@
             </div>
         </div>
         @endif
+        <div style="display:flex;"><p>必須項目</p><p style="color:red;">*</p></div>
         <div class="label_input">
-            <div>
-                <label class='edit_label'>タイトル</label>
+            <div class="label_edit" style="display:flex; ">
+                <label class='edit_label require'>タイトル</label>
             </div>
             <div class="input_area">
                 <input name="title" type="text" value="{{isset($event_data->title) ? $event_data->title : ''}}">
@@ -44,7 +45,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>本文</label>
+                <label class='edit_label require'>本文</label>
             </div>
             <div class="input_area">
                 <textarea class="textarea" name="introduction" type="text" >
@@ -55,8 +56,11 @@
                 @endif
             </div>
         </div>
+        <p style="color:red; margin: 20px 0px -20px 42px">*</p>
         <labelinput-component :event-date='@json(isset($event_data->date) ? $event_data->date : '')' attribute-name="event_date">
-            <div slot='column_name'>開催日</div>
+            <div slot='column_name'>
+                開催日
+            </div>
         </labelinput-component>
         @if ($errors->first('date.0.event_date'))
             <p class="validation">※{{$errors->first('date.0.event_date')}}</p>
@@ -96,7 +100,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>視聴サイト名</label>
+                <label class='edit_label require'>視聴サイト名</label>
             </div>
             <div class="input_area">
                 <input name="web_name" type="text" value="{{isset($event_data->web_name) ? $event_data->web_name : ''}}"></input>
@@ -118,7 +122,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>料金個別</label>
+                <label class='edit_label require'>料金個別</label>
             </div>
             <div class="input_area">
                 <input name="fee_type" type="text" value="{{isset($event_data->fee_type) ? $event_data->fee_type : ''}}"></input>
@@ -173,7 +177,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>公開日</label>
+                <label class='edit_label require'>公開日</label>
             </div>
             <div class="input_area">
                 <input name="release_date" type="text" value="{{isset($event_data->release_date) ? $event_data->release_date : ''}}" placeholder="2020-01-01"></input>
@@ -215,7 +219,7 @@
 --}}
         <div class="label_input">
             <div>
-                <label class='edit_label'>登録者団体名</label>
+                <label class='edit_label require'>登録者団体名</label>
             </div>
             <div class="input_area">
                 <input name="regi_group_name" type="text" value="{{isset($event_data->regi_group_name) ? $event_data->regi_group_name : ''}}"></input>
@@ -226,7 +230,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>登録者担当名</label>
+                <label class='edit_label require'>登録者担当名</label>
             </div>
             <div class="input_area">
                 <input name="regi_name" type="text" value="{{isset($event_data->regi_name) ? $event_data->regi_name : ''}}"></input>
@@ -237,7 +241,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>登録者電話番号</label>
+                <label class='edit_label require'>登録者電話番号</label>
             </div>
             <div class="input_area">
                 <input name="regi_tel" type="text" value="{{isset($event_data->regi_tel) ? $event_data->regi_tel : ''}}"></input>
@@ -248,7 +252,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>登録者mail</label>
+                <label class='edit_label require'>登録者mail</label>
             </div>
             <div class="input_area">
                 <input name="regi_mail" type="text" value="{{isset($event_data->regi_mail) ? $event_data->regi_mail : ''}}"></input>
@@ -259,7 +263,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label' />
+                <label class='edit_label'></label>
             </div>
             <div class="input_area">
                 <input type="radio" name="status" value="0" 

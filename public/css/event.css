@@ -144,6 +144,31 @@
     padding:0;
 }
 
+.top_banner {
+    position: relative;
+}
+.search_div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    /* margin:0;
+    padding:0;
+    font-size: 4em; */
+}
+
+.search_div .button {
+    color: white;
+    background-color: #333;
+}
+.search_div .p {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+}
+
 .edit_label {
     width: 120px;
 }
@@ -171,4 +196,9 @@
 
 .btn_row {
     display: flex;
+}
+
+.require::after {
+    color:red;
+    content:'*';
 }
