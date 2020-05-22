@@ -27,8 +27,11 @@ class EventController extends Controller
         // $data['event_data']->sub = $data['event_data']->detail;
 
         // 概要作成
-        $data['event_data']->summary = substr($data['event_data']->introduction, 0, 20);
-        
+        $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150);
+        //　金額カンマ
+        $data['event_data']->fee = number_format(floor($data['event_data']->fee));
+            // $data['event_data']->fee)
+
         // 曜日変換
         $weekList = ["日", "月", "火", "水", "木", "金", "土"];
         foreach ($data['event_data']->date as $event) {
