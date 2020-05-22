@@ -6,7 +6,7 @@
     <div class="content_header">
         <div class="search_div">
             <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
-            <button type="submit" >検索</button>
+            <button type="submit" class="btn btn-secondary" >検索</button>
         </div>
         <p>気になるイベントを探してみよう</p>
     </div>

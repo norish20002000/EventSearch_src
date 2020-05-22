@@ -150,6 +150,7 @@
     position: relative;
 }
 .search_div {
+    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -161,9 +162,11 @@
     font-size: 4em; */
 }
 
-.search_div .button {
+.search_div button {
     color: white;
     background-color: #333;
+    width: 50px;
+    font-size: 0.8em;
 }
 .search_div .p {
     position: absolute;
