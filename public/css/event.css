@@ -84,7 +84,6 @@
 }
 
 .days {
-    display: flex;
     border: 2px solid black;
     outline: #4CAF50 solid 2px;
     margin: auto;  
@@ -94,12 +93,16 @@
 
   .genre img {
       width: 100%;
+      height: 100px;
+      object-fit: cover;
   }
 
   .genre div {
     position: relative;
-    width: 50%;
-  }
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
 
   .genre h3 {
     position: absolute;
@@ -132,7 +135,6 @@
     transform: translate(-50%,-50%);
     margin:0;
     padding:0;
-    font-size: 4em;
 }
 .content_header p {
     position: absolute;
@@ -208,4 +210,8 @@
 .require::after {
     color:red;
     content:'*';
+}
+
+.my_card {
+    margin: 10px 0;
 }

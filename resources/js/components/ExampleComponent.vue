@@ -1,29 +1,28 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card" v-for="event in events.data" :key="event.id">
-                    <div class="card-header">{{event.id}}</div>
+            <div class="col-lg-4 col-xs-12" v-for="event in events.data" :key="event.id">
+                <div class="card my_card" style="height:300px;">
+                    <!-- <div class="card-header">
+                        {{event.id}}
+                    </div> -->
                     <div class="card-body">
                         <div class="icon fl">
                             <a :href="'/eventdetail/' + event.id">
                                 <img class="thumb_img" :src="event.image_url"/>
                             </a>
                         </div>
-                            <a :href="'/eventdetail/' + event.id">
-                                <div class="fl">
-                                    <div>{{event.title | truncate(30, '...')}}</div>
-                                    <div class="days">
-                                        <div>開催日</div>
-                                        <div>
-                                            <div v-for="date in event.date" :key="date.id">
-                                                <div>{{date.event_date}}</div>
-                                            </div>
+                        <a :href="'/eventdetail/' + event.id">
+                            <div class="fl">
+                                <div>{{event.title | truncate(30, '...')}}</div>
+                                <div class="days">
+                                        <div v-for="date in event.date" :key="date.id">
+                                            <div>{{date.event_date}}</div>
                                         </div>
-                                    </div>
-                                    <div>{{event.introduction | truncate(50, '...')}}</div>
                                 </div>
-                            </a>
+                                <div>{{event.introduction | truncate(40, '...')}}</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

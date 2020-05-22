@@ -1913,7 +1913,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -37604,59 +37603,58 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        _vm._l(_vm.events.data, function(event) {
-          return _c("div", { key: event.id, staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v(_vm._s(event.id))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "icon fl" }, [
+    _c(
+      "div",
+      { staticClass: "row justify-content-center" },
+      _vm._l(_vm.events.data, function(event) {
+        return _c("div", { key: event.id, staticClass: "col-lg-4 col-xs-12" }, [
+          _c(
+            "div",
+            { staticClass: "card my_card", staticStyle: { height: "300px" } },
+            [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "icon fl" }, [
+                  _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
+                    _c("img", {
+                      staticClass: "thumb_img",
+                      attrs: { src: event.image_url }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                  _c("img", {
-                    staticClass: "thumb_img",
-                    attrs: { src: event.image_url }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                _c("div", { staticClass: "fl" }, [
-                  _c("div", [
-                    _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "days" }, [
-                    _c("div", [_vm._v("開催日")]),
+                  _c("div", { staticClass: "fl" }, [
+                    _c("div", [
+                      _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
+                    ]),
                     _vm._v(" "),
                     _c(
                       "div",
+                      { staticClass: "days" },
                       _vm._l(event.date, function(date) {
                         return _c("div", { key: date.id }, [
                           _c("div", [_vm._v(_vm._s(date.event_date))])
                         ])
                       }),
                       0
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      _vm._s(_vm._f("truncate")(event.introduction, 50, "..."))
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        _vm._s(
+                          _vm._f("truncate")(event.introduction, 40, "...")
+                        )
+                      )
+                    ])
                   ])
                 ])
               ])
-            ])
-          ])
-        }),
-        0
-      )
-    ])
+            ]
+          )
+        ])
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = []
