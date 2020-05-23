@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-xs-12" v-for="event in events.data" :key="event.id">
-                <div class="card my_card" style="height:300px;">
+            <div class="col-xl-4 col-xs-12" v-for="event in events.data" :key="event.id">
+                <div class="card my_card">
                     <!-- <div class="card-header">
                         {{event.id}}
                     </div> -->

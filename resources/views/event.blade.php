@@ -52,7 +52,7 @@
         </div>
         <div>
             <div>【参考サイトURL】</div>
-            <div><a href="{{ $event_data->reference_url }}">{{ $event_data->reference_url }}</a></div>
+            <div><a href="{{ $event_data->reference_url }}" target="blank">{{ $event_data->reference_url }}</a></div>
         </div>
     </div>
 </div>
