@@ -44,40 +44,44 @@
     @if ($search_flg != "1")
     <p>{{$search_flg}}</p>
     <div class="genre">
-        <div class='music'>
-            <a href="{{ route('eventgenre', ['genre_id' => '1']) }}">
-                <img src="{{ asset('image/genre/music.jpg') }}">
-                <h3>音楽</h3>
-                <input type="hidden" name="genre1">
-            </a>
-        </div>
-        <div class='fes'>
-            <a href="{{ route('eventgenre', ['genre_id' => '2']) }}">
-                <img src="{{ asset('image/genre/fes.jpg') }}">
-                <h3>フェス</h3>
-                <input type="hidden" name="genre1">
-            </a>
-        </div>
-        <div class='live_delivery'>
-            <a href="{{ route('eventgenre', ['genre_id' => '3']) }}">
-                <img src="{{ asset('image/genre/live_delivery.jpg') }}">
-                <h3>ライブ配信</h3>
-                <input type="hidden" name="genre1">
-            </a>
-        </div>
-        <div class='family'>
-            <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
-                <img src="{{ asset('image/genre/family.jpg') }}">
-                <h3>家族</h3>
-                <input type="hidden" name="genre1">
-            </a>
-        </div>
-        <div class='e_sports'>
-            <a href="{{ route('eventgenre', ['genre_id' => '5']) }}">
-                <img src="{{ asset('image/genre/e_sports.jpg') }}">
-                <h3>eスポーツ</h3>
-                <input type="hidden" name="genre1">
-            </a>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class='music col-lg-4 col-xs-12'>
+                    <a href="{{ route('eventgenre', ['genre_id' => '1']) }}">
+                        <img src="{{ asset('image/genre/music.jpg') }}">
+                        <h3>音楽</h3>
+                        <input type="hidden" name="genre1">
+                    </a>
+                </div>
+                <div class='fes col-lg-4 col-xs-12'>
+                    <a href="{{ route('eventgenre', ['genre_id' => '2']) }}">
+                        <img src="{{ asset('image/genre/fes.jpg') }}">
+                        <h3>フェス</h3>
+                        <input type="hidden" name="genre1">
+                    </a>
+                </div>
+                <div class='live_delivery col-lg-4 col-xs-12'>
+                    <a href="{{ route('eventgenre', ['genre_id' => '3']) }}">
+                        <img src="{{ asset('image/genre/live_delivery.jpg') }}">
+                        <h3>ライブ配信</h3>
+                        <input type="hidden" name="genre1">
+                    </a>
+                </div>
+                <div class='family col-lg-4 col-xs-12'>
+                    <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
+                        <img src="{{ asset('image/genre/family.jpg') }}">
+                        <h3>家族</h3>
+                        <input type="hidden" name="genre1">
+                    </a>
+                </div>
+                <div class='e_sports  col-lg-4 col-xs-12'>
+                    <a href="{{ route('eventgenre', ['genre_id' => '5']) }}">
+                        <img src="{{ asset('image/genre/e_sports.jpg') }}">
+                        <h3>eスポーツ</h3>
+                        <input type="hidden" name="genre1">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     @endif
