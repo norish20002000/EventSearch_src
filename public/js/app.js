@@ -37621,7 +37621,7 @@ var render = function() {
               _vm._v(" "),
               _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
                 _c("div", { staticClass: "fl" }, [
-                  _c("div", [
+                  _c("div", { staticClass: "event_title" }, [
                     _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
                   ]),
                   _vm._v(" "),

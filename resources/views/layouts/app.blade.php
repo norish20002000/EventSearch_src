@@ -85,10 +85,10 @@
         </main>
         @include('layouts.footer')
     </div>
-    {{-- <script type="module">
+    <script type="module">
         $(function () {
         $('[data-toggle="tooltip"]').tooltip();
         });
-    </script> --}}
+    </script>
 </body>
 </html>

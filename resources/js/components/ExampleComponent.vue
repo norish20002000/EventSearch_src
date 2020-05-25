@@ -14,7 +14,7 @@
                         </div>
                         <a :href="'/eventdetail/' + event.id">
                             <div class="fl">
-                                <div>{{event.title | truncate(30, '...')}}</div>
+                                <div class="event_title">{{event.title | truncate(30, '...')}}</div>
                                 <div class="days">
                                         <div v-for="date in event.date" :key="date.id">
                                             <div>{{date.event_date}}</div>
