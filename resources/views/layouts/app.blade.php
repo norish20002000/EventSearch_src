@@ -27,7 +27,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset('image/favicon.ico') }}" type="image/x-icon"/>
 </head>
 <body>
     <div id="app">
