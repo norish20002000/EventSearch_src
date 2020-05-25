@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@section('breadcrumbs', Breadcrumbs::render('home'))
 <form class="formsearch" method="GET" action="/">
 <section class="top_banner">
     <img class="header_image" src="/image/top/top.jpg">
@@ -13,7 +14,6 @@
 </section>
 </form>
 <div class='container'>
-    @section('breadcrumbs', Breadcrumbs::render('home'))
     <form class="formsearch" method="GET" action="/">
         <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
         <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button>

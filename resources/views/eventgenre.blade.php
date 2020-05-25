@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @section('breadcrumbs', Breadcrumbs::render('genres', $event_data))
-<section class="container-fluid banner">
+<section class="top_banner">
     <img class="header_image" src="/image/genre/{{$event_data->genre->name}}.jpg">
     <div class="content_header">
         <h3 name='genre_name'>{{ $event_data->genre->disp_name }}</h3>
