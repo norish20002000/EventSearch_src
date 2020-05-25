@@ -37728,7 +37728,12 @@ var render = function() {
         _c("div", [
           _c(
             "button",
-            { attrs: { type: "button" }, on: { click: _vm.append } },
+            {
+              staticClass: "btn btn-dark btn-sm",
+              staticStyle: { margin: "-5px 0 8px 0" },
+              attrs: { type: "button" },
+              on: { click: _vm.append }
+            },
             [_vm._v("追加")]
           )
         ])

@@ -191,7 +191,7 @@
                 <label class='edit_label'>ジャンル</label>
             </div>
             <div class="input_area">
-                <select name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
+                <select class="custom-select" name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
                     @foreach($genre as $g)
                         <option value="{{$g->id}}" 
                             {{isset($event_data->genre) && isset($event_data->genre->genre_id) && $event_data->genre->genre_id == $g->id ? 'selected':''}}>
@@ -265,7 +265,7 @@
             <div>
                 <label class='edit_label'></label>
             </div>
-            <div class="input_area">
+            <div>
                 <input type="radio" name="status" value="0" 
                     {{!isset($event_data) || $event_data->status == 0 ? 'checked':''}}><label class="open_label">公開</label>
                 <input type="radio" name="status" value="1"

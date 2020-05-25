@@ -4,7 +4,7 @@
     <div class="article_title">
         <div>
             <a href="{{route('eventedit')}}" >
-            <button type="button" class="btn btn-secondary">新規作成</button>
+            {{-- <button type="button" class="btn btn-secondary">新規作成</button> --}}
             </a>
         </div>
     </div>

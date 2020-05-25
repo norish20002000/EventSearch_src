@@ -8,13 +8,13 @@
                     </label>
                 </div>
                 <div>
-                    <input  :name="'date[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date" placeholder="2020-01-01">
+                    <input :name="'date[' + index + '][' + attribute + ']'" type="text" v-model="element.event_date" placeholder="2020-01-01">
                     <input type="hidden" :name="'date[' + index + '][event_date_id]'" :value="element.id">
                     <!-- <p v-if="errors && errors[0][attribute]" erroclass="validation">※{{errors[0][attribute]}}</p> -->
                 </div>
             </div>
             <div>
-                <button type="button" v-on:click="append">追加</button>
+                <button type="button" class="btn btn-dark btn-sm" style="margin: -5px 0 8px 0" v-on:click="append">追加</button>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ class EventController extends Controller
         // $data['event_data']->sub = $data['event_data']->detail;
 
         // 概要作成
-        $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150);
+        $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150).". . .";
         //　金額カンマ
         $data['event_data']->fee = number_format(floor($data['event_data']->fee));
             // $data['event_data']->fee)
@@ -38,6 +38,10 @@ class EventController extends Controller
             // var_dump($event);exit;
             $event->st_week = $weekList[date('w', strtotime($event->event_date))];
         }
+
+        // 時間変換
+        $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);
+        $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
         // var_dump($data['event_data']);exit;
 
         // referer
