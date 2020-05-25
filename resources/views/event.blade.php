@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="article_mainimage">
-        <img class="mainimage" width="250" src="{{ $event_data->image_url }}"/>
+        <img class="mainimage" src="{{ $event_data->image_url }}"/>
     </div>
     <div class="article_content">
         <div>
