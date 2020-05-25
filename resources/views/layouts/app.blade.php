@@ -51,7 +51,6 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <p>sample link</p>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
