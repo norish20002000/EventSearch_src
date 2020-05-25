@@ -13,6 +13,9 @@
 @endif
 <div class='container'>
     <div class="article_title">
+        @if ($errors->first())
+            <p class="validation">*{{$errors->first()}}</p>
+        @endif
         @if (isset($event_data->id))
         <div class="btn_row">
             <div>

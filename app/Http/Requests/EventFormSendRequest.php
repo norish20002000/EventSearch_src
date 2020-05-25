@@ -26,15 +26,15 @@ class EventFormSendRequest extends FormRequest
         return [
             "title" => "required",
             "introduction" => "required",
-            'date.0.event_date' => "required",
+            'date.0.event_date' => "required|date",
             "st_time" => "",
-            "end_time" => "",
+            "end_time" => "after:st_time",
             "summary_date" => "",
             "web_name" => "required",
-            "web_url" => "",
+            "web_url" => "url",
             "fee_type" => "required",
-            "fee_type" => "",
-            "image_url" => "",
+            "fee" => "",
+            "image_url" => "url",
             "reference_name" => "",
             "reference_name" => "",
             "release_date" => "required",
@@ -43,7 +43,7 @@ class EventFormSendRequest extends FormRequest
             "regi_group_name" => "required",
             "regi_name" => "required",
             "regi_name" => "required",
-            "regi_mail" => "required",
+            "regi_mail" => "required|email",
         ];
     }
 

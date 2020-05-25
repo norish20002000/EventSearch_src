@@ -32,6 +32,10 @@ class EventBankController extends Controller
             // var_dump($data['event_data']->date);exit;
             $data['event_data']->upType = 'update';
             // var_dump($data['event_data']->id);exit;
+
+            //　時間変換
+            $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);
+            $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
         }
         
 // var_dump($data['event_data']->date);exit;
