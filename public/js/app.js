@@ -1913,6 +1913,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -37612,10 +37613,15 @@ var render = function() {
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "icon fl" }, [
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                  _c("img", {
-                    staticClass: "thumb_img",
-                    attrs: { src: event.image_url }
-                  })
+                  event.image_url
+                    ? _c("img", {
+                        staticClass: "thumb_img",
+                        attrs: { src: event.image_url }
+                      })
+                    : _c("img", {
+                        staticClass: "thumb_img",
+                        attrs: { src: "image/view/noimage.jpg" }
+                      })
                 ])
               ]),
               _vm._v(" "),
