@@ -9,7 +9,8 @@
                     <div class="card-body">
                         <div class="icon fl">
                             <a :href="'/eventdetail/' + event.id">
-                                <img class="thumb_img" :src="event.image_url"/>
+                                <img v-if="event.image_url" class="thumb_img" :src="event.image_url"/>
+                                <img v-else class="thumb_img" src="image/view/noimage.jpg" />
                             </a>
                         </div>
                         <a :href="'/eventdetail/' + event.id">
