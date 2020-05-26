@@ -27,8 +27,8 @@ class EventFormSendRequest extends FormRequest
             "title" => "required",
             "introduction" => "required",
             'date.0.event_date' => "required|date",
-            "st_time" => "",
-            "end_time" => "after:st_time",
+            "st_time" => 'date_format:"H:i"',
+            "end_time" => 'date_format:"H:i"|after:st_time',
             "summary_date" => "",
             "web_name" => "required",
             "web_url" => "url",
@@ -73,6 +73,18 @@ class EventFormSendRequest extends FormRequest
             "regi_name" => "登録者名",
             "regi_tel" => "電話番号",
             "regi_mail" => "メール",
+        ];
+    }
+
+    /**
+     * message
+     */
+    public function messages()
+    {
+        return [
+            "st_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
+            "end_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
+            "end_time.after" => ':attributeには、:dateより後の時間を指定してください。',
         ];
     }
 }
