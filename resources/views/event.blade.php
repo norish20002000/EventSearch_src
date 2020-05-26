@@ -28,7 +28,9 @@
         </div>
     </div>
     <div class="article_mainimage">
-        <img class="mainimage" src="{{ $event_data->image_url }}"/>
+        @if ($event_data->image_url)
+            <img class="mainimage" src="{{ $event_data->image_url }}"/>
+        @endif
     </div>
     <div class="article_content">
         <div>
