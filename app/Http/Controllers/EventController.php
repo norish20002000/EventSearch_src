@@ -66,6 +66,7 @@ class EventController extends Controller
     public function genre(Request $request, $genre_id)
     {
         $data['event_data'] = Event::getEventFromGenreId($genre_id);
+        $data['event_data'] = Event::getGenreData($data['event_data']);
         $data['event_data']->genre = Genre::getGenreById($genre_id);
 
         return view('eventgenre', $data);

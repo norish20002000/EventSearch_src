@@ -28,6 +28,9 @@
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('image/favicon.ico') }}" type="image/x-icon"/>
+
+    <!-- vuejs-datepicker -->
+    <script src="https://unpkg.com/vuejs-datepicker"></script>
 </head>
 <body>
     <div id="app">

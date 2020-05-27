@@ -1914,6 +1914,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1995,6 +1998,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExampleComponent",
   props: {
@@ -2002,15 +2014,22 @@ __webpack_require__.r(__webpack_exports__);
     attributeName: ""
   },
   data: function data() {
-    // var now =new Date()
-    // var todayStr = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()
+    var now = new Date();
+    var todayStr = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
     return {
       attribute: this.attributeName,
       elements: this.eventDate.length != 0 ? this.eventDate : [{
         event_date: "" // todayStr,
 
-      }]
+      }],
+      DatePickerFormat: 'yyyy-MM-dd',
+      highlighted: {
+        dates: [new Date()]
+      }
     };
+  },
+  components: {
+    'vuejs-datepicker': vuejsDatepicker
   },
   methods: {
     append: function append() {
@@ -37611,6 +37630,18 @@ var render = function() {
         return _c("div", { key: event.id, staticClass: "col-xl-4 col-xs-12" }, [
           _c("div", { staticClass: "card my_card" }, [
             _c("div", { staticClass: "card-body" }, [
+              _c("div", [
+                event.genre.length > 0
+                  ? _c("span", { staticClass: "genre_icon" }, [
+                      _c("i", {
+                        staticClass: "far fa-flag",
+                        staticStyle: { margin: "0 3px 0 0" }
+                      }),
+                      _vm._v(_vm._s(event.genre[0].disp_name))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "icon fl" }, [
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
                   event.image_url
@@ -37693,6 +37724,8 @@ var render = function() {
                 2
               )
             ]),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "app" } }),
             _vm._v(" "),
             _c("div", [
               _c("input", {

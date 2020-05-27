@@ -42,12 +42,11 @@ class Event extends Model
         // var_dump((count($eventIdList) > 1) ? $eventIdStr : $eventIdList);exit;
 
         if($request->search === null) {
-            $eventData = DB::table('events')
-                        ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                         ->whereIn('id', $eventIdList)
                         ->orderByRaw("FIELD(id, $eventIdStr)")
                         ->paginate(config('app.PAGINATE.LINK_NUM'));
-            // var_dump($eventData);exit;
+
             // $eventData = DB::table('events')
             //     ->select('events.*')
             //     ->leftJoin('event_dates', 'events.id', '=', 'event_dates.event_id')
@@ -57,8 +56,7 @@ class Event extends Model
             //     ->groupBy(\DB::raw('events.id'))
             //     ->paginate(config('app.PAGINATE.LINK_NUM'));
         } else {
-            $eventData = DB::table('events')
-                        ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                         ->whereIn('id', $eventIdList)
                         ->where('title', 'LIKE', '%'.$request->search.'%')
                         ->orderByRaw("FIELD(id, $eventIdStr)")
@@ -90,8 +88,7 @@ class Event extends Model
      */
     public static function getEventDataById($id)
     {
-        $eventData = DB::table('events')
-                    ->find($id);
+        $eventData = Event::find($id);
         $eventData->date = EventDate::getDate($id);
 
         return $eventData;
@@ -102,8 +99,7 @@ class Event extends Model
      */
     public static function getEventDataByIdAllday($id)
     {
-        $eventData = DB::table('events')
-                    ->find($id);
+        $eventData = Event::find($id);
         $eventData = EventDate::getEventDateAll($eventData);
 
         return $eventData;
@@ -123,14 +119,12 @@ class Event extends Model
         $eventIdStr = implode(',', $eventIdList->toArray());
 
         if($request->search === null) {
-            $eventData = DB::table('events')
-                    ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                     ->whereIn('id', $eventIdList)
                     ->orderByRaw("FIELD(id, $eventIdStr)")
                     ->paginate(config('app.PAGINATE.LINK_NUM'));
         } else {
-            $eventData = DB::table('events')
-                    ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                     ->whereIn('id', $eventIdList)
                     ->where('title', 'LIKE', '%'.$request->search.'%')
                     ->orderByRaw("FIELD(id, $eventIdStr)")
@@ -160,14 +154,12 @@ class Event extends Model
         $eventIdStr = implode(',', $eventIdList->toArray());
 
         if($request->search === null) {
-            $eventData = DB::table('events')
-                        ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                         ->whereIn('id', $eventIdList)
                         ->orderByRaw("FIELD(id, $eventIdStr)")
                         ->paginate(config('app.PAGINATE.LINK_NUM'));
         } else {
-            $eventData = DB::table('events')
-                        ->where('status', '=', 0)
+            $eventData = Event::where('status', '=', 0)
                         ->whereIn('id', $eventIdList)
                         ->where('title', 'LIKE', '%'.$request->search.'%')
                         ->orderByRaw("FIELD(id, $eventIdStr)")
@@ -189,7 +181,7 @@ class Event extends Model
         $eventData = "";
 
         // イベントid取得
-        $eventIdListGenre = GenreMap::getEventId($genre_id);
+        $eventIdListGenre = EventGenre::getEventId($genre_id);
         $eventIdList = EventDate::getEventIdListById($eventIdListGenre);
         $eventIdStr = implode(',', $eventIdList->toArray());
         // var_dump($eventIdListGenre);exit;
@@ -205,13 +197,24 @@ class Event extends Model
         //                     ->pluck('event_id');
         //                     // ->get();
         // var_dump($eventIdListFromToday);exit;
-        $eventData = DB::table('events')
-                    ->where('status', '=', 0)
+        // var_dump($eventIdStr);exit;
+        $eventData = Event::where('status', '=', 0)
                     ->whereIn('id', $eventIdList)
                     ->orderByRaw("FIELD(id, $eventIdStr)")
                     ->paginate(config('app.PAGINATE.LINK_NUM'));
         $eventData = self::getDays($eventData);
-        // var_dump($eventData);exit;
+
+        return $eventData;
+    }
+
+    /**
+     * get genres
+     */
+    public static function getGenreData($eventData)
+    {
+        foreach ($eventData as $event) {
+            $event->genre = $event->genres;
+        }
 
         return $eventData;
     }
@@ -329,5 +332,16 @@ class Event extends Model
         }
 
         return $eventData;
+    }
+
+    /**
+     * genre
+     */
+    public function genres()
+    {
+        return $this->belongsToMany('App\Models\Genre',
+                                    'event_genre',
+                                    'event_id',
+                                    'genre_id');
     }
 }

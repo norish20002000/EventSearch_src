@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventDate;
+use App\Models\EventGenre;
 
 class WelcomeController extends Controller
 {
@@ -30,6 +31,12 @@ class WelcomeController extends Controller
             $data['event_data'] = Event::getEventFromToday($request);
             $searchFlg = $request->search ? true : false;
         }
+// var_dump($data['event_data']);exit;
+        $data['event_data'] = Event::getGenreData($data['event_data']);
+        // foreach($data['event_data'] as $event) {
+        //     var_dump($event->genre);
+        // }
+        // var_dump("end");exit;
 
         $data['search'] = $request->search;
         $data['search_flg'] = $searchFlg;

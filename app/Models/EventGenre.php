@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class GenreMap extends Model
+class EventGenre extends Model
 {
     /**
-     * belongto genre
+     * teble name
      */
-    public function genre()
-    {
-        return $this->belongsTo('App\Models\Genre');
-    }
+    protected $table = 'event_genre';
 
     /**
      * get event_id
@@ -22,7 +19,7 @@ class GenreMap extends Model
      */
     public static function getEventId($genre_id)
     {
-        $eventIdList = DB::table('genre_maps')
+        $eventIdList = DB::table('event_genre')
                         ->where('status', '=', 0)
                         ->where('genre_id', $genre_id)
                         // ->get();
@@ -36,7 +33,7 @@ class GenreMap extends Model
      */
     public static function getGenreId($event_id)
     {
-        $genreIdList = DB::table('genre_maps')
+        $genreIdList = DB::table('event_genre')
                     ->where('status', '=', 0)
                     ->where('event_id', '=', $event_id)
                     ->get();
@@ -45,27 +42,12 @@ class GenreMap extends Model
     }
 
     /**
-     * get genre data by eventId
-     */
-    public function getGenreData($eventData)
-    {
-        foreach (GenreMap::where('event_id', '=', 11)->get() as $gm) {
-            var_dump($gm->genre->id);
-        }
-        var_dump("end");exit;
-        foreach ($eventData as $event) {
-            $eventData->genre = self::getGenreId($eventData->id)->genre();
-
-        }
-    }
-
-    /**
      * save genreMap
      * @param int $eventId
      */
     public static function saveGenreMap($eventId, $request)
     {
-        $genreMap = new GenreMap();
+        $genreMap = new EventGenre();
         $genreMap->genre_id = $request->genre_id;
         $genreMap->event_id = $eventId;
 
@@ -87,12 +69,12 @@ class GenreMap extends Model
     {
         if($request->genre_map_id) {
             // update
-            $genreMap = GenreMap::find($request->genre_map_id);
+            $genreMap = EventGenre::find($request->genre_map_id);
             $genreMap->event_id = $eventId;
             $genreMap->genre_id = $request->genre_id;
         } else {
             // insert
-            $genreMap = new GenreMap();
+            $genreMap = new EventGenre();
             $genreMap->event_id = $eventId;
             $genreMap->genre_id = $request->genre_id;
         }

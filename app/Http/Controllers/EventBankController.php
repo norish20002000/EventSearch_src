@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
-use App\Models\GenreMap;
+use App\Models\EventGenre;
 
 class EventBankController extends Controller
 {
@@ -26,7 +26,7 @@ class EventBankController extends Controller
             $data['event_data']->upType = 'register';
         } else {
             $data['event_data'] = Event::getEventDataByIdAllday($id);
-            $data['event_data']->genre = GenreMap::getGenreId($id)->first();
+            $data['event_data']->genre = EventGenre::getGenreId($id)->first();
             // var_dump($data['event_data']->genre);exit;
             // var_dump("id : ");var_dump($id);
             // var_dump($data['event_data']->date);exit;
@@ -52,14 +52,15 @@ class EventBankController extends Controller
         EventFormSendRequest $request)
     {
         // $this->validation($request);
+        // var_dump($request->all());exit;
 
         if($request->update) {
             $eventId = $request->event_id;
             Event::updateEventData($request);
-            GenreMap::updateGenreMap($eventId, $request);
+            EventGenre::updateGenreMap($eventId, $request);
         } elseif ($request->register) {
             $eventId = Event::saveEventData($request);
-            GenreMap::saveGenreMap($eventId, $request);
+            EventGenre::saveGenreMap($eventId, $request);
         } elseif ($request->copyevent) {
             $eventId = $this->copyEventData($request);
         }
@@ -118,7 +119,7 @@ class EventBankController extends Controller
             $event->save();
 
             // genre_map insert
-            $result = GenreMap::saveGenreMap($event->id, $request);
+            $result = EventGenre::saveGenreMap($event->id, $request);
         });
 
         return $event->id;
