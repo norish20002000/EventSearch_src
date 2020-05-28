@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenreMapsTable extends Migration
+class CreateGenre01sTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGenreMapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('genre_maps', function (Blueprint $table) {
+        Schema::create('genre_01s', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
-            $table->bigInteger('genre_id')->comment('ジャンルid');
-            $table->bigInteger('event_id')->comment('イベントid');
+            $table->string('name')->comment('名前');
+            $table->string('disp_name')->comment('表示名');
+            $table->bigInteger('genre_id')->comment('ジャンルId');
             $table->integer('status')->default(0)->comment("ステータス");
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreateGenreMapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genre_maps');
+        Schema::dropIfExists('genre_01s');
     }
 }

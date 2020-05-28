@@ -18,7 +18,7 @@ class CreateGenresTable extends Migration
             $table->string('name')->comment('名前');
             $table->integer('status')->default(0)->comment("ステータス");
             $table->timestamps();
-                    });
+        });
     }
 
     /**
