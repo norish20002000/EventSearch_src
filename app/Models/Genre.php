@@ -4,18 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\GenreMap;
 
 class Genre extends Model
 {
-    /**
-     * hasmany geremap
-     */
-    public function genreMap()
-    {
-        return $this->hasMany('App\Models\GenreMap');
-    }
-
     /**
      * get genre by id
      * @param int $id

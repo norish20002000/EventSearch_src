@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             EventDateSeeder::class,
             GenreSeeder::class,
-            GenreMapSeeder::class,
         ]);
     }
 }
