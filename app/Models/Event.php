@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\EventDate;
+use App\Models\Genre;
+use App\Models\Genre01;
 
 class Event extends Model
 {
@@ -251,6 +253,17 @@ class Event extends Model
                 if($date['event_date'] == null) continue;
                 EventDate::saveEventDate($event->id, $date);
             }
+            
+            // Genre01
+            $event->genre01s()->detach();
+            $event->genre01s()->attach($request->genre01);
+
+            // Genre
+            if ($request->genre01) {
+                $genreIdList = Genre01::whereIn('id', $request->genre01)->pluck('genre_id')->unique();
+                $event->genres()->detach();
+                $event->genres()->attach($genreIdList);
+            }
         });
 
         return $event->id;
@@ -265,8 +278,10 @@ class Event extends Model
         $event = Event::find($request->event_id);
 
         DB::transaction(function () use ($event, $request) {
+            // Event
             $resultEvent = $event->fill($request->all())->save();
-            $cnt = 0;
+
+            // EventDate
             foreach($request->date as $date) {
                 if($date['event_date'] == null) {
                     if($date['event_date_id']) {
@@ -275,6 +290,17 @@ class Event extends Model
                 } else {
                     $resutl = EventDate::updateEventDate($request->event_id, $date);
                 }
+            }
+
+            // Genre01
+            $event->genre01s()->detach();
+            $event->genre01s()->attach($request->genre01);
+
+            // Genre
+            if ($request->genre01) {
+                $genreIdList = Genre01::whereIn('id', $request->genre01)->pluck('genre_id')->unique();
+                $event->genres()->detach();
+                $event->genres()->attach($genreIdList);
             }
         });
     }
@@ -334,7 +360,7 @@ class Event extends Model
     }
 
     /**
-     * genre
+     * genres
      */
     public function genres()
     {
@@ -342,5 +368,16 @@ class Event extends Model
                                     'event_genre',
                                     'event_id',
                                     'genre_id');
+    }
+
+    /**
+     * genre01s
+     */
+    public function genre01s()
+    {
+        return $this->belongsToMany('App\Models\Genre01',
+                                    'event_genre_01',
+                                    'event_id',
+                                    'genre_01_id');
     }
 }

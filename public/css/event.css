@@ -276,3 +276,20 @@ h1.title {
     background-color: #ff0211;
     border-radius: 50%; */
 }
+
+.input_area label {
+    display: block;
+    float: left;
+    width: 170px;}
+
+.input_checkbox {
+    width: 20% !important;
+}
+
+.gnere_disp_name {
+    clear: left;
+    margin: 10px 0 10px 0;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(transparent 70%, #a8eaff 50%);
+}

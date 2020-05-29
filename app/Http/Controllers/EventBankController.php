@@ -9,6 +9,7 @@ use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
 use App\Models\EventGenre;
+use App\MOdels\Genre01;
 
 class EventBankController extends Controller
 {
@@ -20,27 +21,30 @@ class EventBankController extends Controller
         $data['event_data'] = new Collection();
 
         $data['genre'] = Genre::getGenre();
+        $data['genre01List'] = Genre01::getGenre01()->groupBy("genre_id");
+
+        // for genre disp_name
+        foreach($data['genre01List'] as $key=>$genre) {
+            $genre->genre01 = $data['genre']->where('id', $key)->first();
+        }
 
         if($id == 0) {
             $data['event_data']->status = 0;
             $data['event_data']->upType = 'register';
         } else {
             $data['event_data'] = Event::getEventDataByIdAllday($id);
+            
+            // get genre01
+            $data['genre01s'] = $data['event_data']->genre01s;
+
             $data['event_data']->genre = EventGenre::getGenreId($id)->first();
-            // var_dump($data['event_data']->genre);exit;
-            // var_dump("id : ");var_dump($id);
-            // var_dump($data['event_data']->date);exit;
             $data['event_data']->upType = 'update';
-            // var_dump($data['event_data']->id);exit;
 
             //　時間変換
             $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);
             $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
         }
         
-// var_dump($data['event_data']->date);exit;
-        // var_dump($data['genre']);exit;
-
         return view('edit/eventedit', $data);
     }
 
@@ -52,15 +56,14 @@ class EventBankController extends Controller
         EventFormSendRequest $request)
     {
         // $this->validation($request);
-        // var_dump($request->all());exit;
 
         if($request->update) {
             $eventId = $request->event_id;
             Event::updateEventData($request);
-            EventGenre::updateGenreMap($eventId, $request);
+            // EventGenre::updateGenreMap($eventId, $request);
         } elseif ($request->register) {
             $eventId = Event::saveEventData($request);
-            EventGenre::saveGenreMap($eventId, $request);
+            // EventGenre::saveGenreMap($eventId, $request);
         } elseif ($request->copyevent) {
             $eventId = $this->copyEventData($request);
         }
@@ -92,8 +95,7 @@ class EventBankController extends Controller
     public function showList(Request $request)
     {
         $data['event_data'] = Event::getEventDataAllday($request, 1);
-        // var_dump($data['event_data']->date);exit;
-// var_dump($data['event_data']);exit;
+
         return view('edit/eventopelist', $data);
     }
 
@@ -102,7 +104,6 @@ class EventBankController extends Controller
         $data['event_data'] = Event::getEventDataAllday($request, $request->status);
         
         $data['status'] = $request->status;
-        // $request->name;
 
         return $data;
     }
@@ -119,7 +120,7 @@ class EventBankController extends Controller
             $event->save();
 
             // genre_map insert
-            $result = EventGenre::saveGenreMap($event->id, $request);
+            // $result = EventGenre::saveGenreMap($event->id, $request);
         });
 
         return $event->id;

@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div>
-                <button name="copyevent" value="copyevent" type="submit" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>はコピーされません。" data-html="true">イベントコピー</button>
+                <button name="copyevent" value="copyevent" type="submit" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>ジャンル</br>はコピーされません。" data-html="true">イベントコピー</button>
             </div>
             <div>
                 <a href="{{route('eventedit')}}" >
@@ -193,8 +193,7 @@
             <div>
                 <label class='edit_label'>ジャンル</label>
             </div>
-            <div class="input_area">
-                <select class="custom-select" name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
+                {{-- <select class="custom-select" name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
                     @foreach($genre as $g)
                         <option value="{{$g->id}}" 
                             {{isset($event_data->genre) && isset($event_data->genre->genre_id) && $event_data->genre->genre_id == $g->id ? 'selected':''}}>
@@ -205,7 +204,21 @@
                 <input type="hidden" name="genre_map_id" value="{{isset($event_data->genre) && isset($event_data->genre->id) ? $event_data->genre->id : ''}}">
                 @if ($errors->first('genre_naem'))
                     <p class="validation">※{{$errors->first('genre_name')}}</p>
-                @endif
+                @endif --}}
+            <div class="input_area">
+                @foreach ($genre01List as $genre)
+                <div class="gnere_disp_name">{{ $genre->genre01->disp_name }}</div>
+                <div>
+                    @foreach ($genre as $genre01)
+                        <label>
+                            <input name="genre01[]" class="input_checkbox" 
+                            type="checkbox" value="{{$genre01->id}}" 
+                            {{isset($genre01s) && $genre01s->contains('id', $genre01->id) ? 'checked' : ''}}
+                            />{{ $genre01->disp_name }}
+                        </label>
+                    @endforeach
+                </div>
+                @endforeach
             </div>
         </div>
 {{--        <div class="label_input">

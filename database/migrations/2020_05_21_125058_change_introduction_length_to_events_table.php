@@ -26,7 +26,7 @@ class ChangeIntroductionLengthToEventsTable extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->string('introduction', 255)->change();
+            $table->string('introduction', 255)->default('1')->change();
         });
     }
 }

@@ -72,6 +72,11 @@ class Genre01Seeder extends Seeder
             'genre_id' => 2,
         ]);
         DB::table('genre_01s')->insert([
+            'name' => 'tour',
+            'disp_name' => '説明会・見学会',
+            'genre_id' => 2,
+        ]);
+        DB::table('genre_01s')->insert([
             'name' => 'lesson',
             'disp_name' => 'レッスン・体験',
             'genre_id' => 2,
