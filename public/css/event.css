@@ -285,6 +285,10 @@ h1.title {
     line-height: 30px;
     text-align: center;
     border-radius: 20px;
+    margin: 5px 5px;
+    padding: 5px 3px;
+    display: block;
+    float: left;
 }
 
 .input_area label {

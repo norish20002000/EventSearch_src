@@ -9,12 +9,11 @@
                     <div class="card-body">
                         <div>
                             <!-- <span v-if="event.genre.length > 0" class="genre_icon"><i class="far fa-flag" style="margin: 0 3px 0 0"></i>{{event.genre[0].disp_name}}</span> -->
-                            <div v-if="event.genre.length > 0">
-                                <!-- <div style="position:absolute; top:30px; left:15px"> -->
-                                <!-- <span v-for="(genre01, i) in event.genre01" :key="genre01.id" class="genre_icon2"><i class="far fa-flag" style="margin: 0 3px 0 0"></i>{{genre01.disp_name}}</span> -->
-                                <!-- </div> -->
-                                <!-- {{count(this.leftNum)}} -->
-                            </div>
+                            <!-- <div v-if="event.genre.length > 0"> -->
+                                <!-- <div style="position:absolute; top:300px; left:15px">
+                                <span v-for="list in 3" :key="list" class="genre_icon2"><i class="far fa-flag" style="margin: 0 3px 0 0"></i>{{event.genre01[list].disp_name}}</span>
+                                </div> -->
+                            <!-- </div> -->
                         </div>
                         <div class="icon fl">
                             <a :href="'/eventdetail/' + event.id">
@@ -62,6 +61,7 @@
                 events: this.eventData,
                 genreData: this.genre,
                 leftNum: 100,
+                testCnt: 0,
                 // pStyle: {
                 //     "color": "#0f0",
                 //     "position": "absolute",
@@ -81,9 +81,6 @@
                     // "left": this.leftNum + "px",
                 }
             },
-            count: function(num) {
-                this.leftNum + 15
-            },
         },
         filters: {
             truncate: function(value, length, omission) {
@@ -102,11 +99,11 @@
             },
         },
         beforeCreate () {
-            console.log('num : ' + this.leftNum)
+            // console.log('num : ' + this.leftNum)
             // console.log('beforeCreate: ' + this.events)
         },
         created () {
-            console.log('num : ' + this.pStyle)
+            // console.log('num : ' + this.pStyle)
             console.log(this.events)
         },
         mounted() {
