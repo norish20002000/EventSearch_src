@@ -51,9 +51,7 @@
                 <label class='edit_label require'>本文</label>
             </div>
             <div class="input_area">
-                <textarea class="textarea" name="introduction" type="text" >
-                    {{isset($event_data->introduction) ? $event_data->introduction : ''}}
-                </textarea>
+                <textarea class="textarea" name="introduction" type="text" >{{isset($event_data->introduction) ? $event_data->introduction : ''}}</textarea>
                 @if ($errors->first('introduction'))
                     <p class="validation">※{{$errors->first('introduction')}}</p>
                 @endif
