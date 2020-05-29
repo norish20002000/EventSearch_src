@@ -215,6 +215,7 @@ class Event extends Model
     {
         foreach ($eventData as $event) {
             $event->genre = $event->genres;
+            $event->genre01 = $event->genre01s;
         }
 
         return $eventData;
@@ -253,7 +254,7 @@ class Event extends Model
                 if($date['event_date'] == null) continue;
                 EventDate::saveEventDate($event->id, $date);
             }
-            
+
             // Genre01
             $event->genre01s()->detach();
             $event->genre01s()->attach($request->genre01);
@@ -263,6 +264,8 @@ class Event extends Model
                 $genreIdList = Genre01::whereIn('id', $request->genre01)->pluck('genre_id')->unique();
                 $event->genres()->detach();
                 $event->genres()->attach($genreIdList);
+            } else {
+                $event->genres()->detach();
             }
         });
 
@@ -301,6 +304,8 @@ class Event extends Model
                 $genreIdList = Genre01::whereIn('id', $request->genre01)->pluck('genre_id')->unique();
                 $event->genres()->detach();
                 $event->genres()->attach($genreIdList);
+            } else {
+                $event->genres()->detach();
             }
         });
     }

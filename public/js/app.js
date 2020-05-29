@@ -1917,6 +1917,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1933,10 +1939,29 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       events: this.eventData,
-      genreData: this.genre
+      genreData: this.genre,
+      leftNum: 100 // pStyle: {
+      //     "color": "#0f0",
+      //     "position": "absolute",
+      //     "top": "15px",
+      //     "left": this.leftNum + "px",
+      // }
+
     };
   },
-  methods: {},
+  computed: {},
+  methods: {
+    pStyle: function pStyle(cnt) {
+      return {// "color": "#0f0",
+        // "position": "absolute",
+        // "top": "15px",
+        // "left": this.leftNum + "px",
+      };
+    },
+    count: function count(num) {
+      this.leftNum + 15;
+    }
+  },
   filters: {
     truncate: function truncate(value, length, omission) {
       var length = length ? parseInt(length, 10) : 20;
@@ -1954,9 +1979,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   beforeCreate: function beforeCreate() {
-    console.log('beforeCreate: ' + this.events);
+    console.log('num : ' + this.leftNum); // console.log('beforeCreate: ' + this.events)
   },
   created: function created() {
+    console.log('num : ' + this.pStyle);
     console.log(this.events);
   },
   mounted: function mounted() {
@@ -37630,6 +37656,8 @@ var render = function() {
         return _c("div", { key: event.id, staticClass: "col-xl-4 col-xs-12" }, [
           _c("div", { staticClass: "card my_card" }, [
             _c("div", { staticClass: "card-body" }, [
+              _c("div", [event.genre.length > 0 ? _c("div") : _vm._e()]),
+              _vm._v(" "),
               _c("div", { staticClass: "icon fl" }, [
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
                   event.image_url
