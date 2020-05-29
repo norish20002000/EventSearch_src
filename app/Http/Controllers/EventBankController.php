@@ -9,7 +9,7 @@ use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
 use App\Models\EventGenre;
-use App\MOdels\Genre01;
+use App\Models\Genre01;
 
 class EventBankController extends Controller
 {
