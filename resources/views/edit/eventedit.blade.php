@@ -289,7 +289,7 @@
     </div>
     <div>
         @if($event_data->upType == "update")
-        <button name="update" class="btn btn-outline-primary" type="submit" value="register">編集</button>
+        <button name="update" class="btn btn-outline-primary" type="submit" value="register">保存</button>
         @elseif($event_data->upType == "register")
         <button name="register" class="btn btn-outline-danger" type="submit" value="register">登録</button>
         @endif
