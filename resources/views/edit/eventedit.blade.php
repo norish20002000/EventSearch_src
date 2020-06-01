@@ -296,9 +296,21 @@
     </div>
     <div>
         @if($event_data->upType == "update")
-        <button name="update" class="btn btn-outline-primary" type="submit" value="register">保存</button>
+        <button name="update" class="btn btn-outline-primary" type="button" onclick="submit((function(e){
+            var ele = document.createElement('input')
+            ele.setAttribute('type', 'hidden')
+            ele.setAttribute('name', 'update')
+            ele.setAttribute('value', 'update')
+            document.myForm.appendChild(ele)
+            }()));" value="register">保存</button>
         @elseif($event_data->upType == "register")
-        <button name="register" class="btn btn-outline-danger" type="submit" value="register">登録</button>
+        <button name="register" class="btn btn-outline-danger" type="button" onclick="submit((function(e){
+            var ele = document.createElement('input')
+            ele.setAttribute('type', 'hidden')
+            ele.setAttribute('name', 'register')
+            ele.setAttribute('value', 'register')
+            document.myForm.appendChild(ele)
+        }()));" value="register">登録</button>
         @endif
     </div>
 </div>
