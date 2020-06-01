@@ -56,7 +56,6 @@ class EventBankController extends Controller
         EventFormSendRequest $request)
     {
         // $this->validation($request);
-
         if($request->update) {
             $eventId = $request->event_id;
             Event::updateEventData($request);

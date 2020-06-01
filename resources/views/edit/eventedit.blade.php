@@ -4,7 +4,7 @@
 <div>
 </div>
 </div>
-<form method="POST" action="/eventbank/event/register">
+<form name="myForm" method="POST" action="/eventbank/event/register">
 @csrf
 @if (session('success'))
         <div class="alert alert-success">
@@ -24,7 +24,14 @@
                 </a>
             </div>
             <div>
-                <button name="copyevent" value="copyevent" type="submit" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>ジャンル</br>はコピーされません。" data-html="true">イベントコピー</button>
+                <button name="copyevent" value="copyevent" type="button" onclick="submit((function(e){
+                    var ele = document.createElement('input')
+                    ele.setAttribute('type', 'hidden')
+                    ele.setAttribute('name', 'copyevent')
+                    ele.setAttribute('value', 'copyevent')
+                    document.myForm.appendChild(ele)
+                }()));" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>ジャンル</br>はコピーされません。" data-html="true">イベントコピー
+                </button>
             </div>
             <div>
                 <a href="{{route('eventedit')}}" >
