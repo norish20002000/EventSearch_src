@@ -26,7 +26,7 @@ class EventFormSendRequest extends FormRequest
         return [
             "title" => "required",
             "introduction" => "required",
-            'date.0.event_date' => "required|date",
+            'date.0.event_date' => 'required|date_format:"Y-m-d"',
             "st_time" => 'nullable|date_format:"H:i"',
             "end_time" => 'nullable|date_format:"H:i"|after:st_time',
             "summary_date" => "",
@@ -82,6 +82,7 @@ class EventFormSendRequest extends FormRequest
     public function messages()
     {
         return [
+            "date.0.event_date.date_format" => ":attributeの形式は、'2020-01-01'と合いません。",
             "st_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
             "end_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
             "end_time.after" => ':attributeには、:dateより後の時間を指定してください。',
