@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div>
-<div>
-</div>
-</div>
-<form name="myForm" method="POST" action="/eventbank/event/register">
+<form name="myForm" method="POST" action="/eventbank/event/register" enctype="multipart/form-data">
 @csrf
 @if (session('success'))
         <div class="alert alert-success">
@@ -78,7 +74,7 @@
                 <label class='edit_label'>開始時間</label>
             </div>
             <div class="input_area" >
-                <input name="st_time" type="text" value="{{isset($event_data->st_time) ? $event_data->st_time : ''}}" placeholder="10:00"></input>
+                <input name="st_time" type="text" value="{{isset($event_data->st_time) ? $event_data->st_time : ''}}" placeholder="10:00">
                 @if ($errors->first('st_time'))
                     <p class="validation">※{{$errors->first('st_time')}}</p>
                 @endif
@@ -89,7 +85,7 @@
                 <label class='edit_label'>終了時間</label>
             </div>
             <div class="input_area">
-                <input name="end_time" type="text" value="{{isset($event_data->end_time) ? $event_data->end_time : ''}}" placeholder="17:00"></input>
+                <input name="end_time" type="text" value="{{isset($event_data->end_time) ? $event_data->end_time : ''}}" placeholder="17:00">
                 @if ($errors->first('end_time'))
                     <p class="validation">※{{$errors->first('end_time')}}</p>
                 @endif
@@ -100,7 +96,7 @@
                 <label class='edit_label'>日時備考</label>
             </div>
             <div class="input_area">
-                <input name="summary_date" type="text" value="{{isset($event_data->date_type) ? $event_data->date_type : ''}}"></input>
+                <input name="summary_date" type="text" value="{{isset($event_data->date_type) ? $event_data->date_type : ''}}">
                 @if ($errors->first('summary_date'))
                     <p class="validation">※{{$errors->first('summary_date')}}</p>
                 @endif
@@ -111,7 +107,7 @@
                 <label class='edit_label require'>視聴サイト名</label>
             </div>
             <div class="input_area">
-                <input name="web_name" type="text" value="{{isset($event_data->web_name) ? $event_data->web_name : ''}}"></input>
+                <input name="web_name" type="text" value="{{isset($event_data->web_name) ? $event_data->web_name : ''}}">
                 @if ($errors->first('web_name'))
                     <p class="validation">※{{$errors->first('web_name')}}</p>
                 @endif
@@ -122,7 +118,7 @@
                 <label class='edit_label'>視聴URL</label>
             </div>
             <div class="input_area">
-                <input name="web_url" type="text" value="{{isset($event_data->web_url) ? $event_data->web_url : ''}}"></input>
+                <input name="web_url" type="text" value="{{isset($event_data->web_url) ? $event_data->web_url : ''}}">
                 @if ($errors->first('web_url'))
                     <p class="validation">※{{$errors->first('web_url')}}</p>
                 @endif
@@ -133,7 +129,7 @@
                 <label class='edit_label require'>料金個別</label>
             </div>
             <div class="input_area">
-                <input name="fee_type" type="text" value="{{isset($event_data->fee_type) ? $event_data->fee_type : ''}}"></input>
+                <input name="fee_type" type="text" value="{{isset($event_data->fee_type) ? $event_data->fee_type : ''}}">
                 @if ($errors->first('fee_type'))
                     <p class="validation">※{{$errors->first('fee_type')}}</p>
                 @endif
@@ -144,7 +140,7 @@
                 <label class='edit_label'>料金</label>
             </div>
             <div class="input_area">
-                <input name="fee" type="text" value="{{isset($event_data->fee) ? $event_data->fee : ''}}"></input>
+                <input name="fee" type="text" value="{{isset($event_data->fee) ? $event_data->fee : ''}}">
                 @if ($errors->first('fee'))
                     <p class="validation">※{{$errors->first('fee')}}</p>
                 @endif
@@ -152,10 +148,11 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>画像URL</label>
+                <label class='edit_label'>画像</label>
             </div>
             <div class="input_area">
-                <input name="image_url" type="text" value="{{isset($event_data->image_url) ? $event_data->image_url : ''}}"></input>
+                <input type="file" name="event_image">  
+                <input name="image_url" type="text" value="{{isset($event_data->image_url) ? $event_data->image_url : ''}}">
                 @if ($errors->first('image_url'))
                     <p class="validation">※{{$errors->first('image_url')}}</p>
                 @endif
@@ -166,7 +163,7 @@
                 <label class='edit_label'>参考サイト名</label>
             </div>
             <div class="input_area">
-                <input name="reference_name" type="text" value="{{isset($event_data->reference_name) ? $event_data->reference_name : ''}}"></input>
+                <input name="reference_name" type="text" value="{{isset($event_data->reference_name) ? $event_data->reference_name : ''}}">
                 @if ($errors->first('reference_name'))
                     <p class="validation">※{{$errors->first('reference_name')}}</p>
                 @endif
@@ -177,7 +174,7 @@
                 <label class='edit_label'>参考URL</label>
             </div>
             <div class="input_area">
-                <input name="reference_url" type="text" value="{{isset($event_data->reference_url) ? $event_data->reference_url : ''}}"></input>
+                <input name="reference_url" type="text" value="{{isset($event_data->reference_url) ? $event_data->reference_url : ''}}">
                 @if ($errors->first('reference_url'))
                     <p class="validation">※{{$errors->first('reference_url')}}</p>
                 @endif
@@ -188,7 +185,7 @@
                 <label class='edit_label require'>公開日</label>
             </div>
             <div class="input_area">
-                <input name="release_date" type="text" value="{{isset($event_data->release_date) ? $event_data->release_date : ''}}" placeholder="2020-01-01"></input>
+                <input name="release_date" type="text" value="{{isset($event_data->release_date) ? $event_data->release_date : ''}}" placeholder="2020-01-01">
                 @if ($errors->first('release_date'))
                     <p class="validation">※{{$errors->first('release_date')}}</p>
                 @endif
@@ -243,7 +240,7 @@
                 <label class='edit_label require'>登録者団体名</label>
             </div>
             <div class="input_area">
-                <input name="regi_group_name" type="text" value="{{isset($event_data->regi_group_name) ? $event_data->regi_group_name : ''}}"></input>
+                <input name="regi_group_name" type="text" value="{{isset($event_data->regi_group_name) ? $event_data->regi_group_name : ''}}">
                 @if ($errors->first('regi_group_name'))
                     <p class="validation">※{{$errors->first('regi_group_name')}}</p>
                 @endif
@@ -254,7 +251,7 @@
                 <label class='edit_label require'>登録者担当名</label>
             </div>
             <div class="input_area">
-                <input name="regi_name" type="text" value="{{isset($event_data->regi_name) ? $event_data->regi_name : ''}}"></input>
+                <input name="regi_name" type="text" value="{{isset($event_data->regi_name) ? $event_data->regi_name : ''}}">
                 @if ($errors->first('regi_name'))
                     <p class="validation">※{{$errors->first('regi_name')}}</p>
                 @endif
@@ -265,7 +262,7 @@
                 <label class='edit_label require'>登録者電話番号</label>
             </div>
             <div class="input_area">
-                <input name="regi_tel" type="text" value="{{isset($event_data->regi_tel) ? $event_data->regi_tel : ''}}"></input>
+                <input name="regi_tel" type="text" value="{{isset($event_data->regi_tel) ? $event_data->regi_tel : ''}}">
                 @if ($errors->first('regi_tel'))
                     <p class="validation">※{{$errors->first('regi_tel')}}</p>
                 @endif
@@ -276,7 +273,7 @@
                 <label class='edit_label require'>登録者mail</label>
             </div>
             <div class="input_area">
-                <input name="regi_mail" type="text" value="{{isset($event_data->regi_mail) ? $event_data->regi_mail : ''}}"></input>
+                <input name="regi_mail" type="text" value="{{isset($event_data->regi_mail) ? $event_data->regi_mail : ''}}">
                 @if ($errors->first('regi_mail'))
                     <p class="validation">※{{$errors->first('regi_mail')}}</p>
                 @endif
