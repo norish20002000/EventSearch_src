@@ -232,5 +232,11 @@ return [
     'PAGINATE' => [
         //paginationの一度に表示するリンクの数
         'LINK_NUM' => '6',
-    ],    
+    ],
+
+    // dir
+    'DIR' => [
+        'EVENT_IMAGE_PUBLIC' => 'public/event_images/',
+        'EVENT_IMAGE_STORAGE' => '/storage/event_images/',
+    ],
 ];

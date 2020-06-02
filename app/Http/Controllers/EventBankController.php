@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
@@ -18,7 +19,7 @@ class EventBankController extends Controller
      */
     public function edit(Request $request, $id=0)
     {
-        $data['event_data'] = new Collection();
+        $data['event_data'] = new Event();
 
         $data['genre'] = Genre::getGenre();
         $data['genre01List'] = Genre01::getGenre01()->groupBy("genre_id");
@@ -44,6 +45,12 @@ class EventBankController extends Controller
             $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);
             $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
         }
+
+        // image
+        $data['event_data']->image_flg = $this->checkImage($id);
+        // dir
+        $data['event_data']->dir = config('app.DIR');
+        // var_dump($data['event_data']);exit;
         
         return view('edit.eventedit', $data);
     }
@@ -59,9 +66,11 @@ class EventBankController extends Controller
         if($request->update) {
             $eventId = $request->event_id;
             Event::updateEventData($request);
+            self::saveImage($request, $eventId);
             // EventGenre::updateGenreMap($eventId, $request);
         } elseif ($request->register) {
             $eventId = Event::saveEventData($request);
+            self::saveImage($request, $eventId);
             // EventGenre::saveGenreMap($eventId, $request);
         } elseif ($request->copyevent) {
             $eventId = $this->copyEventData($request);
@@ -70,6 +79,32 @@ class EventBankController extends Controller
         // $request->session()->put('success',"イベントデータが保存されました。");
 
         return redirect()->route('eventedit', ['id' => $eventId])->with('success', "イベントデータが保存されました.");
+    }
+
+    /**
+     * image save
+     */
+    private static function saveImage($request, $eventId)
+    {
+        if($request->event_image) {
+            // image folder作成
+            if(!Storage::exists(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId)) {
+                $result = Storage::makeDirectory(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId, 0775, true);
+            }
+
+            $request->event_image->storeAs(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId, $eventId . '.jpg');
+        }
+    }
+
+    /**
+     * image check
+     */
+    private function checkImage($event_id) {
+        if(Storage::disk('local')->exists(config('app.DIR.EVENT_IMAGE_PUBLIC') . "$event_id/$event_id.jpg")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -114,6 +149,7 @@ class EventBankController extends Controller
     {
         $preEvent = Event::find($request->event_id);
         $event = $preEvent->replicate();
+        $event->image_url = null;
 
         DB::transaction(function () use ($event, $request){
             $event->save();

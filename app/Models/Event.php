@@ -237,7 +237,7 @@ class Event extends Model
         $event->web_url = $request->web_url;
         $event->fee_type = $request->fee_type; 
         $event->fee = $request->fee;
-        $event->image_url = $request->image_url;
+        // $event->image_url = $request->image_url;
         $event->reference_name = $request->reference_name;
         $event->reference_url = $request->reference_url;
         $event->release_date = $request->release_date;
@@ -248,6 +248,11 @@ class Event extends Model
         $event->status = (int)$request->status;
 
         DB::transaction(function () use ($event, $request) {
+            $event->save();
+
+            // image_url
+            $imagePath = config('app.DIR.EVENT_IMAGE_STORAGE') . "$event->id/$event->id.jpg";
+            $event->image_url = $imagePath;
             $event->save();
 
             foreach($request->date as $date) {
@@ -277,6 +282,9 @@ class Event extends Model
      */
     public static function updateEventData($request)
     {
+        // image_url set
+        $request['image_url'] = config('app.DIR.EVENT_IMAGE_STORAGE') . "$request->event_id/$request->event_id.jpg";
+
         // $event = self::registerInstance($request);
         $event = Event::find($request->event_id);
 

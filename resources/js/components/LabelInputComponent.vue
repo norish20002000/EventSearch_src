@@ -66,7 +66,7 @@
         },
         mounted() {
             // console.log("eventId : " + this.eventData[2].id)
-            console.log(this.eventDate)
+            // console.log(this.eventDate)
         }
     }
 </script>

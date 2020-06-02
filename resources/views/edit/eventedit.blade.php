@@ -9,7 +9,7 @@
 @endif
 <div class='container'>
     <div class="article_title">
-        @if ($errors->first())
+            @if ($errors->first())
             <p class="validation">*{{$errors->first()}}</p>
         @endif
         @if (isset($event_data->id))
@@ -26,7 +26,7 @@
                     ele.setAttribute('name', 'copyevent')
                     ele.setAttribute('value', 'copyevent')
                     document.myForm.appendChild(ele)
-                }()));" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>ジャンル</br>はコピーされません。" data-html="true">イベントコピー
+                }()));" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>画像</br>ジャンル</br>はコピーされません。" data-html="true">イベントコピー
                 </button>
             </div>
             <div>
@@ -151,11 +151,14 @@
                 <label class='edit_label'>画像</label>
             </div>
             <div class="input_area">
-                <input type="file" name="event_image">  
-                <input name="image_url" type="text" value="{{isset($event_data->image_url) ? $event_data->image_url : ''}}">
+                <image-component :event-data='@json($event_data)'></image-component>
+                @if ($errors->first('event_image'))
+                    <p class="validation">※{{$errors->first('event_image')}}</p>
+                @endif
+                {{-- <input name="image_url" type="text" value="{{isset($event_data->image_url) ? $event_data->image_url : ''}}">
                 @if ($errors->first('image_url'))
                     <p class="validation">※{{$errors->first('image_url')}}</p>
-                @endif
+                @endif --}}
             </div>
         </div>
         <div class="label_input">
