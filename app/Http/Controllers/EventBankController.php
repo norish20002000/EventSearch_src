@@ -45,7 +45,7 @@ class EventBankController extends Controller
             $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
         }
         
-        return view('edit/eventedit', $data);
+        return view('edit.eventedit', $data);
     }
 
     /**
@@ -95,7 +95,7 @@ class EventBankController extends Controller
     {
         $data['event_data'] = Event::getEventDataAllday($request, 1);
 
-        return view('edit/eventopelist', $data);
+        return view('edit.eventopelist', $data);
     }
 
     public function getData(Request $request)
