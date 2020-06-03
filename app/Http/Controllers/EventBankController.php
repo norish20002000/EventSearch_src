@@ -71,6 +71,7 @@ class EventBankController extends Controller
     {
         // $this->validation($request);
         if($request->update) {
+            // var_dump($request->all());exit;
             $eventId = $request->event_id;
             Event::updateEventData($request);
             self::saveImage($request, $eventId);

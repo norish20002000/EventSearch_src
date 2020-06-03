@@ -2086,6 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExampleComponent",
   props: {
@@ -37829,42 +37830,30 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { attrs: { id: "app" } }),
-            _vm._v(" "),
-            _c("div", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: element.event_date,
-                    expression: "element.event_date"
+            _c(
+              "div",
+              { attrs: { id: "app" } },
+              [
+                _c("vuejs-datepicker", {
+                  attrs: {
+                    format: _vm.DatePickerFormat,
+                    highlighted: _vm.highlighted,
+                    "input-class": "datepic_input",
+                    name: "date[" + index + "][" + _vm.attribute + "]",
+                    value: element.event_date
                   }
-                ],
-                attrs: {
-                  name: "date[" + index + "][" + _vm.attribute + "]",
-                  type: "text",
-                  placeholder: "2020-01-01"
-                },
-                domProps: { value: element.event_date },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(element, "event_date", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "hidden",
-                  name: "date[" + index + "][event_date_id]"
-                },
-                domProps: { value: element.id }
-              })
-            ])
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "hidden",
+                    name: "date[" + index + "][event_date_id]"
+                  },
+                  domProps: { value: element.id }
+                })
+              ],
+              1
+            )
           ])
         }),
         _vm._v(" "),
