@@ -12,6 +12,9 @@
             @if ($errors->first())
             <p class="validation">*{{$errors->first()}}</p>
         @endif
+        <a href="{{route('eventexport')}}">
+            <button type="button">csv</button>
+        </a>
         @if (isset($event_data->id))
         <div class="btn_row">
             <div>

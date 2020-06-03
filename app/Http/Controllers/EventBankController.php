@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\EventFormSendRequest;
 use App\Models\Event;
 use App\Models\Genre;
 use App\Models\EventGenre;
 use App\Models\Genre01;
+use App\Models\EventDate;
+use App\Http\Traits\Csv;
+
+use ZipArchive;
 
 class EventBankController extends Controller
 {
+    use Csv;
+
     /**
      * イベント編集画面
      */
@@ -79,6 +86,180 @@ class EventBankController extends Controller
         // $request->session()->put('success',"イベントデータが保存されました。");
 
         return redirect()->route('eventedit', ['id' => $eventId])->with('success', "イベントデータが保存されました.");
+    }
+
+    /**
+     * csv
+     */
+    public function exportCsv(Request $request)
+    {
+
+
+        return view('edit.eventexport');
+    }
+
+    public function exportCsvList(Request $request)
+    {
+        $eventIdList = EventDate::getBetween($request->st_date, $request->end_date)->pluck("event_id")->unique();
+        $eventData = Event::getEventWithGenreAndGenre01($eventIdList);
+        // $columns = Schema::getColumnListing('events');
+        // var_dump($columns);exit;
+
+        $csvList = [];
+        $fileList = [];
+        foreach($eventData as $key => $event) {
+
+            // image filepath
+            if($event->image_url) {
+                $extension = \pathinfo($event->image_url)['extension'];
+                $fileList[] = public_path("storage/event_images/$event->id/$event->id.$extension");
+            }
+
+            $dayList = [];
+            $genreList = [];
+            $genre01List = [];
+            foreach ($event->event_dates as $date) {
+                $dayList[] = $date->event_date;
+            }
+            foreach ($event->genres as $genre) {
+                $genreList[] = $genre->disp_name;
+            }
+            foreach ($event->genre01s as $genre01) {
+                $genre01List[] = $genre01->disp_name;
+            }
+
+            $csvList[] = [
+                            $event->id,
+                            $event->title,
+                            $event->introduction,
+                            $event->st_time,
+                            $event->end_time,
+                            $event->summary_date,
+                            $event->web_name,
+                            $event->web_url,
+                            $event->fee_type,
+                            $event->fee,
+                            $event->image_url,
+                            $event->reference_name,
+                            $event->reference_url,
+                            $event->release_date,
+                            $event->regi_group_name,
+                            $event->regi_name,
+                            $event->regi_tel,
+                            $event->regi_mail,
+                            $event->status,
+                            $event->created_at,
+                            $event->created_at,
+                            \implode(',', $dayList),
+                            \implode(',', $genreList),
+                            \implode(',', $genre01List),
+                        ];
+        }
+
+        // var_dump($csvList);exit;
+
+        $header = [
+            'ID',
+            'イベント名',
+            '紹介文',
+            '開始時間',
+            '終了時間',
+            '日時備考',
+            '視聴サイト名',
+            '視聴URL',
+            '料金種別',
+            '料金',
+            '画像url',
+            '参考サイト名称',
+            '参考URL',
+            '公開日',
+            '登録者団体名',
+            '登録者担当者名',
+            '登録者電話番号',
+            '登録者メールアドレス',
+            'ステータス',
+            'created_at',
+            'updated_at',
+            'days',
+            '大カテゴリ',
+            '少カテゴリ'
+            ];
+
+        $csv = $this->csv("event", $header, $csvList, false);
+        $filename = "event".date('Ymd').".csv";
+        $filepath = storage_path('app/'.$filename);
+// var_dump($fileList);exit;
+
+        // zip
+        $zipFileName = "event_" . date('Ymd') . ".zip";
+        $zipDir = storage_path('app/');
+        $zip = new ZipArchive();
+        $zip->open($zipDir.$zipFileName, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
+
+        $zip->addFromString(basename($filepath), file_get_contents($filepath));
+
+        foreach ($fileList as $file) {
+            $imageFileName = basename($file);
+ 
+            // 取得ファイルをZipに追加していく
+            $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
+            // $zip->addFile($file);
+        }
+
+        $zip->close();
+
+        // ストリームに出力
+        header('Content-Type: application/zip; name="' . $zipFileName . '"');
+        header('Content-Disposition: attachment; filename="' . $zipFileName . '"');
+        header('Content-Length: '.filesize($zipDir.$zipFileName));
+        echo file_get_contents($zipDir.$zipFileName);
+  
+        // 一時ファイルを削除しておく
+        unlink($zipDir.$zipFileName);
+        Csv::purge($filename);
+    
+        ob_end_clean();
+
+        // header('Content-Type: application/octet-stream');
+        // header('Content-Length: '.filesize($filepath));
+        // header('Content-Disposition: attachment; filename='.$filename);
+         
+        // // ファイル出力
+        // readfile($filepath);
+    }
+
+    public function csv($fileName, $header, $lists, $csvFlg=true) 
+    {
+        // リスト
+        $lists = $lists;
+        // [
+        //     ['おはよう', 'おやすみ'],
+        //     ['こんにちは', 'さようなら'],
+        // ];
+
+        $filename = $fileName . date("Ymd") . '.csv';
+        $file = Csv::createCsv($filename);
+
+        // ヘッダー
+        Csv::write($file, $header);
+        // ['header1', 'header2']); 
+
+
+        // 値を入れる
+        foreach ($lists as $list)
+        {
+            Csv::write($file, $list);
+        }
+
+        $response = file_get_contents($file);
+        // ストリームに入れたら実ファイルは削除
+        if ($csvFlg) {
+            Csv::purge($filename);
+        }
+
+        return response($response, 200)
+                ->header('Content-Type', 'text/csv')
+                ->header('Content-Disposition', 'attachment; filename='.$filename);
     }
 
     /**

@@ -222,6 +222,23 @@ class Event extends Model
     }
 
     /**
+     * get event from idList with genre and genre01
+     */
+    public static function getEventWithGenreAndGenre01($eventIdList)
+    {
+        $eventData = Event::
+                        whereIn('id', $eventIdList)
+                        ->get();
+        foreach ($eventData as $event) {
+            $event->event_dates = $event->eventDays;
+            $event->genres = $event->genres;
+            $event->genre01s = $event->genre01s;
+        }
+
+        return $eventData;
+    }
+
+    /**
      * save event data
      * @param Request $request
      */
@@ -370,6 +387,14 @@ class Event extends Model
         }
 
         return $eventData;
+    }
+
+    /**
+     * days
+     */
+    public function eventDays()
+    {
+        return $this->hasMany('App\Models\EventDate');
     }
 
     /**

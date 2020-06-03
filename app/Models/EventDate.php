@@ -81,6 +81,19 @@ class EventDate extends Model
     }
 
     /**
+     * get eventdate between
+     */
+    public static function getBetween($st_date, $end_date)
+    {
+        $eventDate = EventDate::
+                    where('status', 0)
+                    ->whereBetween('event_date', [$st_date, $end_date])
+                    ->get();
+
+        return $eventDate;
+    }
+
+    /**
      * update date
      */
     public static function updateEventDate($eventId, $date)
@@ -109,5 +122,13 @@ class EventDate extends Model
         });
 
         return $result;
+    }
+
+    /**
+     * events
+     */
+    public function events()
+    {
+        return $this->belongsTo('App\Models\Event', 'id');
     }
 }

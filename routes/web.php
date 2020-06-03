@@ -33,6 +33,8 @@ Route::get('eventgenre/{genre_id}', 'EventController@genre')->name('eventgenre')
 Route::get('eventbank/event/edit/{id?}', 'EventBankController@edit')->name('eventedit');
 Route::post('/eventbank/event/register', 'EventBankController@register')->name('eventregister');
 Route::get('/eventbank/event/ope', 'EventBankController@showList')->name('eventopelist');
+Route::get('/eventbank/event/export', 'EventBankController@exportCsv')->name('eventexport');
+Route::get('/eventbank/event/export/csv', 'EventBankController@exportCsvList')->name('eventexportlist');
 
 
 Route::get('debug', 'EventBankController@getData');

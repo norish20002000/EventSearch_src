@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class='container'>
+    <div class='container'>
     <div class="article_title">
         <div>
             <a href="{{route('eventedit')}}" >
