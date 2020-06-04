@@ -238,7 +238,11 @@
     line-height: 1.4;    
 }
 
-a {
+/* a {
+    color: #424242;
+} */
+
+.link_color {
     color: #424242;
 }
 
@@ -283,7 +287,9 @@ h1.title {
 }
 
 .genre_tag {
-    width: 100px;
+    display: block;
+    float: left;
+    width: auto;
     height: 30px;
     top: 15px;
     left: 15px;
@@ -293,11 +299,11 @@ h1.title {
     text-align: center;
     border-radius: 20px;
     padding: 2px 8px;
-    margin: 30px 10px 0 0 ;
+    margin: 10px 10px 0 0 ;
 }
 
 .genres_div {
-    margin: 10px 0 10px 0;
+    margin: 10px 0 20px 0;
 }
 
 .genre_icon2 {

@@ -10,6 +10,7 @@
 <div class='container'>
     <div class="article_title">
             @if ($errors->first())
+            <p　class="validation">データ登録に失敗しました</p>
             <p class="validation">*{{$errors->first()}}</p>
         @endif
         <a href="{{route('eventexport')}}">

@@ -70481,29 +70481,36 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
-                _c("div", { staticClass: "fl" }, [
-                  _c("div", { staticClass: "event_title" }, [
-                    _vm._v(_vm._s(event.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "days" }, [
-                    _vm._m(0, true),
+              _c(
+                "a",
+                {
+                  staticClass: "link_color",
+                  attrs: { href: "/eventdetail/" + event.id }
+                },
+                [
+                  _c("div", { staticClass: "fl" }, [
+                    _c("div", { staticClass: "event_title" }, [
+                      _vm._v(_vm._s(event.title))
+                    ]),
                     _vm._v(" "),
-                    _c("div", [
+                    _c("div", { staticClass: "days" }, [
+                      _vm._m(0, true),
+                      _vm._v(" "),
                       _c("div", [
-                        _vm._v(
-                          _vm._s(event.date[0].event_date) +
-                            " (" +
-                            _vm._s(_vm.getWeekStr(event.date[0].event_date)) +
-                            ") " +
-                            _vm._s(_vm._f("truncate")(event.st_time, 5, " "))
-                        )
+                        _c("div", [
+                          _vm._v(
+                            _vm._s(event.date[0].event_date) +
+                              " (" +
+                              _vm._s(_vm.getWeekStr(event.date[0].event_date)) +
+                              ") " +
+                              _vm._s(_vm._f("truncate")(event.st_time, 5, " "))
+                          )
+                        ])
                       ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ])
           ])
         ])

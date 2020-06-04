@@ -21,7 +21,7 @@
                                 <img v-else class="thumb_img" src="/image/view/noimage.jpg" />
                             </a>
                         </div>
-                        <a :href="'/eventdetail/' + event.id">
+                        <a class="link_color" :href="'/eventdetail/' + event.id">
                             <div class="fl">
                                 <div class="event_title">{{event.title}}</div>
                                 <div class="days">
