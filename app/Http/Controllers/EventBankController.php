@@ -58,7 +58,7 @@ class EventBankController extends Controller
         // dir
         $data['event_data']->dir = config('app.DIR');
         // var_dump($data['event_data']);exit;
-        
+
         return view('edit.eventedit', $data);
     }
 

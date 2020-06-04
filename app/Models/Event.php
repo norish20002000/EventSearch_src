@@ -19,7 +19,7 @@ class Event extends Model
         "web_name",
         "web_url",
         "fee_type",
-        "fee_type",
+        "fee",
         "image_url",
         "reference_name",
         "reference_name",
@@ -29,6 +29,7 @@ class Event extends Model
         "regi_name",
         "regi_mail",
         "status",
+        "remarks",
     ];
 
     /**
@@ -301,6 +302,7 @@ class Event extends Model
      */
     public static function updateEventData($request)
     {
+        // var_dump($request->all());exit;
         // image_url set
         if($request->event_image) {
             $request['image_url'] = config('app.DIR.EVENT_IMAGE_STORAGE') . "$request->event_id/$request->event_id.jpg";

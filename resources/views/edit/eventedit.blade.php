@@ -296,6 +296,17 @@
                     {{isset($event_data) && $event_data->status != 0 ? 'checked':''}}><label class="open_label">非公開</label>
             </div>
         </div>
+        <div class="label_input">
+            <div>
+                <label class='edit_label'>備考</label>
+            </div>
+            <div class="input_area">
+                <textarea class="textarea" name="remarks" type="text">{{isset($event_data->remarks) ? $event_data->remarks : ''}}</textarea>
+                @if ($errors->first('remarks'))
+                    <p class="validation">※{{$errors->first('remarks')}}</p>
+                @endif
+            </div>
+        </div>
     </div>
     <div>
         @if($event_data->upType == "update")
