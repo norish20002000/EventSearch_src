@@ -41,6 +41,7 @@
         </div>
         @endif
         <div style="display:flex;"><p>必須項目</p><p style="color:red;">*</p></div>
+        @if (isset($event_data->id))
         <div class="label_input">
             <div class="label_edit">
                 <label class='edit_label'>ID</label>
@@ -49,6 +50,7 @@
                 <label>{{$event_data->id}}</label>
             </div>
         </div>
+        @endif
         <div class="label_input">
             <div class="label_edit" style="display:flex; ">
                 <label class='edit_label require'>タイトル</label>
