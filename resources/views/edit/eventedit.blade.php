@@ -42,6 +42,14 @@
         @endif
         <div style="display:flex;"><p>必須項目</p><p style="color:red;">*</p></div>
         <div class="label_input">
+            <div class="label_edit">
+                <label class='edit_label'>ID</label>
+            </div>
+            <div class="input_area">
+                <label>{{$event_data->id}}</label>
+            </div>
+        </div>
+        <div class="label_input">
             <div class="label_edit" style="display:flex; ">
                 <label class='edit_label require'>タイトル</label>
             </div>
