@@ -1,7 +1,7 @@
 .fl {
-    float: left;
+    /* float: left; */
     margin: 2px;
-    width: 48%;
+    width: 100%;
 }
 
 .icon .thumb_img {
@@ -67,7 +67,7 @@
     right: 0;
     margin: auto;
     text-align: center; 
-    width: 300px;
+    width: 400px;
 }
 
 .article_content .title {
@@ -87,10 +87,15 @@
 }
 
 .days {
-    border: 2px solid black;
-    outline: #4CAF50 solid 2px;
+    /* border: 2px solid black; */
+    /* outline: #4CAF50 solid 2px; */
+    display: flex;
     margin: auto;  
     text-align: center;
+  }
+
+  .awe_calendar {
+      margin: 0 10px 0 0 
   }
 
   .genre img {
@@ -275,6 +280,24 @@ h1.title {
     text-align: center;
     background-color: #ff0211;
     border-radius: 50%; */
+}
+
+.genre_tag {
+    width: 100px;
+    height: 30px;
+    top: 15px;
+    left: 15px;
+    color: white;
+    background-color: #3eb5fb;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 2px 8px;
+    margin: 30px 10px 0 0 ;
+}
+
+.genres_div {
+    margin: 10px 0 10px 0;
 }
 
 .genre_icon2 {

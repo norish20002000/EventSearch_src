@@ -11,30 +11,39 @@
 @endif
 <div class='container'>
     <div class="article_title">
-        <h1 class="title">{{ $event_data->title }}</h1>
+        <div class="article_mainimage">
+            @if ($event_data->image_url)
+                <a href="{{$event_data->web_url}}" target="blank">
+                <img class="mainimage" src="{{ $event_data->image_url }}"/>
+                </a>
+            @endif
+        </div>
+        @if ($event_data->genres)
+        <div class="genres_div">
+            @foreach ($event_data->genres as $genre)
+                <span class="genre_tag">{{$genre->disp_name}} </span>
+            @endforeach
+        </div>
+        @endif
         <div>
-            <div>【概要】</div>
-            <p class="summary">{{ $event_data->summary }}</p>
+            <h1 class="title">{{ $event_data->title }}</h1>
         </div>
         <div>
-            <div>【開催日】</div>
-            <div>
+            <p>
                 @foreach ($event_data->date as $day)
-                <div>{{ $day->event_date }}({{ $day->st_week }})</div>
+                <div>            
+                    <span><i class="far fa-calendar-alt"></i></span>
+                    {{ $day->event_date }}({{ $day->st_week }})
+                </div>
                 @endforeach
-                <div>【開催時間】</div>
+            </p>
+            <div>
                 <p>{{ $event_data->st_time }}〜{{ $event_data->end_time }}</p>
             </div>
         </div>
     </div>
-    <div class="article_mainimage">
-        @if ($event_data->image_url)
-            <img class="mainimage" src="{{ $event_data->image_url }}"/>
-        @endif
-    </div>
     <div class="article_content">
         <div>
-            <div>【説明】</div>
             <div><p> {!! nl2br($event_data->introduction) !!} </p></div>
         </div>
         <div>

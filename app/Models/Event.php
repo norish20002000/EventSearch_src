@@ -91,6 +91,7 @@ class Event extends Model
     public static function getEventDataById($id)
     {
         $eventData = Event::find($id);
+        $eventData->genres = $eventData->genres;
         $eventData->date = EventDate::getDate($id);
 
         return $eventData;

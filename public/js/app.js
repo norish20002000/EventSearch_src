@@ -1922,6 +1922,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1940,7 +1945,8 @@ __webpack_require__.r(__webpack_exports__);
       events: this.eventData,
       genreData: this.genre,
       leftNum: 100,
-      testCnt: 0 // pStyle: {
+      testCnt: 0,
+      week_str: "" // pStyle: {
       //     "color": "#0f0",
       //     "position": "absolute",
       //     "top": "15px",
@@ -1957,6 +1963,11 @@ __webpack_require__.r(__webpack_exports__);
         // "top": "15px",
         // "left": this.leftNum + "px",
       };
+    },
+    getWeekStr: function getWeekStr(date) {
+      var dayOfWeek = new Date(date).getDay();
+      var weekStr = ["日", "月", "火", "水", "木", "金", "土"][dayOfWeek];
+      return weekStr;
     }
   },
   filters: {
@@ -1983,7 +1994,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.events);
   },
   mounted: function mounted() {
-    console.log("test: " + this.events);
+    // console.log("test: " + new Date('2020-06-04'))
     console.log('Component mounted.');
   }
 });
@@ -70465,7 +70476,7 @@ var render = function() {
                       })
                     : _c("img", {
                         staticClass: "thumb_img",
-                        attrs: { src: "image/view/noimage.jpg" }
+                        attrs: { src: "/image/view/noimage.jpg" }
                       })
                 ])
               ]),
@@ -70473,24 +70484,23 @@ var render = function() {
               _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
                 _c("div", { staticClass: "fl" }, [
                   _c("div", { staticClass: "event_title" }, [
-                    _vm._v(_vm._s(_vm._f("truncate")(event.title, 30, "...")))
+                    _vm._v(_vm._s(event.title))
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "days" },
-                    _vm._l(event.date, function(date) {
-                      return _c("div", { key: date.id }, [
-                        _c("div", [_vm._v(_vm._s(date.event_date))])
+                  _c("div", { staticClass: "days" }, [
+                    _vm._m(0, true),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("div", [
+                        _vm._v(
+                          _vm._s(event.date[0].event_date) +
+                            " (" +
+                            _vm._s(_vm.getWeekStr(event.date[0].event_date)) +
+                            ") " +
+                            _vm._s(_vm._f("truncate")(event.st_time, 5, " "))
+                        )
                       ])
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      _vm._s(_vm._f("truncate")(event.introduction, 40, "..."))
-                    )
+                    ])
                   ])
                 ])
               ])
@@ -70502,7 +70512,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "awe_calendar" }, [
+      _c("i", { staticClass: "far fa-calendar-alt" })
+    ])
+  }
+]
 render._withStripped = true
 
 

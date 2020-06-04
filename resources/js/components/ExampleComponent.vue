@@ -18,18 +18,23 @@
                         <div class="icon fl">
                             <a :href="'/eventdetail/' + event.id">
                                 <img v-if="event.image_url" class="thumb_img" :src="event.image_url"/>
-                                <img v-else class="thumb_img" src="image/view/noimage.jpg" />
+                                <img v-else class="thumb_img" src="/image/view/noimage.jpg" />
                             </a>
                         </div>
                         <a :href="'/eventdetail/' + event.id">
                             <div class="fl">
-                                <div class="event_title">{{event.title | truncate(30, '...')}}</div>
+                                <div class="event_title">{{event.title}}</div>
                                 <div class="days">
-                                        <div v-for="date in event.date" :key="date.id">
-                                            <div>{{date.event_date}}</div>
-                                        </div>
+                                    <div class="awe_calendar">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                    <div>
+                                        <!-- <div v-for="date in event.date" :key="date.id"> -->
+                                            <div>{{event.date[0].event_date}} ({{getWeekStr(event.date[0].event_date)}}) {{event.st_time | truncate(5, ' ')}}</div>
+                                        <!-- </div> -->
+                                    </div>
                                 </div>
-                                <div>{{event.introduction | truncate(40, '...')}}</div>
+                                <!-- <div>{{event.introduction | truncate(40, '...')}}</div> -->
                             </div>
                         </a>
                     </div>
@@ -62,6 +67,7 @@
                 genreData: this.genre,
                 leftNum: 100,
                 testCnt: 0,
+                week_str:"",
                 // pStyle: {
                 //     "color": "#0f0",
                 //     "position": "absolute",
@@ -81,6 +87,12 @@
                     // "left": this.leftNum + "px",
                 }
             },
+            getWeekStr(date) {
+                var dayOfWeek = new Date(date).getDay()
+                var weekStr = [ "日", "月", "火", "水", "木", "金", "土" ][dayOfWeek]
+                
+                return weekStr
+            }
         },
         filters: {
             truncate: function(value, length, omission) {
@@ -107,7 +119,7 @@
             console.log(this.events)
         },
         mounted() {
-            console.log("test: " + this.events)
+            // console.log("test: " + new Date('2020-06-04'))
             console.log('Component mounted.')
         }
     }
