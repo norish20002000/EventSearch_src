@@ -34,3 +34,4 @@ Vue.component('image-component', require('./components/ImageComponent.vue').defa
 const app = new Vue({
     el: '#app',
 });
+

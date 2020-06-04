@@ -6,11 +6,28 @@
         <div class="label_input">
             <div>
                 <label >開催日</label>
-            </div>
-            <div>
-                <input type="text" name="st_date" >
+            </div>            
+            <div class="st_end_picker">
+                <div class="form-group">
+                    <div class="input-group date datetimepicker" id="due_date" data-target-input="nearest">
+                      <input type="text" name="st_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" />
+                      <div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                </div>
+                    {{-- <input id="birthdate" type="text" class="form-control datepicker" name="birthdate" > --}}
+                {{-- <input type="text" name="st_date" class="datapicker"> --}}
                 〜
-                <input type="text" name="end_date">
+                <div class="form-group">
+                    <div class="input-group date datetimepicker" id="due_date1" data-target-input="nearest">
+                      <input type="text" name="end_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" />
+                      <div class="input-group-append" data-target="#due_date1" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                </div>
+                    {{-- <input type="text" name="end_date"> --}}
             </div>
         </div>
         <button type="button" onclick="submit();">exports</button>

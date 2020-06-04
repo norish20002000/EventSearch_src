@@ -307,3 +307,7 @@ h1.title {
     font-weight: bold;
     background: linear-gradient(transparent 70%, #a8eaff 50%);
 }
+
+.st_end_picker {
+    display: flex;
+}

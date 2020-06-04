@@ -90,7 +90,20 @@
     </div>
     <script type="module">
         $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            $(".datepicker").datepicker({
+                dateFormat: 'yy-mm-dd',
+            });
+            
+            $('.datetimepicker').datetimepicker({
+            icons: {
+                // Font Awesome 5には「fa-clock-o」がなくなっているので指定する
+                time: 'far fa-clock'
+            },
+            format: 'YYYY-MM-DD',
+            locale: 'ja',
         });
     </script>
 </body>

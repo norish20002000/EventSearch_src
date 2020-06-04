@@ -268,9 +268,11 @@ class Event extends Model
             $event->save();
 
             // image_url
-            $imagePath = config('app.DIR.EVENT_IMAGE_STORAGE') . "$event->id/$event->id.jpg";
-            $event->image_url = $imagePath;
-            $event->save();
+            if ($request->event_image) {
+                $imagePath = config('app.DIR.EVENT_IMAGE_STORAGE') . "$event->id/$event->id.jpg";
+                $event->image_url = $imagePath;
+                $event->save();
+            }
 
             foreach($request->date as $date) {
                 if($date['event_date'] == null) continue;
@@ -300,7 +302,9 @@ class Event extends Model
     public static function updateEventData($request)
     {
         // image_url set
-        $request['image_url'] = config('app.DIR.EVENT_IMAGE_STORAGE') . "$request->event_id/$request->event_id.jpg";
+        if($request->event_image) {
+            $request['image_url'] = config('app.DIR.EVENT_IMAGE_STORAGE') . "$request->event_id/$request->event_id.jpg";
+        }
 
         // $event = self::registerInstance($request);
         $event = Event::find($request->event_id);

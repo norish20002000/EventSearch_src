@@ -1,3 +1,6 @@
+require('jquery-ui/ui/widgets/dialog.js');
+require('jquery-ui/ui/i18n/datepicker-ja.js');
+
 window._ = require('lodash');
 
 /**
@@ -38,4 +41,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
+// });
+
+// resources/js/bootstrap.js
+/**
+ * Import moment js
+ */
+import moment from 'moment';
+window.moment = moment;
+
+require('tempusdominus-bootstrap-4');
+// $('#datetimepicker').datetimepicker({
+// //   icons: {
+//     // Font Awesome 5には「fa-clock-o」がなくなっているので指定する
+//     // time: 'far fa-clock'
+// //   },
+//   format: 'YYYY-MM-DD',
+//   locale: 'ja',
 // });
