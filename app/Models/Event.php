@@ -264,6 +264,7 @@ class Event extends Model
         $event->regi_tel = $request->regi_tel;
         $event->regi_mail = $request->regi_mail;
         $event->status = (int)$request->status;
+        $event->remarks = $request->remarks;
 
         DB::transaction(function () use ($event, $request) {
             $event->save();
