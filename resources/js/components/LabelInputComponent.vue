@@ -13,7 +13,7 @@
                         :highlighted ="highlighted"
                         input-class="datepic_input"
                         :name="'date[' + index + '][' + attribute + ']'"
-                        :value="element.evetn_date">
+                        :value="element.event_date">
                     </vuejs-datepicker>
                     <input type="hidden" :name="'date[' + index + '][event_date_id]'" :value="element.id">
                 </div>

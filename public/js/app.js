@@ -70585,7 +70585,7 @@ var render = function() {
                     highlighted: _vm.highlighted,
                     "input-class": "datepic_input",
                     name: "date[" + index + "][" + _vm.attribute + "]",
-                    value: element.evetn_date
+                    value: element.event_date
                   }
                 }),
                 _vm._v(" "),
