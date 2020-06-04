@@ -13,7 +13,7 @@
                         :highlighted ="highlighted"
                         input-class="datepic_input"
                         :name="'date[' + index + '][' + attribute + ']'"
-                        :value="element.event_date">
+                        :value="element.evetn_date">
                     </vuejs-datepicker>
                     <input type="hidden" :name="'date[' + index + '][event_date_id]'" :value="element.id">
                 </div>
@@ -36,6 +36,7 @@
         props: {
             eventDate: "",
             attributeName: "",
+            old: "",
         },
         data() {
             var now =new Date()
@@ -52,6 +53,7 @@
                 highlighted: {
                     dates: [new Date(),]
                     },
+                oldData: this.old,
             }
         },
         components: {
@@ -66,7 +68,8 @@
             }
         },
         mounted() {
-            // console.log("eventId : " + this.eventData[2].id)
+            console.log("eventId : ")
+            console.log(this.oldData)
             // console.log(this.eventDate)
         }
     }

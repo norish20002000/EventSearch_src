@@ -2091,7 +2091,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "ExampleComponent",
   props: {
     eventDate: "",
-    attributeName: ""
+    attributeName: "",
+    old: ""
   },
   data: function data() {
     var now = new Date();
@@ -2105,7 +2106,8 @@ __webpack_require__.r(__webpack_exports__);
       DatePickerFormat: 'yyyy-MM-dd',
       highlighted: {
         dates: [new Date()]
-      }
+      },
+      oldData: this.old
     };
   },
   components: {
@@ -2119,8 +2121,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {// console.log("eventId : " + this.eventData[2].id)
-    // console.log(this.eventDate)
+  mounted: function mounted() {
+    console.log("eventId : ");
+    console.log(this.oldData); // console.log(this.eventDate)
   }
 });
 
@@ -70582,7 +70585,7 @@ var render = function() {
                     highlighted: _vm.highlighted,
                     "input-class": "datepic_input",
                     name: "date[" + index + "][" + _vm.attribute + "]",
-                    value: element.event_date
+                    value: element.evetn_date
                   }
                 }),
                 _vm._v(" "),
