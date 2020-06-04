@@ -24,7 +24,7 @@ class GenreSeeder extends Seeder
             'disp_name' => 'カルチャー・学び',
         ]);
         DB::table('genres')->insert([
-            'name' => 'hoby',
+            'name' => 'hobby',
             'disp_name' => '趣味・レジャー',
         ]);
         DB::table('genres')->insert([

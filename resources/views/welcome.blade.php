@@ -69,7 +69,7 @@
                 </div>
                 <div class='family col-lg-4 col-xs-12'>
                     <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
-                        <img src="{{ asset('image/genre/hoby.jpg') }}">
+                        <img src="{{ asset('image/genre/hobby.jpg') }}">
                         <h3>趣味</h3>
                         <input type="hidden" name="genre1">
                     </a>
