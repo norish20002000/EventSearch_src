@@ -133,7 +133,7 @@
 
 .header_image {
     width: 100%;
-    height: 400px;
+    height: 200px;
     object-fit: cover;
     position: relative;
 }
@@ -172,8 +172,8 @@
 .search_div {
     display: flex;
     position: absolute;
-    top: 70%;
-    left: 35%;
+    top: 80%;
+    left: 34%;
     -ms-transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
