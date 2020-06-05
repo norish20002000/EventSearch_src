@@ -92,6 +92,7 @@
 
 .footer .copywrite {
     text-align: center;
+    padding: 10px 0px 5px 0;
 }
 
 .days {
@@ -406,7 +407,7 @@ h1.title {
 
 .footer_before {
     background-color: #e2e7ee;
-    width: 80%;
+    width: 95%;
     height: 50px;
     text-align: center;
     margin: 10px auto 10px auto;
@@ -422,8 +423,9 @@ h1.title {
 }
 
 .buttonImage img {
-    width: 30px;
+    width: 17px;
 }
 
 .footer_btns {
+    font-size: 13px;
 }
