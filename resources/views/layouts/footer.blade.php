@@ -3,11 +3,11 @@
         <div>
             <a href="#" onclick="history.back();return false;">
                 <button class="buttonImage"><img src="/image/icon/arrow_left.png" alt=""></button>
-                前のページ戻る
+                前のページに戻る
             </a>
             <a href="#TOP">
                 <button class="buttonImage"><img src="/image/icon/arrow_up.png"></button>
-                ぺーじの先頭に戻る
+                ページの先頭に戻る
             </a>
             <a href="/">
                 <button class="buttonImage"><img src="/image/icon/home.png"></button>
