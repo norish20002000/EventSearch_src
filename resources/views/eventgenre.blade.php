@@ -5,8 +5,8 @@
 <section class="top_banner">
     <img class="header_image" src="/image/genre/{{$event_data->genre->name}}.jpg">
     <div class="content_header">
-        <h3 name='genre_name'>{{ $event_data->genre->disp_name }}</h3>
-        <p>気になるイベントを探してみよう</p>
+        <h3 class="header_h3" name='genre_name'>{{ $event_data->genre->disp_name }}</h3>
+        <p class="header_genre_p">気になるイベントを探してみよう</p>
     </div>
 </section>
 <div class='container'>

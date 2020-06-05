@@ -5,7 +5,7 @@
 <section class="top_banner">
     <img class="header_image" src="/image/top/top.jpg">
     <div class="content_header">
-        <p>ライブ配信イベントを楽しもう</p>
+        <p class="header_p">ライブ配信イベントを楽しもう</p>
         <div class="search_div">
             <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
             <button type="submit" class="btn btn-secondary" >検索</button>
@@ -61,28 +61,28 @@
                 <div class='fes col-lg-4 col-xs-12'>
                     <a href="{{ route('eventgenre', ['genre_id' => '2']) }}">
                         <img src="{{ asset('image/genre/workshop.jpg') }}">
-                        <h3>ワークショップ</h3>
+                        <h3>ワークショップ・講座</h3>
                         <input type="hidden" name="genre1">
                     </a>
                 </div>
                 <div class='live_delivery col-lg-4 col-xs-12'>
                     <a href="{{ route('eventgenre', ['genre_id' => '3']) }}">
                         <img src="{{ asset('image/genre/culture.jpg') }}">
-                        <h3>カルチャー</h3>
+                        <h3>カルチャー・学び</h3>
                         <input type="hidden" name="genre1">
                     </a>
                 </div>
                 <div class='family col-lg-4 col-xs-12'>
                     <a href="{{ route('eventgenre', ['genre_id' => '4']) }}">
                         <img src="{{ asset('image/genre/hobby.jpg') }}">
-                        <h3>趣味</h3>
+                        <h3>趣味・レジャー</h3>
                         <input type="hidden" name="genre1">
                     </a>
                 </div>
                 <div class='e_sports  col-lg-4 col-xs-12'>
                     <a href="{{ route('eventgenre', ['genre_id' => '5']) }}">
                         <img src="{{ asset('image/genre/family.jpg') }}">
-                        <h3>キッズ</h3>
+                        <h3>キッズ・ファミリー</h3>
                         <input type="hidden" name="genre1">
                     </a>
                 </div>

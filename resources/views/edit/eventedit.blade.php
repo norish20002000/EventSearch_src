@@ -110,7 +110,7 @@
                 <label class='edit_label'>日時備考</label>
             </div>
             <div class="input_area">
-                <input name="summary_date" type="text" value="{{old('summary_date') ? old('summary_date') : (isset($event_data->date_type) ? $event_data->date_type : '')}}">
+                <input name="summary_date" type="text" value="{{old('summary_date') ? old('summary_date') : (isset($event_data->summary_date) ? $event_data->summary_date : '')}}">
                 @if ($errors->first('summary_date'))
                     <p class="validation">※{{$errors->first('summary_date')}}</p>
                 @endif
