@@ -21,7 +21,7 @@
         </div>
         <div>
             <span>〒101-0051</span><br>
-            <p>東京都千代田区神田神保町2-48　3510（サンコードー）ビル2</p>
+            <p>東京都千代田区神田神保町2-48　3510（サンコードー）ビル2F</p>
             <a href="https://www.eventbank.jp/about/inquiry.do?act=input" target="blank"><p>お問い合わせ</p></a>
 
             <div>
@@ -43,7 +43,7 @@
         <div class="company_block2">
             運営サービス
         </div>
-        <div>
+        <div class="ope_service">
             <li>お祭り・イベントの広報・PRサイト「EventBank プレス」</li>
             <li>イベント会社・イベント会場の総合ガイド「EventBank パートナーズ」</li>
             <li>地域のイベント情報を手軽に活用できるサービス「EventBank API」</li>

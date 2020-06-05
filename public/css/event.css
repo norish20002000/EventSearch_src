@@ -361,7 +361,7 @@ h1.title {
 
 .company_block {
     display: flex;
-    margin: 10px 2px 2px 2px;
+    margin: 10px 2px 10px 2px;
 }
 
 .company_title {
@@ -376,3 +376,30 @@ h1.title {
     font-size: 20px;
     font-weight: bold;
 }
+
+.ope_service {
+    font-size: 13.5px;
+}
+
+.table_guide {
+    width: 100%;
+}
+
+.table_guide th,
+.table_guide td {
+    border: 1px solid #ccc;
+    /* padding: 20px; */
+}
+
+.table_guide th {
+    font-weight: bold;
+    background-color: #dedede; 
+}
+
+/* @media screen and (max-width: 767px) {
+    .table_guide,
+    .table_guide tr,
+    .table_guide td,
+    .table_guide th {display:block;}
+    .table_guide th {width:auto;}
+} */
