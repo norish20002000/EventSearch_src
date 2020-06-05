@@ -21,12 +21,12 @@
             <summary>詳細検索</summary> --}}
             <div class="search_btns">
                 <div class="search_str">
-                    <p><i class="far fa-bell"></i> もうすぐ配信スタート</p>
+                    <p class="release_str"><img width="20px" src="/image/icon/bell.png"> もうすぐ配信スタート</p>
                 </div>
                 <div class="search_list">
                     <button name="today" value="today" type="submit" class="p-btn">今日</button>
                     <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
-                    <button name="weekend" value="weekend" type="submit" class="p-btn">週末</button>
+                    <button name="weekend" value="weekend" type="submit" class="p-btn">今週末</button>
                     <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
                     <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
                     <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
