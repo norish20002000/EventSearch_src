@@ -12,7 +12,8 @@
     <meta name="publisher" content="株式会社イベントバンク">
 
     @hassection('title')
-    <title>@yield('title') | {{ config('app.tile') }}</title>
+    <title>@yield('title')</title>
+    {{-- <title>@yield('title') | {{ config('app.tile') }}</title> --}}
     @else
     <title>{{ config('app.title', 'Laravel') }}</title>
     @endif
