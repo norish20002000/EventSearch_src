@@ -403,3 +403,27 @@ h1.title {
     .table_guide th {display:block;}
     .table_guide th {width:auto;}
 } */
+
+.footer_before {
+    background-color: #e2e7ee;
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonImage {
+    background-color: transparent;
+    border: 0px;
+}
+
+.buttonImage img {
+    width: 30px;
+}
+
+.footer_btns {
+}

@@ -100,10 +100,6 @@
                         <input type="hidden" name="genre1">
                     </a>
                 </div>
-                <div>
-                    <a href="{{ route('eventgenre', ['genre_id' => '6']) }}">動物</a>
-                    <a href="{{ route('eventgenre', ['genre_id' => '7']) }}">ビジネス</a>
-                </div>
             </div>
         </div>
     </div>
