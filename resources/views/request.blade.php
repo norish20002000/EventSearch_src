@@ -1,3 +1,4 @@
+@section('title', '情報掲載申し込み｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')
 <section class="top_banner">

@@ -7,7 +7,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="description" content="ライブ配信イベントのまとめサイトです。ネット配信によるイベント・ライブ・エンタメ・カルチャー・講座・ワークショップなどをご紹介します。">
+    <meta name="keywords" content="ライブ配信,オンラインイベント,ネット配信,生配信,無観客,まとめサイト,EventBank,イベントバンク">
+    <meta name="publisher" content="株式会社イベントバンク">
+
+    @hassection('title')
+    <title>@yield('title') | {{ config('app.tile') }}</title>
+    @else
+    <title>{{ config('app.title', 'Laravel') }}</title>
+    @endif
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

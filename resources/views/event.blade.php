@@ -1,3 +1,4 @@
+@section('title', $event_data->title . '｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')
 <div>
