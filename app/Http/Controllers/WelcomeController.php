@@ -46,6 +46,22 @@ class WelcomeController extends Controller
     }
 
     /**
+     * request page
+     */
+    public function request(Request $request)
+    {
+        return view("request");
+    }
+
+    /**
+     * company page
+     */
+    public function company(Request $request)
+    {
+        return view('company');
+    }
+
+    /**
      * today event
      * @param Request $request
      */

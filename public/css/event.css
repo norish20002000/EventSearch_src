@@ -354,3 +354,25 @@ h1.title {
     display: flex;
     margin: 10px 0 10px 0;
 }
+
+.icon_com {
+    width: 40px;
+}
+
+.company_block {
+    display: flex;
+    margin: 10px 2px 2px 2px;
+}
+
+.company_title {
+    margin: 4px 2px 2px 4px;
+}
+
+.company_block2 {
+    margin: 30px 2px 30px 4px;
+    padding: 20px 0 0 0 ;
+    border-top: 1px solid black;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}

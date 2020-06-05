@@ -27,6 +27,8 @@ Route::get('/mail', 'TestMailController@send');
 Route::get('todayevent', 'WelcomeController@searchToday')->name('todayevent');
 Route::get('tomorrowevent', 'WelcomeController@searchTomorrow')->name('tomorrowevent');
 Route::get('weekendevent', 'WelcomeController@searchWeekend')->name('weekendevent');
+Route::get('request', 'WelcomeController@request')->name('request');
+Route::get('company', 'WelcomeController@company')->name('company');
 Route::get('eventdetail/{id}', 'EventController@show')->name('eventdetail');
 Route::get('eventgenre/{genre_id}', 'EventController@genre')->name('eventgenre');
 
