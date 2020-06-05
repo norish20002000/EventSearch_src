@@ -102,6 +102,7 @@
 .footer .copywrite {
     text-align: center;
     padding: 10px 0px 5px 0;
+    font-size: 13px;
 }
 
 .days {
@@ -436,5 +437,9 @@ h1.title {
 }
 
 .footer_btns {
-    font-size: 13px;
+    font-size: 10px;
+}
+
+.top_logo {
+    width: 170px;
 }
