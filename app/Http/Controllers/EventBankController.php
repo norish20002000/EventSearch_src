@@ -51,6 +51,10 @@ class EventBankController extends Controller
             //　時間変換
             $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);
             $data['event_data']->end_time = mb_substr($data['event_data']->end_time, 0, 5);
+            $data['event_data']->st_time_h = mb_substr($data['event_data']->st_time, 0, 2);
+            $data['event_data']->st_time_m = mb_substr($data['event_data']->st_time, 3, 2);
+            $data['event_data']->end_time_h = mb_substr($data['event_data']->end_time, 0, 2);
+            $data['event_data']->end_time_m = mb_substr($data['event_data']->end_time, 3, 2);
         }
 
         // image
@@ -71,12 +75,17 @@ class EventBankController extends Controller
     {
         // $this->validation($request);
         if($request->update) {
-            // var_dump($request->all());exit;
+            // time marge
+            $request = $this->makeTimeFromHM($request);
+
             $eventId = $request->event_id;
             Event::updateEventData($request);
             self::saveImage($request, $eventId);
             // EventGenre::updateGenreMap($eventId, $request);
         } elseif ($request->register) {
+            // time marge
+            $request = $this->makeTimeFromHM($request);
+
             $eventId = Event::saveEventData($request);
             self::saveImage($request, $eventId);
             // EventGenre::saveGenreMap($eventId, $request);
@@ -87,6 +96,17 @@ class EventBankController extends Controller
         // $request->session()->put('success',"イベントデータが保存されました。");
 
         return redirect()->route('eventedit', ['id' => $eventId])->with('success', "イベントデータが保存されました.");
+    }
+
+    /**
+     * 時間変換
+     */
+    private function makeTimeFromHM($request)
+    {
+        $request['st_time'] = $request->st_time_h . ":" . $request->st_time_m;
+        $request['end_time'] = $request->end_time_h . ":" . $request->end_time_m;
+
+        return $request;
     }
 
     /**

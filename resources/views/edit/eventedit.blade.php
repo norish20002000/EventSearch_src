@@ -88,10 +88,42 @@
                 <label class='edit_label'>開始時間</label>
             </div>
             <div class="input_area" >
-                <input name="st_time" type="text" value="{{old('st_time') ? old('st_time') : (isset($event_data->st_time) ? $event_data->st_time : '')}}" placeholder="10:00">
+                <div  class="div_flex">
+                    <div>
+                        <select name="st_time_h">
+                            <option value=""></option>
+                            @for ($i = 0; $i < 25; $i++)
+                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                    {{old('st_time_h') ? old('st_time_h') :(isset($event_data->st_time_h) ? $event_data->st_time_h : '') == $i ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div>
+                        <span>：</span>
+                    </div>
+                    <div>
+                        <select name="st_time_m">
+                            <option value=""></option>
+                            @for ($i = 0; $i < 60; $i++)
+                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                    {{old('st_time_m') ? old('st_time_m') :(isset($event_data->st_time_m) ? $event_data->st_time_m : '') == $i ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                @if ($errors->first('st_time_h'))
+                    <p class="validation">※{{$errors->first('st_time_h')}}</p>
+                @endif
+                @if ($errors->first('st_time_m'))
+                    <p class="validation">※{{$errors->first('st_time_m')}}</p>
+                @endif
+                {{-- <input name="st_time" type="text" value="{{old('st_time') ? old('st_time') : (isset($event_data->st_time) ? $event_data->st_time : '')}}" placeholder="10:00">
                 @if ($errors->first('st_time'))
                     <p class="validation">※{{$errors->first('st_time')}}</p>
-                @endif
+                @endif --}}
             </div>
         </div>
         <div class="label_input">
@@ -99,10 +131,42 @@
                 <label class='edit_label'>終了時間</label>
             </div>
             <div class="input_area">
-                <input name="end_time" type="text" value="{{old('end_time') ? old('end_time') : (isset($event_data->end_time) ? $event_data->end_time : '')}}" placeholder="17:00">
+                <div  class="div_flex">
+                    <div>
+                        <select name="end_time_h">
+                            <option value=""></option>
+                            @for ($i = 0; $i < 25; $i++)
+                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                    {{old('end_time_h') ? old('end_time_h') :(isset($event_data->end_time_h) ? $event_data->end_time_h : '') == $i ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div>
+                        <span>：</span>
+                    </div>
+                    <div>
+                        <select name="end_time_m">
+                            <option value=""></option>
+                            @for ($i = 0; $i < 60; $i++)
+                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                    {{old('end_time_m') ? old('end_time_m') :(isset($event_data->end_time_m) ? $event_data->end_time_m : '') == $i ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+                @if ($errors->first('end_time_h'))
+                    <p class="validation">※{{$errors->first('end_time_h')}}</p>
+                @endif
+                @if ($errors->first('end_time_m'))
+                    <p class="validation">※{{$errors->first('end_time_m')}}</p>
+                @endif
+                {{-- <input name="end_time" type="text" value="{{old('end_time') ? old('end_time') : (isset($event_data->end_time) ? $event_data->end_time : '')}}" placeholder="17:00">
                 @if ($errors->first('end_time'))
                     <p class="validation">※{{$errors->first('end_time')}}</p>
-                @endif
+                @endif --}}
             </div>
         </div>
         <div class="label_input">
@@ -140,13 +204,18 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>料金個別</label>
+                <label class='edit_label require'>料金種別</label>
             </div>
             <div class="input_area">
-                <input name="fee_type" type="text" value="{{old('fee_type') ? old('fee_type') : (isset($event_data->fee_type) ? $event_data->fee_type : '')}}">
+                <select name="fee_type">
+                    <option value="0">無料</option>
+                    <option value="1">有料</option>
+                </select>
+
+                {{-- <input name="fee_type" type="text" value="{{old('fee_type') ? old('fee_type') : (isset($event_data->fee_type) ? $event_data->fee_type : '')}}">
                 @if ($errors->first('fee_type'))
                     <p class="validation">※{{$errors->first('fee_type')}}</p>
-                @endif
+                @endif --}}
             </div>
         </div>
         <div class="label_input">

@@ -472,3 +472,7 @@ h1.title {
 .top_logo {
     width: 170px;
 }
+
+.div_flex {
+    display: flex;
+}

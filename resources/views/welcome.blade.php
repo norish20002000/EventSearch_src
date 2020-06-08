@@ -112,9 +112,9 @@
             <example-component :event-data={{ $event }}></example-component>
         @endforeach
 --}}
-        <div>
+        {{-- <div>
             <p>表示件数　：　{{ $event_data->total() }}</p>
-        </div>
+        </div> --}}
        <example-component :event-data='@json($event_data)'></example-component>
         <div>
             {{ $event_data->links() }}
