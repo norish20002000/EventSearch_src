@@ -182,15 +182,15 @@ class EventBankController extends Controller
             'ID',
             'イベント名',
             '紹介文',
-            '開始時間',
-            '終了時間',
+            '開始時刻',
+            '終了時刻',
             '日時備考',
             '視聴サイト名',
             '視聴URL',
             '料金種別',
             '料金',
             '画像url',
-            '参考サイト名称',
+            '参考サイト名',
             '参考URL',
             '公開日',
             '登録者団体名',
@@ -202,7 +202,7 @@ class EventBankController extends Controller
             'updated_at',
             'days',
             '大カテゴリ',
-            '少カテゴリ'
+            '小カテゴリ'
             ];
 
         $csv = $this->csv("event", $header, $csvList, false);
