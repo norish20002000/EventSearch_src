@@ -133,8 +133,8 @@ class EventBankController extends Controller
                             $event->id,
                             $event->title,
                             $event->introduction,
-                            $event->st_time,
-                            $event->end_time,
+                            \mb_substr($event->st_time, 0, 5),
+                            \mb_substr($event->end_time, 0, 5),
                             $event->summary_date,
                             $event->web_name,
                             $event->web_url,
@@ -156,7 +156,6 @@ class EventBankController extends Controller
                             \implode(',', $genre01List),
                         ];
         }
-
         // var_dump($csvList);exit;
 
         $header = [
