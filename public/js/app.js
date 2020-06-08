@@ -2098,6 +2098,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExampleComponent",
   props: {
@@ -70609,6 +70622,8 @@ var render = function() {
                   attrs: {
                     format: _vm.DatePickerFormat,
                     highlighted: _vm.highlighted,
+                    "clear-button": true,
+                    "clear-button-icon": "far fa-trash-alt",
                     "input-class": "datepic_input",
                     name: "date[" + index + "][" + _vm.attribute + "]",
                     value: element.event_date

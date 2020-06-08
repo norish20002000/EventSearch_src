@@ -8,9 +8,22 @@
                     </label>
                 </div>
                 <div id="app">
+                    <!-- <div class="form-group">
+                        <div class="input-group date datetimepicker" :id="'due_date' + index" data-target-input="nearest">
+                        <input type="text" 
+                            :name="'date[' + index + '][' + attribute + ']'"
+                            :value="element.event_date"
+                            id="due_date-field" class="form-control datetimepicker-input" :data-target="'#due_date' + index" />
+                        <div class="input-group-append" :data-target="'#due_date' + index" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                        </div>
+                    </div> -->
                     <vuejs-datepicker 
                         :format="DatePickerFormat"
                         :highlighted ="highlighted"
+                        :clear-button = true
+                        clear-button-icon = "far fa-trash-alt"
                         input-class="datepic_input"
                         :name="'date[' + index + '][' + attribute + ']'"
                         :value="element.event_date">

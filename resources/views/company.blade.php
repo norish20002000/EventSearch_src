@@ -45,9 +45,9 @@
             運営サービス
         </div>
         <div class="ope_service">
-            <li>お祭り・イベントの広報・PRサイト<a href="https://www.eventbank.jp/" target="blank">「EventBank プレス」</a></li>
-            <li>イベント会社・イベント会場の総合ガイド<a href="https://partners.eventbank.jp/" target="blank">「EventBank パートナーズ」</a></li>
-            <li>地域のイベント情報を手軽に活用できるサービス<a href="ttp://api.eventbank.jp/" target="blank">「EventBank API」</a></li>
+            <li>お祭り・イベントの広報・PRサイト「<a href="https://www.eventbank.jp/" target="blank">EventBank プレス</a>」</li>
+            <li>イベント会社・イベント会場の総合ガイド「<a href="https://partners.eventbank.jp/" target="blank">EventBank パートナーズ</a>」</li>
+            <li>地域のイベント情報を手軽に活用できるサービス「<a href="https://api.eventbank.jp/" target="blank">EventBank API</a>」</li>
             <li>ライブ配信イベントのまとめサイト「EventBank ライブ」</li>
         </div>
     </div>
