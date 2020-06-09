@@ -98,9 +98,9 @@ class EventDate extends Model
      */
     public static function updateEventDate($eventId, $date)
     {
-        if($date['event_date_id']) {
+        if($date['id']) {
             // update
-            $eventDate = EventDate::find($date['event_date_id']);
+            $eventDate = EventDate::find($date['id']);
             $eventDate->event_date = $date['event_date'];
         } else {
             // insert

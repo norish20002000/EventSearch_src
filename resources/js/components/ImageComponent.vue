@@ -39,8 +39,8 @@
             },
         },
         mounted() {
-            console.log("eventId : ")
-            console.log(this.eventData)
+            // console.log("eventId : ")
+            // console.log(this.eventData)
             // console.log('Component mounted.')
         }
     }

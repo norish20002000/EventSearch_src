@@ -320,8 +320,8 @@ class Event extends Model
             // EventDate
             foreach($request->date as $date) {
                 if($date['event_date'] == null) {
-                    if($date['event_date_id']) {
-                        $result = EventDate::deleteById($date['event_date_id']);
+                    if($date['id']) {
+                        $result = EventDate::deleteById($date['id']);
                     }
                 } else {
                     $resutl = EventDate::updateEventDate($request->event_id, $date);

@@ -46,7 +46,7 @@ class EventFormSendRequest extends FormRequest
             "target" => "",
             "regi_group_name" => "required",
             "regi_name" => "required",
-            "regi_name" => "required",
+            "regi_tel" => "required",
             "regi_mail" => "required|email",
         ];
     }

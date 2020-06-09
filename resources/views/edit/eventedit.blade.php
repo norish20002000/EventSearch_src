@@ -75,7 +75,11 @@
             </div>
         </div>
         <p style="color:red; margin: 20px 0px -20px 42px">*</p>
-        <labelinput-component :event-date='@json(isset($event_data->date) ? $event_data->date : '')' :old="{{ json_encode(Session::getOldInput()) }}" attribute-name="event_date">
+        {{-- <p>'@json(Session::getOldInput()['date'])'</p> --}}
+        <labelinput-component 
+            :event-date
+                ='@json(old('date') ? Session::getOldInput()['date'] 
+                    : (isset($event_data->date) ? $event_data->date : ''))' :old="{{ json_encode(Session::getOldInput()) }}" attribute-name="event_date">
             <div slot='column_name'>
                 開催日
             </div>

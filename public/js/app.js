@@ -2049,9 +2049,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  mounted: function mounted() {
-    console.log("eventId : ");
-    console.log(this.eventData); // console.log('Component mounted.')
+  mounted: function mounted() {// console.log("eventId : ")
+    // console.log(this.eventData)
+    // console.log('Component mounted.')
   }
 });
 
@@ -2147,7 +2147,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log("eventId : ");
-    console.log(this.oldData); // console.log(this.eventDate)
+    console.log(this.oldData);
+    console.log(this.elements); // console.log(this.eventDate)
   }
 });
 
@@ -70631,10 +70632,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  attrs: {
-                    type: "hidden",
-                    name: "date[" + index + "][event_date_id]"
-                  },
+                  attrs: { type: "hidden", name: "date[" + index + "][id]" },
                   domProps: { value: element.id }
                 })
               ],
