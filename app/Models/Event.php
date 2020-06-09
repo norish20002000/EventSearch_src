@@ -22,7 +22,7 @@ class Event extends Model
         "fee",
         "image_url",
         "reference_name",
-        "reference_name",
+        "reference_url",
         "release_date",
         "regi_group_name",
         "regi_name",
