@@ -26,7 +26,7 @@ class Event extends Model
         "release_date",
         "regi_group_name",
         "regi_name",
-        "regi_name",
+        "regi_tel",
         "regi_mail",
         "status",
         "remarks",
