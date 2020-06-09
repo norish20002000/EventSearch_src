@@ -55,6 +55,8 @@ class EventBankController extends Controller
             $data['event_data']->st_time_m = mb_substr($data['event_data']->st_time, 3, 2);
             $data['event_data']->end_time_h = mb_substr($data['event_data']->end_time, 0, 2);
             $data['event_data']->end_time_m = mb_substr($data['event_data']->end_time, 3, 2);
+
+            // var_dump($data['event_data']->st_time_h);exit;
         }
 
         // image
@@ -103,8 +105,10 @@ class EventBankController extends Controller
      */
     private function makeTimeFromHM($request)
     {
-        $request['st_time'] = $request->st_time_h . ":" . $request->st_time_m;
-        $request['end_time'] = $request->end_time_h . ":" . $request->end_time_m;
+         
+        $request['st_time'] = $request->st_time_h ? $request->st_time_h . ":" . $request->st_time_m : null;
+
+        $request['end_time'] = $request->end_time_h ? $request->end_time_h . ":" . $request->end_time_m : null;
 
         return $request;
     }
@@ -160,7 +164,7 @@ class EventBankController extends Controller
                             $event->web_url,
                             $event->fee_type,
                             $event->fee,
-                            $event->image_url,
+                            basename($event->image_url),
                             $event->reference_name,
                             $event->reference_url,
                             $event->release_date,
@@ -189,7 +193,7 @@ class EventBankController extends Controller
             '視聴URL',
             '料金種別',
             '料金',
-            '画像url',
+            '画像ファイル名',
             '参考サイト名',
             '参考URL',
             '公開日',

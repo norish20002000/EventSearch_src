@@ -39,7 +39,9 @@
                 @endforeach
             </p>
             <div>
-                <p><i class="far fa-clock"></i> {{ $event_data->st_time }}〜{{ $event_data->end_time }}</p>
+                @if ($event_data->st_time || $event_data->end_time)
+                    <p><i class="far fa-clock"></i> {{ $event_data->st_time }}〜{{ $event_data->end_time }}</p>
+                @endif
             </div>
         </div>
     </div>
