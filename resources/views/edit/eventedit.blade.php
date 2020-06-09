@@ -363,7 +363,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>登録者電話番号</label>
+                <label class='edit_label'>登録者電話番号</label>
             </div>
             <div class="input_area">
                 <input name="regi_tel" type="text" value="{{old('regi_tel') ? old('regi_tel') : (isset($event_data->regi_tel) ? $event_data->regi_tel : '')}}">
