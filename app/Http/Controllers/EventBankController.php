@@ -130,6 +130,7 @@ class EventBankController extends Controller
 
         $csvList = [];
         $fileList = [];
+        $replacePatterns = ["\n", "\r\n", "\r", "\t"];
         foreach($eventData as $key => $event) {
 
             // image filepath
@@ -154,7 +155,7 @@ class EventBankController extends Controller
             $csvList[] = [
                             $event->id,
                             $event->title,
-                            $event->introduction,
+                            \str_replace($replacePatterns, '', $event->introduction),
                             \mb_substr($event->st_time, 0, 5),
                             \mb_substr($event->end_time, 0, 5),
                             $event->summary_date,
@@ -207,10 +208,9 @@ class EventBankController extends Controller
             '小カテゴリ'
             ];
 
-        $csv = $this->csv("event", $header, $csvList, false);
         $filename = "event".date('Ymd').".csv";
-        $filepath = storage_path('app/'.$filename);
-// var_dump($fileList);exit;
+        $filePath = storage_path('app/'.$filename);
+        $csv = Csv::csv($filePath, $header, $csvList, false);
 
         // zip
         $zipFileName = "event_" . date('Ymd') . ".zip";
@@ -218,12 +218,13 @@ class EventBankController extends Controller
         $zip = new ZipArchive();
         $zip->open($zipDir.$zipFileName, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
 
-        $zip->addFromString(basename($filepath), file_get_contents($filepath));
+        // add csv to zip
+        $zip->addFromString(basename($filePath), file_get_contents($filePath));
 
         foreach ($fileList as $file) {
             $imageFileName = basename($file);
  
-            // 取得ファイルをZipに追加していく
+            // add image to zip
             $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
             // $zip->addFile($file);
         }
@@ -238,7 +239,7 @@ class EventBankController extends Controller
   
         // 一時ファイルを削除しておく
         unlink($zipDir.$zipFileName);
-        Csv::purge($filename);
+        Csv::purge($filePath);
     
         ob_end_clean();
 
@@ -248,36 +249,6 @@ class EventBankController extends Controller
          
         // // ファイル出力
         // readfile($filepath);
-    }
-
-    public function csv($fileName, $header, $lists, $csvFlg=true) 
-    {
-        // リスト
-        $lists = $lists;
-
-        $filename = $fileName . date("Ymd") . '.csv';
-        $file = Csv::createCsv($filename);
-
-        // ヘッダー
-        Csv::write($file, $header);
-        // ['header1', 'header2']); 
-
-
-        // 値を入れる
-        foreach ($lists as $list)
-        {
-            Csv::write($file, $list);
-        }
-
-        $response = file_get_contents($file);
-        // ストリームに入れたら実ファイルは削除
-        if ($csvFlg) {
-            Csv::purge($filename);
-        }
-
-        return response($response, 200)
-                ->header('Content-Type', 'text/csv')
-                ->header('Content-Disposition', 'attachment; filename='.$filename);
     }
 
     /**
