@@ -16,7 +16,7 @@ trait Csv {
     {
         // リスト
         $lists = $lists;
-
+// var_dump($lists);exit;
         Csv::createCsv($filePath);
 
         // ヘッダー
@@ -65,7 +65,7 @@ trait Csv {
         // fputcsv($result, $records);
         $records = array_map(function($value){ return "\"$value\""; }, $records);
         $records = \implode(',', $records);
-        $records .= $records . "\n";
+        $records .= "\n";
 
         fwrite($result, $records);
 
