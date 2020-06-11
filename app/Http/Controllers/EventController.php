@@ -23,6 +23,7 @@ class EventController extends Controller
      */
     public function show(Request $request, $id)
     {
+        // return abort(404);
         $data['event_data'] = Event::getEventDataById($id);
         // $data['event_data']->sub = $data['event_data']->detail;
 

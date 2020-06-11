@@ -5,6 +5,8 @@
             <img :src="data.image" width="200px">
         </figure>
         <input type="file" name="event_image" ref="file" @change="setImage">
+        <button type="button" vi-if="data.image" @click="resetImage()">Reset Image</button>
+        <input type="hidden" name="image_data" :value="data.image">
         <!-- <input type="hidden" name="image_url" :value="data.image"> -->
     </div>
 </template>
@@ -29,7 +31,6 @@
             setImage(e) {
                 const files = this.$refs.file;
                 const fileImg = files.files[0];
-                console.log(fileImg)
                 if (fileImg.type.startsWith("image/")) {
                     this.imgStr = ""
                     this.data.image = window.URL.createObjectURL(fileImg);
@@ -37,10 +38,16 @@
                     this.data.type = fileImg.type;
                 }
             },
+            resetImage() {
+                const input = this.$refs.file
+                input.type = 'text'
+                input.type = 'file'
+                this.data.image = ''
+            },
         },
         mounted() {
-            // console.log("eventId : ")
-            // console.log(this.eventData)
+            console.log("eventData : ")
+            console.log(this.event)
             // console.log('Component mounted.')
         }
     }

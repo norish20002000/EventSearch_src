@@ -260,6 +260,7 @@
                 @if ($errors->first('image_url'))
                     <p class="validation">※{{$errors->first('image_url')}}</p>
                 @endif --}}
+                {{-- <img src="{{old('image_data')}}" width="300px"> --}}
             </div>
         </div>
         <div class="label_input">

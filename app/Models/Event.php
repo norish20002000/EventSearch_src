@@ -343,6 +343,17 @@ class Event extends Model
         });
     }
 
+    public static function deleteImageUrl($request, $eventId)
+    {
+        $result = DB::transaction(function () use ($request, $eventId){
+            $event = Event::find($eventId);
+            $event->image_url = $request->image_url;
+            $event->save();
+        });
+
+        return $result;
+    }
+
     /**
      * make instance
      */

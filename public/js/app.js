@@ -2021,6 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ImageComponent",
   props: {
@@ -2039,7 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
     setImage: function setImage(e) {
       var files = this.$refs.file;
       var fileImg = files.files[0];
-      console.log(fileImg);
 
       if (fileImg.type.startsWith("image/")) {
         this.imgStr = "";
@@ -2047,11 +2048,17 @@ __webpack_require__.r(__webpack_exports__);
         this.data.name = fileImg.name;
         this.data.type = fileImg.type;
       }
+    },
+    resetImage: function resetImage() {
+      var input = this.$refs.file;
+      input.type = 'text';
+      input.type = 'file';
+      this.data.image = '';
     }
   },
-  mounted: function mounted() {// console.log("eventId : ")
-    // console.log(this.eventData)
-    // console.log('Component mounted.')
+  mounted: function mounted() {
+    console.log("eventData : ");
+    console.log(this.event); // console.log('Component mounted.')
   }
 });
 
@@ -70575,6 +70582,24 @@ var render = function() {
       ref: "file",
       attrs: { type: "file", name: "event_image" },
       on: { change: _vm.setImage }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        attrs: { type: "button", "vi-if": "data.image" },
+        on: {
+          click: function($event) {
+            return _vm.resetImage()
+          }
+        }
+      },
+      [_vm._v("Reset Image")]
+    ),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", name: "image_data" },
+      domProps: { value: _vm.data.image }
     })
   ])
 }

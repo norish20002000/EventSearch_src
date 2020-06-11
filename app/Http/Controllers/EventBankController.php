@@ -105,9 +105,7 @@ class EventBankController extends Controller
      */
     private function makeTimeFromHM($request)
     {
-         
         $request['st_time'] = $request->st_time_h ? $request->st_time_h . ":" . $request->st_time_m : null;
-
         $request['end_time'] = $request->end_time_h ? $request->end_time_h . ":" . $request->end_time_m : null;
 
         return $request;
@@ -256,10 +254,6 @@ class EventBankController extends Controller
     {
         // リスト
         $lists = $lists;
-        // [
-        //     ['おはよう', 'おやすみ'],
-        //     ['こんにちは', 'さようなら'],
-        // ];
 
         $filename = $fileName . date("Ymd") . '.csv';
         $file = Csv::createCsv($filename);
@@ -298,6 +292,17 @@ class EventBankController extends Controller
             }
 
             $request->event_image->storeAs(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId, $eventId . '.jpg');
+        }
+
+        // delete image
+        if(!$request->image_data) {
+            if(Storage::exists(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId . "/$eventId.jpg")) {
+
+                $result = Storage::delete(config('app.DIR.EVENT_IMAGE_PUBLIC') . $eventId . "/$eventId.jpg");
+
+                // events.image_url update to null
+                $result = Event::deleteImageUrl($request, $eventId);
+            }
         }
     }
 
