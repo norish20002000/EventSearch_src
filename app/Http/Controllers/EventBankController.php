@@ -173,7 +173,7 @@ class EventBankController extends Controller
                             $event->regi_mail,
                             $event->status,
                             $event->created_at,
-                            $event->created_at,
+                            $event->updated_at,
                             \implode(',', $dayList),
                             \implode(',', $genreList),
                             \implode(',', $genre01List),
