@@ -70511,7 +70511,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "fl" }, [
                     _c("div", { staticClass: "event_title" }, [
-                      _vm._v(_vm._s(event.title))
+                      _vm._v(_vm._s(_vm._f("truncate")(event.title, 35, "...")))
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "days" }, [

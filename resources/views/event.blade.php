@@ -31,12 +31,20 @@
         </div>
         <div>
             <p>
-                @foreach ($event_data->date as $day)
+                <div>
+                    <span><i class="far fa-calendar-alt"></i></span>
+                    @if (count($event_data->date) > 1)
+                        {{$event_data->min_date}} 〜 {{$event_data->max_date}}
+                    @else
+                        {{$event_data->date->first()->event_date}}
+                    @endif
+                </div>
+                {{-- @foreach ($event_data->date as $day)
                 <div>            
                     <span><i class="far fa-calendar-alt"></i></span>
                     {{ $day->event_date }}({{ $day->st_week }})
                 </div>
-                @endforeach
+                @endforeach --}}
             </p>
             <div>
                 @if ($event_data->st_time || $event_data->end_time)

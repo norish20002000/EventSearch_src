@@ -25,6 +25,22 @@ class EventDate extends Model
     }
 
     /**
+     * event date取得
+     * @param int $event_id
+     * @return date $eventDate
+     */
+    public static function getAllDate($event_id)
+    {
+        $eventDate = EventDate
+                    ::where('event_id', $event_id)
+                    ->where('status', '=', 0)
+                    ->orderBy('event_date')
+                    ->get();
+
+        return $eventDate;
+    }
+
+    /**
      * eventId list from today
      */
     public static function getEventIdListFromToday() {

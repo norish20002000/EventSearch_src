@@ -25,7 +25,13 @@ class EventController extends Controller
     {
         // return abort(404);
         $data['event_data'] = Event::getEventDataById($id);
-        // $data['event_data']->sub = $data['event_data']->detail;
+
+        // no eventData to 404 view
+        if (!$data['event_data']) return \abort(404);
+
+        // st-end date
+        $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());
+        $data['event_data']->max_date = \max($data['event_data']->date->pluck('event_date')->toArray());
 
         // 概要作成
         $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150).". . .";
@@ -52,6 +58,7 @@ class EventController extends Controller
             $data['event_data']->prePage = "";
         }
 // var_dump($data['event_data']);exit;
+
         return View('event', $data);
     }
 

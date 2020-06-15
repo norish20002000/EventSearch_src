@@ -33,7 +33,9 @@ class Event extends Model
     ];
 
     /**
-     * 
+     * 今日以降のイベント取得
+     * @param Request $request
+     * @return LengthAwarePaginator $eventData
      */
     public static function getEventFromToday($request)
     {
@@ -58,6 +60,19 @@ class Event extends Model
             //     ->groupBy(\DB::raw('events.id'))
             //     ->paginate(config('app.PAGINATE.LINK_NUM'));
         } else {
+            // $query = Event::where('status', '=', 0)
+            //             ->whereIn('id', $eventIdList);
+            // foreach ($request->searchList as $key => $searchStr) {
+            //     if($key == 0) {
+            //         $query->where('title', 'LIKE', '%'.$searchStr.'%');
+            //     } else {
+            //         $query->orWhere('title', 'LIKE', '%'.$searchStr.'%');
+            //     }
+            // }
+            // $eventData = $query
+            //             ->orderByRaw("FIELD(id, $eventIdStr)")
+            //             ->paginate(config('app.PAGINATE.LINK_NUM'));
+
             $eventData = Event::where('status', '=', 0)
                         ->whereIn('id', $eventIdList)
                         ->where('title', 'LIKE', '%'.$request->search.'%')
@@ -91,8 +106,11 @@ class Event extends Model
     public static function getEventDataById($id)
     {
         $eventData = Event::find($id);
+
+        if (!$eventData) return $eventData;
+
         $eventData->genres = $eventData->genres;
-        $eventData->date = EventDate::getDate($id);
+        $eventData->date = EventDate::getAllDate($id);
 
         return $eventData;
     }

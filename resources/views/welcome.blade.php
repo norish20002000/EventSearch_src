@@ -7,7 +7,7 @@
     <div class="content_header">
         <p class="header_p">ライブ配信イベントを楽しもう</p>
         <div class="search_div">
-            <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
+            <input type="search" name="search" class="formsearch-input" placeholder="search" value="{{$search ?? ''}}" >
             <button type="submit" class="btn btn-secondary" >検索</button>
         </div>
     </div>

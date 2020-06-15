@@ -16,6 +16,17 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
+        // $searchStr = trim(mb_ereg_replace('　', ' ', $request->search));
+        // $request->searchList = [];
+        // if (strpos($searchStr, ' ')){
+        //     $request->searchList = explode(' ', $searchStr);
+        // } elseif (strpos($searchStr, '　')) {
+        //     $request->searchList = explode('　', $searchStr);
+        // } else {
+        //     $request->searchList[] = $searchStr;
+        // }
+        // var_dump($request->searchList);exit;
+
         $searchFlg = false;
 
         if(isset($request->today)) {
@@ -95,7 +106,7 @@ class WelcomeController extends Controller
         $nextSaturday = date("Y-m-d", strtotime('next Saturday'));
         $nextSunday = date("Y-m-d", strtotime('next Sunday'));
 
-        // weekdat or suturday or sunday
+        // weekday or suturday or sunday
         if (1 <= date('w') && date('w') <= 5) {
             $data['event_data'] = Event::getEventByDays($request, $nextSaturday, $nextSunday);
         } elseif (date('w') === 6) {

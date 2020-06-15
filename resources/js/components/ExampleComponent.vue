@@ -23,7 +23,7 @@
                         </div>
                         <a class="link_color" :href="'/eventdetail/' + event.id">
                             <div class="fl">
-                                <div class="event_title">{{event.title}}</div>
+                                <div class="event_title">{{event.title | truncate(35, '...')}}</div>
                                 <div class="days">
                                     <div class="awe_calendar">
                                         <i class="far fa-calendar-alt"></i>
