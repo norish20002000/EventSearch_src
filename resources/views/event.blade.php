@@ -34,9 +34,9 @@
                 <div>
                     <span><i class="far fa-calendar-alt"></i></span>
                     @if (count($event_data->date) > 1)
-                        {{$event_data->min_date}} 〜 {{$event_data->max_date}}
+                        {{$event_data->min_date}}({{$event_data->min_date_week}}) 〜 {{$event_data->max_date}}({{$event_data->max_date_week}})
                     @else
-                        {{$event_data->date->first()->event_date}}
+                        {{$event_data->date->first()->event_date}}({{$event_data->min_date_week}})
                     @endif
                 </div>
                 {{-- @foreach ($event_data->date as $day)

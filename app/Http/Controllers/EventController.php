@@ -32,6 +32,11 @@ class EventController extends Controller
         // st-end date
         $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());
         $data['event_data']->max_date = \max($data['event_data']->date->pluck('event_date')->toArray());
+        // 曜日変換
+        $weekList = ["日", "月", "火", "水", "木", "金", "土"];
+        $data['event_data']->min_date_week = $weekList[date('w', strtotime($data['event_data']->min_date))];
+        $data['event_data']->max_date_week = $weekList[date('w', strtotime($data['event_data']->max_date))];
+
 
         // 概要作成
         $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150).". . .";
