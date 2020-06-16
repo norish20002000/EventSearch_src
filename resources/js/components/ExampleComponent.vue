@@ -30,7 +30,10 @@
                                     </div>
                                     <div>
                                         <!-- <div v-for="date in event.date" :key="date.id"> -->
-                                            <div>{{event.date[0].event_date}} ({{getWeekStr(event.date[0].event_date)}}) {{event.st_time | truncate(5, ' ')}}</div>
+                                            <div v-if="event.date.length > 1">{{event.min_date}}（{{getWeekStr(event.min_date)}}）〜{{event.max_date}}（{{getWeekStr(event.max_date)}}） {{event.st_time | truncate(5, ' ')}}
+                                            </div>
+                                            <div v-else>{{event.min_date}}（{{getWeekStr(event.min_date)}}） {{event.st_time | truncate(5, ' ')}}</div>
+                                            <!-- <div>{{event.date[0].event_date}} ({{getWeekStr(event.date[0].event_date)}}) {{event.st_time | truncate(5, ' ')}}</div> -->
                                         <!-- </div> -->
                                     </div>
                                 </div>

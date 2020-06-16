@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Event;
 
 class EventDate extends Model
 {    
@@ -14,11 +15,11 @@ class EventDate extends Model
      */
     public static function getDate($event_id)
     {
-        $eventDate = DB::table('event_dates')
-                    ->where('event_id', $event_id)
+        $eventDate = EventDate::
+                    where('event_id', $event_id)
                     ->where('status', '=', 0)
-                    ->where('event_date', '>=', date('Y-m-d'))
-                    ->orderBy('event_date')
+                    // ->where('event_date', '>=', date('Y-m-d'))
+                    ->orderBy('event_date') 
                     ->get();
 
         return $eventDate;
@@ -44,15 +45,18 @@ class EventDate extends Model
      * eventId list from today
      */
     public static function getEventIdListFromToday() {
-        $eventData = DB::table('event_dates')
-                    ->where('status', '=', 0)
+        $eventDate = Eventdate::
+                    leftJoin('events', 'event_dates.event_id', 'events.id')
+                    ->where('event_dates.status', '=', 0)
                     ->where('event_date', '>=', date('Y-m-d'))
                     ->orderBy('event_date')
+                    ->orderBy('events.st_time')
                     ->pluck('event_id');
-                    // ->get();
-                    // var_dump($eventData->groupBy('event_id'));exit;
 
-        $eventIdList = $eventData->unique();
+// var_dump(date('H:i:s'));exit;
+// var_dump($eventDate);exit;
+
+        $eventIdList = $eventDate->unique();
 // var_dump($eventIdList);exit;
         return $eventIdList;
     }
@@ -61,11 +65,13 @@ class EventDate extends Model
      * eventId list from today by eventId
      */
     public static function getEventIdListById($eventIdList) {
-        $eventData = DB::table('event_dates')
-                    ->where('status', '=', 0)
+        $eventData = EventDate::
+                    leftJoin('events', 'event_dates.event_id', 'events.id')
+                    ->where('event_dates.status', '=', 0)
                     ->whereIn('event_id', $eventIdList)
                     ->where('event_date', '>=', date('Y-m-d'))
                     ->orderBy('event_date')
+                    ->orderBy('events.st_time')
                     ->pluck('event_id');
         $eventIdList = $eventData->unique();
           
@@ -146,5 +152,15 @@ class EventDate extends Model
     public function events()
     {
         return $this->belongsTo('App\Models\Event', 'id');
+    }
+
+    /**
+     * events with sort by st_time
+     */
+    public function eventsWithStTimeAcd()
+    {
+        return $this->belongsTo('App\Models\Event', 'id')
+                    ->orderBy('st_time');
+
     }
 }

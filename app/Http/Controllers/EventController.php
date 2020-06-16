@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Genre;
+use App\Libs\Utility;
 
 class EventController extends Controller
 {
@@ -42,11 +43,11 @@ class EventController extends Controller
         $data['event_data']->summary = mb_substr($data['event_data']->introduction, 0, 150).". . .";
 
         // 曜日変換
-        $weekList = ["日", "月", "火", "水", "木", "金", "土"];
-        foreach ($data['event_data']->date as $event) {
-            // var_dump($event);exit;
-            $event->st_week = $weekList[date('w', strtotime($event->event_date))];
-        }
+        // $weekList = ["日", "月", "火", "水", "木", "金", "土"];
+        // foreach ($data['event_data']->date as $event) {
+        //     // var_dump($event);exit;
+        //     $event->st_week = $weekList[date('w', strtotime($event->event_date))];
+        // }
 
         // 時間変換
         $data['event_data']->st_time = mb_substr($data['event_data']->st_time, 0, 5);

@@ -45,10 +45,6 @@ class WelcomeController extends Controller
 
 // var_dump($data['event_data']);exit;
         $data['event_data'] = Event::getGenreData($data['event_data']);
-        // foreach($data['event_data'] as $event) {
-        //     var_dump($event->genre);
-        // }
-        // var_dump("end");exit;
 
         $data['search'] = $request->search;
         $data['search_flg'] = $searchFlg;

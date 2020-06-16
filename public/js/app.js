@@ -1927,6 +1927,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -70518,15 +70521,34 @@ var render = function() {
                       _vm._m(0, true),
                       _vm._v(" "),
                       _c("div", [
-                        _c("div", [
-                          _vm._v(
-                            _vm._s(event.date[0].event_date) +
-                              " (" +
-                              _vm._s(_vm.getWeekStr(event.date[0].event_date)) +
-                              ") " +
-                              _vm._s(_vm._f("truncate")(event.st_time, 5, " "))
-                          )
-                        ])
+                        event.date.length > 1
+                          ? _c("div", [
+                              _vm._v(
+                                _vm._s(event.min_date) +
+                                  "（" +
+                                  _vm._s(_vm.getWeekStr(event.min_date)) +
+                                  "）〜" +
+                                  _vm._s(event.max_date) +
+                                  "（" +
+                                  _vm._s(_vm.getWeekStr(event.max_date)) +
+                                  "） " +
+                                  _vm._s(
+                                    _vm._f("truncate")(event.st_time, 5, " ")
+                                  ) +
+                                  "\n                                        "
+                              )
+                            ])
+                          : _c("div", [
+                              _vm._v(
+                                _vm._s(event.min_date) +
+                                  "（" +
+                                  _vm._s(_vm.getWeekStr(event.min_date)) +
+                                  "） " +
+                                  _vm._s(
+                                    _vm._f("truncate")(event.st_time, 5, " ")
+                                  )
+                              )
+                            ])
                       ])
                     ])
                   ])
