@@ -46,11 +46,9 @@ class EventDate extends Model
      */
     public static function getEventIdListFromToday() {
         $eventDate = Eventdate::
-                    leftJoin('events', 'event_dates.event_id', 'events.id')
-                    ->where('event_dates.status', '=', 0)
+                    where('event_dates.status', '=', 0)
                     ->where('event_date', '>=', date('Y-m-d'))
                     ->orderBy('event_date')
-                    ->orderBy('events.st_time')
                     ->pluck('event_id');
 
 // var_dump(date('H:i:s'));exit;
@@ -66,12 +64,10 @@ class EventDate extends Model
      */
     public static function getEventIdListById($eventIdList) {
         $eventData = EventDate::
-                    leftJoin('events', 'event_dates.event_id', 'events.id')
-                    ->where('event_dates.status', '=', 0)
+                    where('event_dates.status', '=', 0)
                     ->whereIn('event_id', $eventIdList)
                     ->where('event_date', '>=', date('Y-m-d'))
                     ->orderBy('event_date')
-                    ->orderBy('events.st_time')
                     ->pluck('event_id');
         $eventIdList = $eventData->unique();
           
