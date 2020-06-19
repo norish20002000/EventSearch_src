@@ -518,6 +518,12 @@ h1.title {
     width: 170px;
 }
 
+@media (min-width:768px) {
+    .top_logo {
+        width: 200px;
+    }
+}
+
 .div_flex {
     display: flex;
 }
