@@ -70509,7 +70509,13 @@ var render = function() {
         return _c("div", { key: event.id, staticClass: "col-xl-4 col-xs-12" }, [
           _c("div", { staticClass: "card my_card" }, [
             _c("div", { staticClass: "card-body my_card_body" }, [
-              _c("div"),
+              _c("div", [
+                event.left_timer != ""
+                  ? _c("span", { staticClass: "genre_icon" }, [
+                      _vm._v(_vm._s(event.left_timer))
+                    ])
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "icon fl" }, [
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [

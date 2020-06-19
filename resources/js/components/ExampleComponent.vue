@@ -8,7 +8,7 @@
                     </div> -->
                     <div class="card-body my_card_body">
                         <div>
-                            <!-- <span v-if="event.left_timer != ''" class="genre_icon">{{event.left_timer}}</span> -->
+                            <span v-if="event.left_timer != ''" class="genre_icon">{{event.left_timer}}</span>
                             <!-- <span class="genre_icon">{{diffTime(event.current_date, event.st_time)}}</span> -->
                             <!-- <span v-if="event.genre.length > 0" class="genre_icon"><i class="far fa-flag" style="margin: 0 3px 0 0"></i>{{event.genre[0].disp_name}}</span> -->
                             <!-- <div v-if="event.genre.length > 0"> -->
@@ -97,7 +97,28 @@
                 var weekStr = [ "日", "月", "火", "水", "木", "金", "土" ][dayOfWeek]
                 
                 return weekStr
-            }
+            },
+            diffTime(date, time) {
+                console.log(new Date('Y-m-d'))
+                let nowTime = new Date()
+                let stTime = new Date(date + 'T' + time)
+                let diff = stTime.getTime() - nowTime.getTime()
+
+                // date
+                let diffDay = diff / (1000 * 60 * 60 * 24)
+                console.log(Math.floor(diffDay))
+                //HH
+                let diffHour = (diffDay - Math.floor(diffDay)) * 24
+                // console.log(diffHour)
+                //MM
+                let diffMinute = (diffHour - Math.floor(diffHour)) * 60
+                //SS
+                let diffSecond = (diffMinute - Math.floor(diffMinute)) * 60
+
+                // console.log(Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2))
+
+                return Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2)
+            },
         },
         filters: {
             truncate: function(value, length, omission) {

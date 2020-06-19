@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\EventDate;
 use App\Models\Genre;
 use App\Models\Genre01;
+use App\Libs\Utility;
 
 class Event extends Model
 {
@@ -398,6 +399,15 @@ class Event extends Model
             $event->date = EventDate::getDate($event->id);
             $event->min_date = \min($event->date->pluck('event_date')->toArray());
             $event->max_date = \max($event->date->pluck('event_date')->toArray());
+            $event->current_date = EventDate::getCurrentDate($event->id);
+            // var_dump($event->id);
+            // var_dump($event->current_date->event_id);
+            $event->left_timer = Utility::getLeftTimer(
+                                            date('Y-m-d H:i:s')
+                                            , $event->current_date->event_date . " " . $event->st_time
+                                            , $event->current_date->event_date . " " . $event->end_time);
+            // var_dump($event->left_timer);exit;
+            // $event->left_timer = Utility::getLeftTimer(strtotime('now'), strtotime($event->current_date . " " . $event->st_time));
         }
 
         return $resultEventData;

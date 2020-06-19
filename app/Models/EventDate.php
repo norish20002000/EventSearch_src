@@ -42,13 +42,52 @@ class EventDate extends Model
     }
 
     /**
+     * get current date
+     * @param int $event_id
+     * @return date $currentDate
+     */
+    public static function getCurrentDate($event_id)
+    {
+        $eventDate = EventDate::
+                    leftJoin('events', 'event_dates.event_id', '=', 'events.id')
+                    ->where('event_dates.event_id', '=', $event_id)
+                    ->where('event_dates.status', '=', 0)
+                    ->where(function($query) {
+                        $query
+                        ->where('event_date', '>=', date('Y-m-d'))
+                        ;
+                        // ->orWhere(function($query) {
+                        //     $query
+                        //     ->where('event_date', '=', date('Y-m-d'))
+                        //     ->where('events.end_time', '>=', date('H:i:s'));
+                        // });
+                    })
+                    ->orderBy('event_date')
+                    ->first();
+
+        return $eventDate;
+    }
+
+
+    /**
      * eventId list from today
      */
     public static function getEventIdListFromToday() {
         $eventDate = Eventdate::
-                    where('event_dates.status', '=', 0)
-                    ->where('event_date', '>=', date('Y-m-d'))
+                    leftJoin('events', 'event_dates.event_id', 'events.id')
+                    ->where('event_dates.status', '=', 0)
+                    ->where(function($query) {
+                        $query
+                        ->where('event_date', '>=', date('Y-m-d'))
+                        ;
+                        // ->orWhere(function($query) {
+                        //     $query
+                        //     ->where('event_date', '=', date('Y-m-d'))
+                        //     ->where('events.end_time', '>=', date('H:i:s'));
+                        // });
+                    })
                     ->orderBy('event_date')
+                    ->orderBy('events.st_time')
                     ->pluck('event_id');
 
 // var_dump(date('H:i:s'));exit;
@@ -64,13 +103,30 @@ class EventDate extends Model
      */
     public static function getEventIdListById($eventIdList) {
         $eventData = EventDate::
-                    where('event_dates.status', '=', 0)
+                    leftJoin('events', 'event_dates.event_id', 'events.id')
+                    ->where('event_dates.status', '=', 0)
                     ->whereIn('event_id', $eventIdList)
-                    ->where('event_date', '>=', date('Y-m-d'))
+                    // ->where('event_date', '>', date('Y-m-d'))
+                    // ->orWhere(function($query) {
+                    //     $query
+                    //     ->where('event_date', '=', date('Y-m-d'))
+                    //     ->where('events.end_time', '>=', date('H:i:s'));
+                    // })
+                    ->where(function($query) {
+                        $query
+                        ->where('event_date', '>', date('Y-m-d'))
+                        ;
+                        // ->orWhere(function($query) {
+                        //     $query
+                        //     ->where('event_date', '=', date('Y-m-d'))
+                        //     ->where('events.end_time', '>=', date('H:i:s'));
+                        // });
+                    })
                     ->orderBy('event_date')
+                    ->orderBy('events.st_time')
                     ->pluck('event_id');
         $eventIdList = $eventData->unique();
-          
+        // var_dump($eventIdList);exit;
         return $eventIdList;
     }
 
