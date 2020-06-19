@@ -41,7 +41,7 @@ class EventFormSendRequest extends FormRequest
             'event_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
             "reference_name" => "",
             "reference_name" => "",
-            "release_date" => "required",
+            "release_date" => 'required|date_format:"Y-m-d"',
             "genre_id" => "",
             "target" => "",
             "regi_group_name" => "required",
@@ -94,6 +94,7 @@ class EventFormSendRequest extends FormRequest
             "st_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
             "end_time.date_format" => ":attributeの形式は、'01:01'と合いません。",
             "end_time.after" => ':attributeには、:dateより後の時間を指定してください。',
+            "release_date.date_format" => ":attributeの形式は、'2020-01-01'と合いません。",
         ];
     }
 }

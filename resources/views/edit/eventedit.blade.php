@@ -290,7 +290,15 @@
                 <label class='edit_label require'>公開日</label>
             </div>
             <div class="input_area">
-                <input name="release_date" type="text" value="{{old('release_date') ? old('release_date') : (isset($event_data->release_date) ? $event_data->release_date : '')}}" placeholder="2020-01-01">
+                <div class="form-group">
+                    <div class="input-group date datetimepicker" id="due_date" data-target-input="nearest">
+                      <input type="text" name="release_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" value="{{old('release_date') ? old('release_date') : (isset($event_data->release_date) ? $event_data->release_date : '')}}" />
+                      <div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                </div>
+                {{-- <input name="release_date" type="text" value="{{old('release_date') ? old('release_date') : (isset($event_data->release_date) ? $event_data->release_date : '')}}" placeholder="2020-01-01"> --}}
                 @if ($errors->first('release_date'))
                     <p class="validation">※{{$errors->first('release_date')}}</p>
                 @endif
