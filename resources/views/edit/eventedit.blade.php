@@ -116,12 +116,14 @@
                         <select name="st_time_m">
                             <option value="" {{$event_data->st_time_m ? '' : 'selected'}}></option>
                             @for ($i = 0; $i < 60; $i++)
-                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
-                                    {{(old('st_time_m') ? old('st_time_m') 
-                                        : (($event_data->st_time_m) == "" ? "" 
-                                            : (isset($event_data->st_time_m) ? $event_data->st_time_m
-                                                : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
-                            >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                                @if ($i % 5 == 0)
+                                    <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                        {{(old('st_time_m') ? old('st_time_m') 
+                                            : (($event_data->st_time_m) == "" ? "" 
+                                                : (isset($event_data->st_time_m) ? $event_data->st_time_m
+                                                    : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                                @endif
                             @endfor
                         </select>
                     </div>
@@ -148,13 +150,13 @@
                         <select name="end_time_h">
                             <option value="" {{$event_data->end_time_h == "" ? 'selected' : ''}}></option>
                             @for ($i = 0; $i < 25; $i++)
-                            <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
-                                {{(old('end_time_h') ? old('end_time_h') 
-                                    : (($event_data->end_time_h) == "" ? "" 
-                                        : (isset($event_data->end_time_h) ? $event_data->end_time_h
-                                            : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
-                                >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}
-                            </option>
+                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                    {{(old('end_time_h') ? old('end_time_h') 
+                                        : (($event_data->end_time_h) == "" ? "" 
+                                            : (isset($event_data->end_time_h) ? $event_data->end_time_h
+                                                : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}
+                                </option>
                             @endfor
                         </select>
                     </div>
@@ -165,12 +167,14 @@
                         <select name="end_time_m">
                             <option value="" {{$event_data->end_time_m == "" ? 'selected' : ''}}></option>
                             @for ($i = 0; $i < 60; $i++)
-                                <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
-                                    {{(old('end_time_m') ? old('end_time_m') 
-                                        : (($event_data->end_time_m) == "" ? "" 
-                                            : (isset($event_data->end_time_m) ? $event_data->end_time_m
-                                                : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
-                            >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                                @if ($i % 5 == 0)
+                                    <option value="{{str_pad($i, 2, 0, STR_PAD_LEFT)}}"
+                                        {{(old('end_time_m') ? old('end_time_m') 
+                                            : (($event_data->end_time_m) == "" ? "" 
+                                                : (isset($event_data->end_time_m) ? $event_data->end_time_m
+                                                    : ''))) == str_pad($i, 2, 0, STR_PAD_LEFT)  ? 'selected' : ''}}
+                                    >{{str_pad($i, 2, 0, STR_PAD_LEFT)}}</option>
+                                @endif
                             @endfor
                         </select>
                     </div>
