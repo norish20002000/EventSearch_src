@@ -92,9 +92,13 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        <main class="py-4">
-            @yield('breadcrumbs')
+            </nav>
+            <div class="navbar navbar-expand-md navbar-light bg-white shadow-sm my_container">
+                <div class='container'>
+                    @yield('breadcrumbs')
+                </div>
+                </div>
+            <main class="py-4 my_py_4">
             @yield('content')
         </main>
         @include('layouts.footer')
