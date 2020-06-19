@@ -427,7 +427,7 @@ class Event extends Model
 
         return $eventList = Event::
                             where('status', '=', 0)
-                            // ->where('release_date', '<=', date('Y-m-d'))
+                            ->where('release_date', '<=', date('Y-m-d'))
                             ->whereIn('id', $eventIdList)
                             ->orderByRaw("FIELD(id, $eventIdStr)");
     }
