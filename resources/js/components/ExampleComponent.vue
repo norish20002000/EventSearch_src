@@ -6,7 +6,7 @@
                     <!-- <div class="card-header">
                         {{event.id}}
                     </div> -->
-                    <div class="card-body">
+                    <div class="card-body my_card_body">
                         <div>
                             <!-- <span v-if="event.genre.length > 0" class="genre_icon"><i class="far fa-flag" style="margin: 0 3px 0 0"></i>{{event.genre[0].disp_name}}</span> -->
                             <!-- <div v-if="event.genre.length > 0"> -->
@@ -22,7 +22,7 @@
                             </a>
                         </div>
                         <a class="link_color" :href="'/eventdetail/' + event.id">
-                            <div class="fl">
+                            <div class="fl event_str">
                                 <div class="event_title">{{event.title | truncate(35, '...')}}</div>
                                 <div class="days">
                                     <div class="awe_calendar">
@@ -32,7 +32,7 @@
                                         <!-- <div v-for="date in event.date" :key="date.id"> -->
                                             <div v-if="event.date.length > 1">{{event.min_date}}（{{getWeekStr(event.min_date)}}）〜{{event.max_date}}（{{getWeekStr(event.max_date)}}） {{event.st_time | truncate(5, ' ')}}
                                             </div>
-                                            <div v-else>{{event.min_date}}（{{getWeekStr(event.min_date)}}） {{event.st_time | truncate(5, ' ')}}</div>
+                                            <div v-else>{{event.min_date}}（{{getWeekStr(event.min_date)}}）{{event.st_time | truncate(5, ' ')}}</div>
                                             <!-- <div>{{event.date[0].event_date}} ({{getWeekStr(event.date[0].event_date)}}) {{event.st_time | truncate(5, ' ')}}</div> -->
                                         <!-- </div> -->
                                     </div>

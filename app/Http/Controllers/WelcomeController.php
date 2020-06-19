@@ -27,27 +27,28 @@ class WelcomeController extends Controller
         // }
         // var_dump($request->searchList);exit;
 
-        $searchFlg = false;
+        // var_dump($request->all());exit;
+        $searchType = "";
 
         if(isset($request->today)) {
             $data['event_data'] = self::searchToday($request);
-            $searchFlg = true;
+            $searchType = "today";
         } elseif (isset($request->tomorrow)) {
             $data['event_data'] = self::searchTomorrow($request);
-            $searchFlg = true;
+            $searchType = "tomorrow";
         } elseif (isset($request->weekend)) {
             $data['event_data'] = self::searchWeekend($request);
-            $searchFlg = true;
+            $searchType = "weekend";
         } else {
             $data['event_data'] = Event::getEventFromToday($request);
-            $searchFlg = $request->search ? true : false;
+            $searchType = $request->search ? "strSearch" : "";
         }
 
 // var_dump($data['event_data']);exit;
         $data['event_data'] = Event::getGenreData($data['event_data']);
 
         $data['search'] = $request->search;
-        $data['search_flg'] = $searchFlg;
+        $data['search_type'] = $searchType;
 
         return view("welcome", $data);
     }
