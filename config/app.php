@@ -232,7 +232,7 @@ return [
     //paginate
     'PAGINATE' => [
         //paginationの一度に表示するリンクの数
-        'LINK_NUM' => '3',
+        'LINK_NUM' => '12',
     ],
 
     // dir
