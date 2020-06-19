@@ -114,7 +114,7 @@ class EventDate extends Model
                     // })
                     ->where(function($query) {
                         $query
-                        ->where('event_date', '>', date('Y-m-d'))
+                        ->where('event_date', '>=', date('Y-m-d'))
                         ;
                         // ->orWhere(function($query) {
                         //     $query
