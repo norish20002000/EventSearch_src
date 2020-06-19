@@ -1,32 +1,54 @@
 @extends('layouts.app')
 @section('content')
-@section('breadcrumbs', Breadcrumbs::render('home'))
+@if ($search_type == "")
+    @section('breadcrumbs', Breadcrumbs::render('home'))
+@elseif ($search_type == "today")
+    @section('breadcrumbs', Breadcrumbs::render('today', $event_data))
+@elseif ($search_type == "tomorrow")
+    @section('breadcrumbs', Breadcrumbs::render('tomorrow', $event_data))
+@elseif ($search_type == "weekend")
+    @section('breadcrumbs', Breadcrumbs::render('weekend', $event_data))
+@else
+    @section('breadcrumbs', Breadcrumbs::render('home'))
+@endif
 <form class="formsearch" method="GET" action="/">
 <section class="top_banner">
     <img class="header_image" src="/image/top/top.jpg">
     <div class="content_header">
-        <p class="header_p">ライブ配信イベントを楽しもう</p>
+        <div>
+        <p class="header_p">ライブ配信イベントを楽しもう。</p>
         <div class="search_div">
             <input type="search" name="search" class="formsearch-input" placeholder="search" value="{{$search ?? ''}}" >
-            <button type="submit" class="btn btn-secondary" >検索</button>
+            <button type="submit" class="btn btn-secondary search_str_btn" >検索</button>
+        </div>
         </div>
     </div>
 </section>
 </form>
 <div class='container'>
-    <form class="formsearch" method="GET" action="/">
+    <form name="formsearch" class="formsearch" method="GET" action="/">
         {{-- <input type="search" name="search" class="formsearch-input" placeholder="search" value={{$search ?? ''}} >
         <button type="submit" class="formsearch-button"><i class="fa fa-search"></i></button> --}}
         {{-- <details>
             <summary>詳細検索</summary> --}}
             <div class="search_btns">
                 <div class="search_str">
-                    <p class="release_str"><img width="20px" src="/image/icon/bell.png"> もうすぐ配信スタート</p>
+                    <p class="release_str"><img class="bell_img" src="/image/icon/bell.png"> もうすぐ配信開始</p>
                 </div>
                 <div class="search_list">
-                    <button name="today" value="today" type="submit" class="p-btn">今日</button>
-                    <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
-                    <button name="weekend" value="weekend" type="submit" class="p-btn">今週末</button>
+                    {{-- <button name="today" class="p-btn" type="button" onclick="submit((function(e){
+                        var ele = document.createElement('input')
+                        ele.setAttribute('type', 'hidden')
+                        ele.setAttribute('name', 'today')
+                        ele.setAttribute('value', 'today')
+                        document.formsearch.appendChild(ele)
+                        }()));" value="today">今日</button> --}}
+                    <button type="submit" class="p-btn" name="today" value="today">今日</button>
+                    <button type="submit" class="p-btn" name="tomorrow" value="tomorrow">明日</button>
+                    <button type="submit" class="p-btn" name="weekend" value="今週末">今週末</button>
+                    {{-- <button name="today" value="today" type="submit" class="p-btn">今日</button> --}}
+                        {{-- <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
+                        <button name="weekend" value="weekend" type="submit" class="p-btn">今週末</button> --}}
                     <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
                     <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
                     <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
@@ -46,8 +68,7 @@
             </div>
         {{-- </details> --}}
     </form>
-    @if ($search_flg != "1")
-    <p>{{$search_flg}}</p>
+    @if ($search_type == "")
     <div class="genre">
         <div class="container">
             <div class="row justify-content-center">

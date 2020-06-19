@@ -29,14 +29,14 @@
         <div>
             <h1 class="title" style="clear: left;margin:">{{ $event_data->title }}</h1>
         </div>
-        <div>
+        <div class="date_div">
             <p>
-                <div>
+                <div class="date_str">
                     <span><i class="far fa-calendar-alt"></i></span>
                     @if (count($event_data->date) > 1)
-                        {{$event_data->min_date}}({{$event_data->min_date_week}}) 〜 {{$event_data->max_date}}({{$event_data->max_date_week}})
+                        {{$event_data->min_date}}（{{$event_data->min_date_week}}）〜 {{$event_data->max_date}}（{{$event_data->max_date_week}}）
                     @else
-                        {{$event_data->date->first()->event_date}}({{$event_data->min_date_week}})
+                        {{$event_data->date->first()->event_date}}（{{$event_data->min_date_week}}）
                     @endif
                 </div>
                 {{-- @foreach ($event_data->date as $day)
@@ -46,7 +46,7 @@
                 </div>
                 @endforeach --}}
             </p>
-            <div>
+            <div class="date_str">
                 @if ($event_data->st_time || $event_data->end_time)
                     <p><i class="far fa-clock"></i> {{ $event_data->st_time }}〜{{ $event_data->end_time }}</p>
                 @endif
@@ -66,7 +66,6 @@
             <div><p><i class="fas fa-yen-sign"></i> {{ $event_data->fee }}</p></div>
         </div>
         <div>
-            <div>【参考サイト】</div>
             <div><p><i class="fas fa-laptop"></i> <a href="{{ $event_data->reference_url }}" target="blank">{{ $event_data->reference_name }}</p></a></div>
         </div>
     </div>

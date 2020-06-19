@@ -1930,6 +1930,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1971,6 +1973,24 @@ __webpack_require__.r(__webpack_exports__);
       var dayOfWeek = new Date(date).getDay();
       var weekStr = ["日", "月", "火", "水", "木", "金", "土"][dayOfWeek];
       return weekStr;
+    },
+    diffTime: function diffTime(date, time) {
+      console.log(new Date('Y-m-d'));
+      var nowTime = new Date();
+      var stTime = new Date(date + 'T' + time);
+      var diff = stTime.getTime() - nowTime.getTime(); // date
+
+      var diffDay = diff / (1000 * 60 * 60 * 24);
+      console.log(Math.floor(diffDay)); //HH
+
+      var diffHour = (diffDay - Math.floor(diffDay)) * 24; // console.log(diffHour)
+      //MM
+
+      var diffMinute = (diffHour - Math.floor(diffHour)) * 60; //SS
+
+      var diffSecond = (diffMinute - Math.floor(diffMinute)) * 60; // console.log(Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2))
+
+      return Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2);
     }
   },
   filters: {
@@ -70488,8 +70508,14 @@ var render = function() {
       _vm._l(_vm.events.data, function(event) {
         return _c("div", { key: event.id, staticClass: "col-xl-4 col-xs-12" }, [
           _c("div", { staticClass: "card my_card" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div"),
+            _c("div", { staticClass: "card-body my_card_body" }, [
+              _c("div", [
+                event.left_timer != ""
+                  ? _c("span", { staticClass: "genre_icon" }, [
+                      _vm._v(_vm._s(event.left_timer))
+                    ])
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "icon fl" }, [
                 _c("a", { attrs: { href: "/eventdetail/" + event.id } }, [
@@ -70512,7 +70538,7 @@ var render = function() {
                   attrs: { href: "/eventdetail/" + event.id }
                 },
                 [
-                  _c("div", { staticClass: "fl" }, [
+                  _c("div", { staticClass: "fl event_str" }, [
                     _c("div", { staticClass: "event_title" }, [
                       _vm._v(_vm._s(_vm._f("truncate")(event.title, 35, "...")))
                     ]),
@@ -70543,7 +70569,7 @@ var render = function() {
                                 _vm._s(event.min_date) +
                                   "（" +
                                   _vm._s(_vm.getWeekStr(event.min_date)) +
-                                  "） " +
+                                  "）" +
                                   _vm._s(
                                     _vm._f("truncate")(event.st_time, 5, " ")
                                   )

@@ -1,10 +1,11 @@
 @section('title', '運営会社｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')
+@section('breadcrumbs', Breadcrumbs::render('company'))
 <section class="top_banner">
     <img class="header_image" src="/image/top/top.jpg">
     <div class="content_header">
-        <p>気になるイベントを探してみよう</p>
+        <p class="header_p_center">ライブ配信イベントを楽しもう。</p>
     </div>
 </section>
 <div class='container'>
