@@ -27,8 +27,10 @@ class EventController extends Controller
         // return abort(404);
         $data['event_data'] = Event::getEventDataById($id);
 
-        // no eventData to 404 view
-        if (!$data['event_data']) return \abort(404);
+        // no eventData OR private to 404 view
+        if (!$data['event_data'] || $this->checkEventPrivate($data['event_data'])) {
+            return \abort(404);
+        }
 
         // st-end date
         $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());
@@ -81,6 +83,26 @@ class EventController extends Controller
         $data['event_data']->genre = Genre::getGenreById($genre_id);
 
         return view('eventgenre', $data);
+    }
+
+    /**
+     * chedk event
+     * @param eventData
+     * @return bool isPublic
+     */
+    private function checkEventPrivate($eventData)
+    {
+        $isPrivate = false;
+
+        if($eventData->release_date > date('Y-m-d')) {
+            $isPrivate = true; 
+        }
+
+        if($eventData->status != 0) {
+            $isPrivate = true;
+        }
+
+        return $isPrivate;
     }
 
     /**
