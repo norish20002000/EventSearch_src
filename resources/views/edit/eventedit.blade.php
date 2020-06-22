@@ -230,8 +230,16 @@
             </div>
             <div class="input_area">
                 <select name="fee_type">
-                    <option value="0">無料</option>
-                    <option value="1">有料</option>
+                    <option value="0" 
+                        {{(old('fee_type') ? old('fee_type') 
+                            : (isset($event_data->fee_type) ? $event_data->fee_type
+                            : 0)) == 0 ? 'selected' : ''}}>無料
+                    </option>
+                    <option value="1" 
+                        {{(old('fee_type') ? old('fee_type') 
+                            : (isset($event_data->fee_type) ? $event_data->fee_type
+                            : 0)) == 1 ? 'selected' : ''}}>有料</option>
+                    </option>
                 </select>
 
                 {{-- <input name="fee_type" type="text" value="{{old('fee_type') ? old('fee_type') : (isset($event_data->fee_type) ? $event_data->fee_type : '')}}">

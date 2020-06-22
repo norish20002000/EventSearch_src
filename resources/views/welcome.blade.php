@@ -32,39 +32,41 @@
         {{-- <details>
             <summary>詳細検索</summary> --}}
             <div class="search_btns">
-                <div class="search_str">
-                    <p class="release_str"><img class="bell_img" src="/image/icon/bell.png"> もうすぐ配信開始</p>
-                </div>
-                <div class="search_list">
-                    {{-- <button name="today" class="p-btn" type="button" onclick="submit((function(e){
-                        var ele = document.createElement('input')
-                        ele.setAttribute('type', 'hidden')
-                        ele.setAttribute('name', 'today')
-                        ele.setAttribute('value', 'today')
-                        document.formsearch.appendChild(ele)
-                        }()));" value="today">今日</button> --}}
-                    <button type="submit" class="p-btn" name="today" value="today">今日</button>
-                    <button type="submit" class="p-btn" name="tomorrow" value="tomorrow">明日</button>
-                    <button type="submit" class="p-btn" name="weekend" value="今週末">今週末</button>
-                    {{-- <button name="today" value="today" type="submit" class="p-btn">今日</button> --}}
-                        {{-- <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
-                        <button name="weekend" value="weekend" type="submit" class="p-btn">今週末</button> --}}
-                    <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
-                    <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
-                    <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
-                    {{-- <accordion-component>
-                        <div slot="title">その他</div>
-                        <div slot="body">
-                            <p>期間指定</p>
-                            <div>
-                                <input type="text" name="search_st_date" placeholder="開始">
-                                〜
-                                <input type="text" placeholder="終了">
-                                <button type="button">検索</button>
+                <div style="width: 375px; display: flex; margin: 0 auto;">
+                    <div class="search_str">
+                        <p class="release_str"><img class="bell_img" src="/image/icon/bell.png"> もうすぐ配信開始</p>
+                    </div>
+                    <div class="search_list">
+                        {{-- <button name="today" class="p-btn" type="button" onclick="submit((function(e){
+                            var ele = document.createElement('input')
+                            ele.setAttribute('type', 'hidden')
+                            ele.setAttribute('name', 'today')
+                            ele.setAttribute('value', 'today')
+                            document.formsearch.appendChild(ele)
+                            }()));" value="today">今日</button> --}}
+                        <button type="submit" class="p-btn" name="today" value="today">今日</button>
+                        <button type="submit" class="p-btn" name="tomorrow" value="tomorrow">明日</button>
+                        <button type="submit" class="p-btn" name="weekend" value="今週末">今週末</button>
+                        {{-- <button name="today" value="today" type="submit" class="p-btn">今日</button> --}}
+                            {{-- <button name="tomorrow" value="tomorrow" type="submit" class="p-btn">明日</button>
+                            <button name="weekend" value="weekend" type="submit" class="p-btn">今週末</button> --}}
+                        <!-- <a class="p-btn search_day" href="{{ route('todayevent') }}">今日</a>
+                        <a class="p-btn search_day" href="{{ route('tomorrowevent') }}">明日</a>
+                        <a class="p-btn search_day" href="{{ route('weekendevent') }}">週末</a> -->
+                        {{-- <accordion-component>
+                            <div slot="title">その他</div>
+                            <div slot="body">
+                                <p>期間指定</p>
+                                <div>
+                                    <input type="text" name="search_st_date" placeholder="開始">
+                                    〜
+                                    <input type="text" placeholder="終了">
+                                    <button type="button">検索</button>
+                                </div>
                             </div>
-                        </div>
-                    </accordion-component> --}}
-                </div>
+                        </accordion-component> --}}
+                    </div>
+                </div>    
             </div>
         {{-- </details> --}}
     </form>

@@ -45,14 +45,14 @@
 }
 
 .search_list {
-    width: 60%;
+    /* width: 60%; */
 }
 
 .search_str {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 58%;
+    /* justify-content: center;
+    align-items: center; */
+    /* width: 58%; */
     
 }
 
