@@ -51,6 +51,10 @@
                     <p><i class="far fa-clock"></i> {{ $event_data->st_time }}〜{{ $event_data->end_time }}</p>
                 @endif
             </div>
+            @if (isset($event_data->summary_date))
+                <div class="samarry_date_str">{{$event_data->summary_date}}</div>
+            @endif
+            <div class="date_border"></div>
         </div>
     </div>
     <div class="article_content">
@@ -59,14 +63,23 @@
         </div>
         {{-- 視聴サイト --}}
         <div>
-            <div><p><i class="fas fa-video"></i><a href="{{ $event_data->web_url }}" target="blank"> {{ $event_data->web_name }}</p></a></div>
+            @if (isset($event_data->web_url))
+                <div><p><i class="fas fa-video"></i><a href="{{ $event_data->web_url }}" target="blank"> {{ $event_data->web_name }}</p></a></div>
+            @else
+                <div><p><i class="fas fa-video"></i> {{ $event_data->web_name }}</p></div>
+            @endif
         </div>
         {{-- 料金 --}}
         <div>
             <div><p><i class="fas fa-yen-sign"></i> {{ $event_data->fee }}</p></div>
         </div>
         <div>
-            <div><p><i class="fas fa-laptop"></i> <a href="{{ $event_data->reference_url }}" target="blank">{{ $event_data->reference_name }}</p></a></div>
+        {{-- 参考サイト --}}
+            @if (isset($event_data->reference_url))
+                <div><p><i class="fas fa-laptop"></i> <a href="{{ $event_data->reference_url }}" target="blank">{{ $event_data->reference_name }}</p></a></div>
+            @else
+                <div><p><i class="fas fa-laptop"></i> {{ $event_data->reference_name }}</p></div>
+            @endif
         </div>
     </div>
 </div>
