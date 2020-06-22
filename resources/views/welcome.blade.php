@@ -32,7 +32,6 @@
         {{-- <details>
             <summary>詳細検索</summary> --}}
             <div class="search_btns">
-                <div style="width: 375px; display: flex; margin: 0 auto;">
                     <div class="search_str">
                         <p class="release_str"><img class="bell_img" src="/image/icon/bell.png"> もうすぐ配信開始</p>
                     </div>
@@ -66,7 +65,6 @@
                             </div>
                         </accordion-component> --}}
                     </div>
-                </div>    
             </div>
         {{-- </details> --}}
     </form>
