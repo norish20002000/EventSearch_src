@@ -1932,6 +1932,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -1991,6 +1994,37 @@ __webpack_require__.r(__webpack_exports__);
       var diffSecond = (diffMinute - Math.floor(diffMinute)) * 60; // console.log(Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2))
 
       return Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2);
+    },
+    strLength: function strLength(strSrc) {
+      var len = 0;
+      strSrc = escape(strSrc);
+
+      for (var i = 0; i < strSrc.length; i++, len++) {
+        if (strSrc.charAt(i) == "%") {
+          if (strSrc.charAt(++i) == "u") {
+            i += 3;
+            len++;
+          }
+
+          i++;
+        }
+      }
+
+      return len;
+    },
+    truncateByByteMod: function truncateByByteMod(str, length, omission) {
+      var isSlice = false;
+
+      while (this.strLength(str) > length) {
+        str = str.slice(0, str.length - 1);
+        isSlice = true;
+      }
+
+      if (isSlice) {
+        str += omission;
+      }
+
+      return str;
     }
   },
   filters: {
@@ -2007,6 +2041,30 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return value.substring(0, length) + ommision;
+    },
+    truncateByByte: function truncateByByte(value, length, omission) {
+      var ommision = omission ? omission.toString() : '...';
+      var text_array = value.split('');
+      var count = 0;
+      var str = '';
+
+      for (var i = 0; i < text_array.length; i++) {
+        var n = escape(text_array[i]);
+
+        if (n.length < 4) {
+          count++;
+        } else {
+          count += 2;
+        }
+
+        if (count > length) {
+          return str + omission;
+        }
+
+        str += value.charAt(i);
+      }
+
+      return str;
     }
   },
   beforeCreate: function beforeCreate() {// console.log('num : ' + this.leftNum)
@@ -70506,7 +70564,7 @@ var render = function() {
       "div",
       { staticClass: "row justify-content-center" },
       _vm._l(_vm.events.data, function(event) {
-        return _c("div", { key: event.id, staticClass: "col-xl-4 col-xs-12" }, [
+        return _c("div", { key: event.id, staticClass: "col-lg-4 col-xs-12" }, [
           _c("div", { staticClass: "card my_card" }, [
             _c("div", { staticClass: "card-body my_card_body" }, [
               _c("div", [
@@ -70540,7 +70598,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "fl event_str" }, [
                     _c("div", { staticClass: "event_title" }, [
-                      _vm._v(_vm._s(_vm._f("truncate")(event.title, 35, "...")))
+                      _vm._v(
+                        _vm._s(_vm._f("truncateByByte")(event.title, 70, "..."))
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "days" }, [
