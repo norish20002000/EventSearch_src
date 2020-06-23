@@ -84,3 +84,12 @@
     </div>
 </div>
 @endsection
+<section class="event_banner" style="background:url({{ $event_data->image_url }}) center / cover">
+    <div class="article_mainimage">
+        @if ($event_data->image_url)
+            <a href="{{$event_data->web_url}}" target="blank">
+            <img class="mainimage" src="{{ $event_data->image_url }}"/>
+            </a>
+        @endif
+    </div>
+</section>
