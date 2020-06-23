@@ -10,19 +10,23 @@
 @else
 @section('breadcrumbs', Breadcrumbs::render('event', $event_data))
 @endif
+<section class="event_banner" style="background:url({{ $event_data->image_url }}) center / cover">
+    <div class="article_mainimage">
+        @if ($event_data->image_url)
+            <a href="{{$event_data->web_url}}" target="blank">
+            <img class="mainimage" src="{{ $event_data->image_url }}"/>
+            </a>
+        @endif
+    </div>
+</section>
 <div class='container'>
     <div class="article_title">
-        <div class="article_mainimage">
-            @if ($event_data->image_url)
-                <a href="{{$event_data->web_url}}" target="blank">
-                <img class="mainimage" src="{{ $event_data->image_url }}"/>
-                </a>
-            @endif
-        </div>
         @if ($event_data->genres)
         <div class="genres_div">
             @foreach ($event_data->genres as $genre)
-                <span class="genre_tag">{{$genre->disp_name}} </span>
+                <a href="{{route('eventgenre', ['genre_id' =>$genre->id])}}">
+                    <span class="genre_tag">{{$genre->disp_name}} </span>
+                </a>
             @endforeach
         </div>
         @endif
@@ -84,12 +88,3 @@
     </div>
 </div>
 @endsection
-<section class="event_banner" style="background:url({{ $event_data->image_url }}) center / cover">
-    <div class="article_mainimage">
-        @if ($event_data->image_url)
-            <a href="{{$event_data->web_url}}" target="blank">
-            <img class="mainimage" src="{{ $event_data->image_url }}"/>
-            </a>
-        @endif
-    </div>
-</section>
