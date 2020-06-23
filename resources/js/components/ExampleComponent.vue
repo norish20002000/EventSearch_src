@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-xl-4 col-xs-12" v-for="event in events.data" :key="event.id">
+            <div class="col-lg-4 col-xs-12" v-for="event in events.data" :key="event.id">
+            <!-- <div class="col-xl-4 col-xs-12" v-for="event in events.data" :key="event.id"> -->
                 <div class="card my_card">
                     <!-- <div class="card-header">
                         {{event.id}}
@@ -25,7 +26,9 @@
                         </div>
                         <a class="link_color" :href="'/eventdetail/' + event.id">
                             <div class="fl event_str">
-                                <div class="event_title">{{event.title | truncate(35, '...')}}</div>
+                                <!-- <div class="event_title">{{event.title | truncate(40, '...')}}</div> -->
+                                <div class="event_title">{{event.title | truncateByByte(70, '...')}}</div>
+                                <!-- <div class="event_title">{{truncateByByteMod(event.title, 70, '...')}}</div> -->
                                 <div class="days">
                                     <div class="awe_calendar">
                                         <i class="far fa-calendar-alt"></i>
@@ -119,6 +122,35 @@
 
                 return Math.floor(diffDay) + ':' + ('00' + Math.floor(diffHour)).slice(-2) + ':' + ('00' + Math.floor(diffMinute)).slice(-2) + ':' + ('00' + Math.round(diffSecond)).slice(-2)
             },
+            strLength(strSrc) {
+               let len = 0;
+                strSrc = escape(strSrc);
+
+                for(let i = 0; i < strSrc.length; i++, len++){
+                    if(strSrc.charAt(i) == "%"){
+                        if(strSrc.charAt(++i) == "u"){
+                            i += 3;
+                            len++;
+                        }
+                        i++;
+                    }
+                }
+
+                return len;
+            },
+            truncateByByteMod: function(str, length, omission) {
+                var isSlice = false;
+                while( this.strLength(str) > length ){
+                   str = str.slice(0, str.length-1);
+                    isSlice = true;
+                }
+
+                if( isSlice ){
+                   str += omission;
+                }
+
+                return str;
+            }
         },
         filters: {
             truncate: function(value, length, omission) {
@@ -134,6 +166,28 @@
                 }
 
                 return value.substring(0, length) + ommision;
+            },
+            truncateByByte: function(value, length, omission) {
+                var ommision = omission ? omission.toString() : '...';
+                var text_array = value.split('');
+                var count = 0;
+                var str = '';
+
+                for (let i = 0; i < text_array.length; i++) {
+                    var n = escape(text_array[i]);
+                    if (n.length < 4) {
+                        count++;
+                    } else {
+                        count += 2;
+                    }
+                    if (count > length) {
+                        return str + omission;
+                    }
+
+                    str += value.charAt(i);
+                }
+
+                return str;
             },
         },
         beforeCreate () {
