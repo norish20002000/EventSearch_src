@@ -712,12 +712,12 @@ color: #6c757d;
 
 
 .footer_str {
-    margin: 5px 0px 0 -6px;
+    margin: 5px 0px 0 -8px;
 }
 
 .footer_link {
     display: flex;
-    margin: 0 5px 0 0;
+    margin: 0 0px 0 0;
 }
 
 .footer_before {
