@@ -712,7 +712,11 @@ color: #6c757d;
 
 
 .footer_str {
-    margin: 0px 0 0 -7px;
+    margin: 5px 3px 0 -5px;
+}
+
+.footer_link {
+    display: flex;
 }
 
 .footer_before {
@@ -729,5 +733,6 @@ color: #6c757d;
 
 .footer_btns {
     font-size: 13px;
+    display: flex;
 }
 

@@ -1,21 +1,19 @@
 <div class="footer_before">
     <div class="footer_btns">
-        <div>
-            @if(request()->path() != '/')
-                <a href="#" onclick="history.back();return false;">
-                    <button class="buttonImage"><img src="/image/icon/arrow_left.png" alt=""></button>
-                    <span class="footer_str">前のページへ</span>
-                </a>
-            @endif
-            <a href="#TOP">
-                <button class="buttonImage"><img src="/image/icon/arrow_up.png"></button>
-                <span class="footer_str">ページの先頭へ</span>
+        @if(request()->path() != '/')
+            <a href="#" class="footer_link" onclick="history.back();return false;">
+                <button class="buttonImage"><img src="/image/icon/arrow_left.png" alt=""></button>
+                <div class="footer_str">前のページへ</div>
             </a>
-            <a href="/">
-                <button class="buttonImage"><img src="/image/icon/home.png"></button>
-                <span class="footer_str">TOPページへ</span>
-            </a>
-        </div>
+        @endif
+        <a href="#TOP" class="footer_link">
+            <button class="buttonImage"><img src="/image/icon/arrow_up.png"></button>
+            <div class="footer_str">ページの先頭へ</div>
+        </a>
+        <a href="/" class="footer_link">
+            <button class="buttonImage"><img src="/image/icon/home.png"></button>
+            <div class="footer_str">TOPページへ</div>
+        </a>
     </div>
 </div>
 
