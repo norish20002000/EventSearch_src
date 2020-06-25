@@ -86,5 +86,13 @@
             @endif
         </div>
     </div>
+    <div>
+        <a href="https://twitter.com/share?url=http://localhost:10091/eventdetail/50000003&text=「{{$event_data->title}}」" target="blank">
+            <img width="30px" src="/image/sns/sns_tw.png">
+        </a>
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{$event_data->title}}&dates=20200625T170000Z/20200625T190000Z" target="blank">
+            <img width="50px" src="/image/sns/googleCalendar.jpg">
+        </a>
+    </div>
 </div>
 @endsection

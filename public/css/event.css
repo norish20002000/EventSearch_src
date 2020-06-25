@@ -710,9 +710,23 @@ color: #6c757d;
     color: white;
 }
 
-
 .footer_str {
-    margin: 5px 0px 0 -8px;
+    margin: 5px 1rem 0 -3px;
+    font-size: 1.0rem;
+}
+
+@media (max-width:768px) {
+    .footer_str {
+        margin: 5px 0px 0 -8px;
+        font-size: 0.9rem;
+    }
+}
+
+@media(max-width:374px) {
+    .footer_str {
+        margin: 5px 0px 0 -8px;
+        font-size: 0.7rem;
+    }
 }
 
 .footer_link {
