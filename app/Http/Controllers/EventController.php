@@ -32,6 +32,11 @@ class EventController extends Controller
             return \abort(404);
         }
 
+        // end_time check
+        if (!$data['event_data']->current_date->end_time) {
+            $data['event_data']->current_date->tmp_end_time = date('H:i:s', strtotime('+1 hour', strtotime($data['event_data']->current_date->event_date . " " . $data['event_data']->current_date->st_time)));
+        }
+
         // st-end date
         $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());
         $data['event_data']->max_date = \max($data['event_data']->date->pluck('event_date')->toArray());

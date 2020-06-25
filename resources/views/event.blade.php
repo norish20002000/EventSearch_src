@@ -100,7 +100,7 @@
     </div>
     <div class="calendar_btns">
         <div>【カレンダーに追加】</div>
-        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{$event_data->title}}&dates={{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->st_time)}}/{{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->end_time)}}&details=「{{$event_data->title}}」<div>{{request()->fullUrl()}}</div>" target="blank">
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{$event_data->title}}&dates={{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->st_time)}}/{{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->end_time ? $event_data->current_date->end_time : $event_data->current_date->tmp_end_time)}}&details=「{{$event_data->title}}」<div>{{request()->fullUrl()}}</div>" target="blank">
             <img style="margin: -5px 0 0 -6px" width="50px" src="/image/sns/googleCalendar.png">
         </a>
     </div>
