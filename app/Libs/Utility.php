@@ -32,10 +32,10 @@ class Utility {
 
         $diffDays = $diff->format('%R%a');
 // var_dump($now);
-// var_dump($stTime);
+// var_dump($st);
 // var_dump($diffDays);
 // exit;
-        if($diffDays == 0 && $now <= $st) {
+        if($st->format('H:i:s') != $zeroTimeStr && $diffDays == 0 && $now <= $st) {
             $resultStr = "開催まで " . $diff->format('%H:%I:%S');
         } elseif ($st->format('H:i:s') != $zeroTimeStr && $st <= $now && $now <= $end) {
             $resultStr = "開催中";
