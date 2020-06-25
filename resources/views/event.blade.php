@@ -86,12 +86,22 @@
             @endif
         </div>
     </div>
-    <div>
-        <a href="https://twitter.com/share?url=http://localhost:10091/eventdetail/50000003&text=「{{$event_data->title}}」" target="blank">
-            <img width="30px" src="/image/sns/sns_tw.png">
+    <div class="sns_btns">
+        {{-- <a href="https://twitter.com/share?url={{request()->fullUrl()}}&text=「{{$event_data->title}}」%0a%23EventBank%0a" target="blank"> --}}
+        <a href="https://twitter.com/share?url={{request()->fullUrl()}}&text=「{{$event_data->title}}」" target="blank">
+                <img class="sns_image" src="/image/sns/sns_tw.png">
         </a>
-        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{$event_data->title}}&dates=20200625T170000Z/20200625T190000Z" target="blank">
-            <img width="50px" src="/image/sns/googleCalendar.jpg">
+        <a href="http://www.facebook.com/share.php?u={{request()->fullUrl()}}&t=「{{$event_data->title}}」" target="blank">
+            <img class="sns_image" src="/image/sns/sns_fb.png">
+        </a>
+        <a href="http://line.me/R/msg/text/?{{request()->fullUrl()}}%0D%0A「{{$event_data->title}}」" target="blank">
+            <img class="sns_image" src="/image/sns/sns_line.png">
+        </a>
+    </div>
+    <div class="calendar_btns">
+        <div>【カレンダーに追加】</div>
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text={{$event_data->title}}&dates={{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->st_time)}}/{{str_replace("-", "", $event_data->current_date->event_date)}}T{{str_replace(":", "", $event_data->current_date->end_time)}}&details=「{{$event_data->title}}」<div>{{request()->fullUrl()}}</div>" target="blank">
+            <img style="margin: -5px 0 0 -6px" width="50px" src="/image/sns/googleCalendar.png">
         </a>
     </div>
 </div>

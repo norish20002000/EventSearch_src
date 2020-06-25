@@ -106,6 +106,7 @@ class Event extends Model
 
         $eventData->genres = $eventData->genres;
         $eventData->date = EventDate::getAllDate($id);
+        $eventData->current_date = EventDate::getCurrentDate($id);
 
         return $eventData;
     }

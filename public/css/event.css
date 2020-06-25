@@ -729,6 +729,18 @@ color: #6c757d;
     }
 }
 
+.sns_btns {
+    margin-bottom: 20px;
+}
+
+.sns_image {
+    width: 40px;
+}
+
+.calendar_btns {
+
+}
+
 .footer_link {
     display: flex;
     margin: 0 0px 0 0px;
