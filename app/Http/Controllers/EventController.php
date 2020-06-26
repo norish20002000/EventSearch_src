@@ -37,6 +37,7 @@ class EventController extends Controller
                                                                                         $data['event_data']->current_date->event_date
                                                                                         , $data['event_data']->current_date->st_time
                                                                                         , $data['event_data']->current_date->end_time);
+        $data['event_data']->encode_title = urlencode($data['event_data']->title);
 
         // st-end date
         $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());

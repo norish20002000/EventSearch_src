@@ -48,4 +48,15 @@ class Utility {
         return $resultStr;
     }
 
+    /**
+     * url Encode RFC 3986
+     * @param string $string
+     * @return string 
+     */
+    public static function myUrlEncode($string) {
+        $entities = array('%21', '%2A', '%27', '%28', '%29', '%3B', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%2F', '%3F', '%25', '%23', '%5B', '%5D');
+        $replacements = array('!', '*', "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]");
+
+        return str_replace($entities, $replacements, urlencode($string));
+    }
 }
