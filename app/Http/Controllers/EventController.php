@@ -32,10 +32,11 @@ class EventController extends Controller
             return \abort(404);
         }
 
-        // end_time check
-        if (!$data['event_data']->current_date->end_time) {
-            $data['event_data']->current_date->tmp_end_time = date('H:i:s', strtotime('+1 hour', strtotime($data['event_data']->current_date->event_date . " " . $data['event_data']->current_date->st_time)));
-        }
+        // end_time check for google calendar
+        $data['event_data']->current_date->calendar_end_datetime = $this->createEndDatetime(
+                                                                                        $data['event_data']->current_date->event_date
+                                                                                        , $data['event_data']->current_date->st_time
+                                                                                        , $data['event_data']->current_date->end_time);
 
         // st-end date
         $data['event_data']->min_date = \min($data['event_data']->date->pluck('event_date')->toArray());
@@ -109,6 +110,26 @@ class EventController extends Controller
 
         return $isPrivate;
     }
+
+    /**
+     * create end datetime for calendar
+     */
+    private function createEndDatetime($date, $stTime, $endTime) 
+    {
+        if (!$endTime) {
+            $datetime
+                = date('Ymd\THis'
+                        , strtotime('+1 hour'
+                                    , strtotime($date . " " . $stTime)));
+        } else {
+            $datetime
+                = new \DateTime($date . " " . $endTime);
+            $datetime = $datetime->format('Ymd\THis');
+        }
+
+        return $datetime;
+    }
+
 
     /**
      * Handle the incoming request.
