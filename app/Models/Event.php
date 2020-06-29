@@ -405,8 +405,9 @@ class Event extends Model
             // var_dump($event->current_date->event_id);
             $event->left_timer = Utility::getLeftTimer(
                                             date('Y-m-d H:i:s')
-                                            , $event->current_date->event_date . " " . $event->st_time
-                                            , $event->current_date->event_date . " " . $event->end_time);
+                                            , $event->current_date->event_date
+                                            , $event->st_time
+                                            , $event->end_time);
             // var_dump($event->left_timer);exit;
             // $event->left_timer = Utility::getLeftTimer(strtotime('now'), strtotime($event->current_date . " " . $event->st_time));
         }

@@ -19,14 +19,17 @@ class Utility {
     /**
      * diff timer
      */
-    public static function getLeftTimer($nowTime, $stTime, $endTime)
+    public static function getLeftTimer($nowTime, $eventDate, $stTime, $endTime)
     {
+
         $resultStr = "";
         $zeroTimeStr = "00:00:00";
+        $stDateTime = $eventDate . " " . $stTime;
+        $endDateTime = $eventDate . " " . $endTime;
 
         $now = new \DateTime($nowTime);
-        $st = new \DateTime($stTime);
-        $end = new \DateTime($endTime);
+        $st = new \DateTime($stDateTime);
+        $end = new \DateTime($endDateTime);
 
         $diff = ($now)->diff($st);
 
@@ -35,11 +38,11 @@ class Utility {
 // var_dump($st);
 // var_dump($diffDays);
 // exit;
-        if($st->format('H:i:s') != $zeroTimeStr && $diffDays == 0 && $now <= $st) {
+        if($stTime && $diffDays == 0 && $now <= $st) {
             $resultStr = "開催まで " . $diff->format('%H:%I:%S');
-        } elseif ($st->format('H:i:s') != $zeroTimeStr && $st <= $now && $now <= $end) {
+        } elseif ($stTime && $st <= $now && $now <= $end) {
             $resultStr = "開催中";
-        } elseif ($end->format('H:i:s') != $zeroTimeStr && $end < $now) {
+        } elseif ($endTime && $end < $now) {
             $resultStr = "終了";
         } elseif (0 < $diffDays && $diffDays<= 7) {
             $resultStr = "開催まで " . \mb_substr($diffDays, 1, 1) . "日";

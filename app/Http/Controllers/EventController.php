@@ -32,11 +32,14 @@ class EventController extends Controller
             return \abort(404);
         }
 
-        // end_time check for google calendar
+        // end_time st_time title for google calendar
         $data['event_data']->current_date->calendar_end_datetime = $this->createEndDatetime(
                                                                                         $data['event_data']->current_date->event_date
                                                                                         , $data['event_data']->current_date->st_time
                                                                                         , $data['event_data']->current_date->end_time);
+        $data['event_data']->current_date->calendar_st_datetime = $this->createStDatetime($data['event_data']->current_date->event_date
+                                                                                            , $data['event_data']->current_date->st_time
+                                                                                            , $data['event_data']->current_date->end_time);
         $data['event_data']->encode_title = urlencode($data['event_data']->title);
 
         // st-end date
@@ -117,20 +120,34 @@ class EventController extends Controller
      */
     private function createEndDatetime($date, $stTime, $endTime) 
     {
-        if (!$endTime) {
-            $datetime
-                = date('Ymd\THis'
-                        , strtotime('+1 hour'
-                                    , strtotime($date . " " . $stTime)));
+        if (!$endTime && !$stTime) {
+            $datetime = date('Ymd', strtotime('+1 day'));
+        } elseif (!$endTime) {
+            $datetime = date('Ymd\THis', strtotime('+1 hour', strtotime($date . " " . $stTime)));
         } else {
-            $datetime
-                = new \DateTime($date . " " . $endTime);
-            $datetime = $datetime->format('Ymd\THis');
+            $preDatetime = new \DateTime($date . " " . $endTime);
+            $datetime = $preDatetime->format('Ymd\THis');
         }
 
         return $datetime;
     }
 
+    /**
+     * create end datetime for calendar
+     */
+    private function createStDatetime($date, $stTime, $endTime) 
+    {
+        if (!$stTime && !$endTime) {
+            $datetime = date('Ymd');
+        } elseif (!$stTime) {
+            $datetime = date('Ymd\THis', strtotime('-1 hour', strtotime($date . " " . $endTime)));
+        } else {
+            $preDatetime = new \DateTime($date . " " . $stTime);
+            $datetime = $preDatetime->format('Ymd\THis');
+        }
+
+        return $datetime;
+    }
 
     /**
      * Handle the incoming request.
