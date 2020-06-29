@@ -60,6 +60,14 @@
     }
 }
 
+@media (min-width:768px) {
+    .search_btns {
+        display: flex;
+        margin: 10px auto 10px auto;
+        width: 375px;
+    }
+}
+
 .search_list {
     /* width: 60%; */
 }
