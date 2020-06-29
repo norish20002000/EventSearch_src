@@ -120,12 +120,14 @@ class EventController extends Controller
      */
     private function createEndDatetime($date, $stTime, $endTime) 
     {
+        $endDateTime = $date . " " . $endTime;
+
         if (!$endTime && !$stTime) {
-            $datetime = date('Ymd', strtotime('+1 day'));
+            $datetime = date('Ymd', strtotime('+1 day', strtotime($endDateTime)));
         } elseif (!$endTime) {
             $datetime = date('Ymd\THis', strtotime('+1 hour', strtotime($date . " " . $stTime)));
         } else {
-            $preDatetime = new \DateTime($date . " " . $endTime);
+            $preDatetime = new \DateTime($endDateTime);
             $datetime = $preDatetime->format('Ymd\THis');
         }
 
@@ -137,12 +139,14 @@ class EventController extends Controller
      */
     private function createStDatetime($date, $stTime, $endTime) 
     {
+        $stDateTime = $date . " " . $stTime;
+
         if (!$stTime && !$endTime) {
-            $datetime = date('Ymd');
+            $datetime = date('Ymd', strtotime($stDateTime));
         } elseif (!$stTime) {
             $datetime = date('Ymd\THis', strtotime('-1 hour', strtotime($date . " " . $endTime)));
         } else {
-            $preDatetime = new \DateTime($date . " " . $stTime);
+            $preDatetime = new \DateTime($stDateTime);
             $datetime = $preDatetime->format('Ymd\THis');
         }
 
