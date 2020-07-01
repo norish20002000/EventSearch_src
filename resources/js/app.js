@@ -24,6 +24,7 @@ Vue.component('accordion-component', require('./components/AccordionComponent.vu
 Vue.component('labelinput-component', require('./components/LabelInputComponent.vue').default);
 Vue.component('operation-component', require('./components/OperationComponent.vue').default);
 Vue.component('image-component', require('./components/ImageComponent.vue').default);
+Vue.component('pagination', require('./components/Pagination.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

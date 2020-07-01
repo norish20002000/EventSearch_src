@@ -9,6 +9,11 @@
         </div>
     </div>
         <operation-component :event-data='@json($event_data)'></operation-component>
+        @if ($event_data->links())
+            <div>
+                {{ $event_data->links() }}
+            </div>
+        @endif
 </div>
 
 @endsection

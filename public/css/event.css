@@ -772,3 +772,12 @@ color: #6c757d;
     margin: 0 3px 0 0px;
 }
 
+/* ope area */
+.search_area {
+    border: solid 1px #01115a;
+    margin: 0 0 10px 0;
+}
+
+.search_lavel {
+    width: 70px;
+}

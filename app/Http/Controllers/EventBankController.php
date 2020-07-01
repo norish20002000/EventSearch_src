@@ -319,6 +319,14 @@ class EventBankController extends Controller
         $data['event_data'] = Event::getEventDataAllday($request, $request->status);
         
         $data['status'] = $request->status;
+// var_dump($data['event_data']);
+        return $data;
+    }
+
+    public function getDataBySearch(Request $request)
+    {
+        // var_dump($request->id);
+        $data['event_data'] = Event::getEventDataBySearch($request);
 
         return $data;
     }

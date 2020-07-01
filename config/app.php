@@ -233,6 +233,7 @@ return [
     'PAGINATE' => [
         //paginationの一度に表示するリンクの数
         'LINK_NUM' => '12',
+        'LINK_NUM_OPE' => '3',
     ],
 
     // dir

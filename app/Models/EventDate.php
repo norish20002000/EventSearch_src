@@ -168,6 +168,21 @@ class EventDate extends Model
     }
 
     /**
+     * search by dates
+     */
+    public static function getEventIdDates($stDate, $endDate)
+    {
+        $dateQuery = EventDate::query();
+        $stDate ? $dateQuery->where('event_date', '>=', $stDate) : "";
+        $endDate ? $dateQuery->where('event_date', '<=', $endDate) : "";
+        $eventDate = $dateQuery->orderBy('event_date')
+                                ->pluck('event_id')
+                                ->unique();
+
+        return $eventDate;
+    }
+
+    /**
      * update date
      */
     public static function updateEventDate($eventId, $date)

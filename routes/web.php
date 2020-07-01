@@ -40,3 +40,6 @@ Route::get('/eventbank/event/export/csv', 'EventBankController@exportCsvList')->
 
 
 Route::get('debug', 'EventBankController@getData');
+
+// debub
+Route::get('/debug', 'EventBankController@getDataBySearch');

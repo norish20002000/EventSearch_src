@@ -87,7 +87,8 @@ class Event extends Model
     {
         $eventData = Event::where('status', '=', $status)
                     ->orderBy('id', 'desc')
-                    ->get();
+                    // ->get();
+                    ->paginate(config('app.PAGINATE.LINK_NUM_OPE'));
         $eventData = self::getDaysAllday($eventData);
 
         return $eventData;
@@ -248,6 +249,51 @@ class Event extends Model
     }
 
     /**
+     * search for ope
+     * @param Request $request
+     */
+    public static function getEventDataBySearch($request)
+    {
+        $eventData = new Event();
+
+        $eventQuery = Event::query();
+
+        if ($request->id) {
+            $eventData = $eventQuery
+                        ->where('id', $request->id)
+                        ->paginate(config('app.PAGINATE.LINK_NUM_OPE'));
+            $eventData = self::getDaysAllday($eventData);
+
+            return $eventData;
+        }
+
+        if ($request->title) {
+            $eventQuery->where('title', "LIKE", "%$request->title%");
+        }
+
+        if ($request->st_date || $request->end_date) {
+            $eventIdList = EventDate::getEventIdDates($request->st_date, $request->end_date);
+            $eventIdStr = implode(',', $eventIdList->toArray());
+            $eventQuery->whereIn('id', $eventIdList)
+                        ->orderByRaw("FIELD(id, $eventIdStr)");
+        }
+
+        if ($request->release_date_st || $request->release_date_end) {
+            $request->release_date_st ? $eventQuery->where('release_date', '>=', $request->release_date_st) : "";
+            $request->release_date_end ? $eventQuery->where('release_date', '<=', $request->release_date_end) : "";
+        }
+
+        if ($request->open_flg) {
+            $eventQuery->where('status', $request->open_flg);
+        }
+
+        $eventData = $eventQuery->paginate(config('app.PAGINATE.LINK_NUM_OPE'));
+        $eventData = self::getDaysAllday($eventData);
+
+        return $eventData;
+    }
+
+    /**
      * save event data
      * @param Request $request
      */
@@ -394,6 +440,8 @@ class Event extends Model
      */
     private static function getDays($eventData)
     {
+$eventData->id = 1;
+
         $resultEventData = $eventData;
 
         foreach ($resultEventData as $event) {
@@ -401,8 +449,7 @@ class Event extends Model
             $event->min_date = \min($event->date->pluck('event_date')->toArray());
             $event->max_date = \max($event->date->pluck('event_date')->toArray());
             $event->current_date = EventDate::getCurrentDate($event->id);
-            // var_dump($event->id);
-            // var_dump($event->current_date->event_id);
+            // var_dump($event->current_date);exit;
             $event->left_timer = Utility::getLeftTimer(
                                             date('Y-m-d H:i:s')
                                             , $event->current_date->event_date
