@@ -173,7 +173,7 @@ class EventDate extends Model
     public static function getEventIdDates($stDate, $endDate)
     {
         $dateQuery = EventDate::query();
-        $stDate ? $dateQuery->where('event_date', '>=', $stDate) : "";
+        $stDate ? $dateQuery->where('event_date', '=', $stDate) : "";
         $endDate ? $dateQuery->where('event_date', '<=', $endDate) : "";
         $eventDate = $dateQuery->orderBy('event_date')
                                 ->pluck('event_id')
