@@ -267,6 +267,10 @@ class Event extends Model
             return $eventData;
         }
 
+        if ($request->open_flg) {
+            $eventQuery->where('status', $request->open_flg);
+        }
+
         if ($request->title) {
             $eventQuery->where('title', "LIKE", "%$request->title%");
         }
@@ -281,10 +285,6 @@ class Event extends Model
         if ($request->release_date_st || $request->release_date_end) {
             $request->release_date_st ? $eventQuery->where('release_date', '>=', $request->release_date_st) : "";
             $request->release_date_end ? $eventQuery->where('release_date', '<=', $request->release_date_end) : "";
-        }
-
-        if ($request->open_flg) {
-            $eventQuery->where('status', $request->open_flg);
         }
 
         $eventData = $eventQuery->paginate(config('app.PAGINATE.LINK_NUM_OPE'));

@@ -2498,24 +2498,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     search_id: function search_id(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     search_title: function search_title(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     st_date: function st_date(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     end_date: function end_date(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     release_date_st: function release_date_st(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     release_date_end: function release_date_end(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     },
     openFlg: function openFlg(newKeyword, oldKeyword) {
+      this.page = 1;
       this.debouncedGetAnswer();
     }
   },

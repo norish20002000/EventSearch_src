@@ -246,24 +246,31 @@
         },
         watch: {
             search_id: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             search_title: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             st_date: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             end_date: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             release_date_st: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             release_date_end: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
             openFlg: function(newKeyword, oldKeyword) {
+                this.page = 1
                 this.debouncedGetAnswer()
             },
         },
