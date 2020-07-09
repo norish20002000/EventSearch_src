@@ -74,7 +74,7 @@
                 <label class="search_lavel"></label>
                 <p>
                     <input type="radio" value="0" v-model="openFlg">公開
-                    <input type="radio" value="1" v-model="openFlg" checked>非公開
+                    <input type="radio" value="1" v-model="openFlg">非公開
                 </p>
             </div>
             <div style="text-align:center;">

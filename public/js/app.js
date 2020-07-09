@@ -71236,7 +71236,7 @@ var render = function() {
                 expression: "openFlg"
               }
             ],
-            attrs: { type: "radio", value: "1", checked: "" },
+            attrs: { type: "radio", value: "1" },
             domProps: { checked: _vm._q(_vm.openFlg, "1") },
             on: {
               change: function($event) {

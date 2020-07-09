@@ -325,7 +325,6 @@ class EventBankController extends Controller
 
     public function getDataBySearch(Request $request)
     {
-        // var_dump($request->id);
         $data['event_data'] = Event::getEventDataBySearch($request);
 
         return $data;

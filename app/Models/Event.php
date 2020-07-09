@@ -267,7 +267,7 @@ class Event extends Model
             return $eventData;
         }
 
-        if ($request->open_flg) {
+        if ($request->open_flg || $request->open_flg == 0) {
             $eventQuery->where('status', $request->open_flg);
         }
 
