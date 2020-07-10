@@ -24,6 +24,17 @@
         <meta property="og:image" content="{{url('/image/top/logo.jpg')}}" />
     @endif
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="eventbank live">
+    <meta name="twitter:description" content="event検索">    
+    <meta name="twitter:image" content="https://live.eventbank.jp/image/top/logo.jpg" />
+
+    {{-- @hasSection ('twiiter_image')
+        <meta name="twitter:image" content="https://live.eventbank.jp/storage/eventimages/50000424/50000424.jpg" />
+    @else
+        <meta name="twitter:image" content="https://live.eventbank.jp/image/top/logo.jpg" />
+    @endif --}}
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
