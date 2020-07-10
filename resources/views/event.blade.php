@@ -1,3 +1,4 @@
+@section('og_image', $event_data->image_url)
 @section('title', $event_data->title . '｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')

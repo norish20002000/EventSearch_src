@@ -18,6 +18,12 @@
     <title>{{ config('app.title', 'Laravel') }}</title>
     @endif
 
+    @hassection('og_image')
+        <meta property="og:image" content=@yield('og_image') />
+    @else
+        <meta property="og:image" content="{{url('/image/top/logo.jpg')}}" />
+    @endif
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
