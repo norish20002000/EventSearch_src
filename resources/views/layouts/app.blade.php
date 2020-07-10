@@ -24,16 +24,26 @@
         <meta property="og:image" content="{{url('/image/top/logo.jpg')}}" />
     @endif
 
+    {{-- twitter card --}}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="eventbank live">
-    <meta name="twitter:description" content="event検索">    
-    <meta name="twitter:image" content="https://live.eventbank.jp/image/top/logo.jpg" />
 
-    {{-- @hasSection ('twiiter_image')
-        <meta name="twitter:image" content="https://live.eventbank.jp/storage/eventimages/50000424/50000424.jpg" />
+    @hasSection ('twitter_title')
+        <meta name="twitter:title" content="@yield('twitter_title')" />
+    @else
+        <meta name="twitter:title" content="EventBank ライブ｜ライブ配信イベントのまとめサイト" />
+    @endif
+
+    @hasSection ('twitter_descrip')
+        <meta name="twitter:description" content="@yield('twitter_descrip')" />
+    @else
+        <meta name="twitter:description" content="ライブ配信イベントのまとめサイトです。ネット配信によるイベント・ライブ・エンタメ・カルチャー・講座・ワークショップなどをご紹介します。" />    
+    @endif
+
+    @hasSection ('twitter_image')
+        <meta name="twitter:image" content=@yield('twitter_image') />
     @else
         <meta name="twitter:image" content="https://live.eventbank.jp/image/top/logo.jpg" />
-    @endif --}}
+    @endif
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
