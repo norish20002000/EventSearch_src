@@ -1,7 +1,9 @@
 @section('og_image', $event_data->image_url)
 @section('twitter_title', $event_data->title)
 @section('twitter_descrip', $event_data->introduction)
-@section('twitter_image', url($event_data->image_url))
+@if ($event_data->image_url)
+    @section('twitter_image', url($event_data->image_url))
+@endif
 @section('title', $event_data->title . '｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')
