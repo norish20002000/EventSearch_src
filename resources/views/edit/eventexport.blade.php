@@ -30,7 +30,8 @@
                     {{-- <input type="text" name="end_date"> --}}
             </div>
         </div>
-        <button type="button" onclick="submit();">exports</button>
+        <input class="btn btn-primary" type="submit" name="csv_export" value="csv出力">
+        <input class="btn btn-success" type="submit" name="image_export" value="画像zip出力">
     </div>
 </div>
 </form>
