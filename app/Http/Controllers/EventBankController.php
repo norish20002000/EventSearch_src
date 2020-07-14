@@ -253,7 +253,7 @@ class EventBankController extends Controller
         }
 
         // zip
-        $zipFileName = "event_" . date('Ymd') . ".zip";
+        $zipFileName = "event_images" . date('Ymd') . ".zip";
         $zipDir = storage_path('app/');
 
         if ($fileList) {
@@ -263,7 +263,7 @@ class EventBankController extends Controller
                 $imageFileName = basename($file);
         
                 // add image to zip
-                $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
+                $zip->addFromString($imageFileName, file_get_contents($file));
                 // $zip->addFile($file);
             }
     
