@@ -355,7 +355,7 @@ class EventBankController extends Controller
         
                 // add image to zip
                 // $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
-                $zip->addFile( $file, "images/" . $imageFileName);
+                $zip->addFile( $file, "event_images_".date('Ymd')."/" . $imageFileName);
             }
     
             $zip->close();
