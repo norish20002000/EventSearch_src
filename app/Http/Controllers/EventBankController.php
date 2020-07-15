@@ -357,7 +357,6 @@ class EventBankController extends Controller
                 // $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
                 $zip->addFile( $file, "images/" . $imageFileName);
             }
-            $zip->addFromString("tmp.txt", "ダミーファイル");
     
             $zip->close();
     
