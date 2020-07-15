@@ -134,10 +134,100 @@ class EventBankController extends Controller
             if ($result == false) {
                 return redirect()->route('eventexport');
             }
+
+            return $result;
+        } elseif ($request->csv_export_delivery) {
+            $result = $this->csvExportDelivery($eventData);
         }
 
         // $columns = Schema::getColumnListing('events');
         // var_dump($columns);exit;
+    }
+
+    /**
+     * csv出力　納品用
+     * @param Event $eventData
+     */
+    private function csvExportDelivery($eventData)
+    {
+        $csvList = [];
+        $replacePatterns = ["\n", "\r\n", "\r", "\t"];
+        foreach($eventData as $key => $event) {
+            $dayList = [];
+            $genreList = [];
+            $genre01List = [];
+            foreach ($event->event_dates as $date) {
+                $dayList[] = $date->event_date;
+            }
+            foreach ($event->genres as $genre) {
+                $genreList[] = $genre->disp_name;
+            }
+            foreach ($event->genre01s as $genre01) {
+                $genre01List[] = $genre01->disp_name;
+            }
+
+            $csvList[] = [
+                            $event->id,
+                            $event->title,
+                            \str_replace($replacePatterns, '', $event->introduction),
+                            \mb_substr($event->st_time, 0, 5),
+                            \mb_substr($event->end_time, 0, 5),
+                            $event->summary_date,
+                            $event->web_name,
+                            $event->web_url,
+                            $event->fee_type,
+                            $event->fee,
+                            basename($event->image_url),
+                            $event->reference_name,
+                            $event->reference_url,
+                            $event->release_date,
+                            $event->created_at,
+                            $event->updated_at,
+                            \implode(',', $dayList),
+                            \implode(',', $genreList),
+                            \implode(',', $genre01List),
+                        ];
+        }
+
+        $header = [
+            'ID',
+            'イベント名',
+            '紹介文',
+            '開始時刻',
+            '終了時刻',
+            '日時備考',
+            '視聴サイト名',
+            '視聴URL',
+            '料金種別',
+            '料金',
+            '画像ファイル名',
+            '参考サイト名',
+            '参考URL',
+            '公開日',
+            'created_at',
+            'updated_at',
+            'days',
+            '大カテゴリ',
+            '小カテゴリ'
+            ];
+
+        $filename = "event_delivery_".date('Ymd').".csv";
+        $filePath = storage_path('app/'.$filename);
+        $csv = Csv::csv($filePath, $header, $csvList, false);
+
+        // ストリームに出力
+        header('Content-Type: application/octet-stream');
+        header('Content-Length: '.filesize($filePath));
+        header('Content-Disposition: attachment; filename='.$filename);
+         
+        // // ファイル出力
+        // readfile($filePath);
+        echo file_get_contents($filePath);
+  
+        // 一時ファイルを削除しておく
+        Csv::purge($filePath);
+
+        ob_end_clean();
     }
 
     /**
@@ -253,32 +343,35 @@ class EventBankController extends Controller
         }
 
         // zip
-        $zipFileName = "event_images" . date('Ymd') . ".zip";
+        $zipFileName = "event_images_" . date('Ymd') . ".zip";
         $zipDir = storage_path('app/');
 
         if ($fileList) {
             $zip = new ZipArchive();
             $zipStatus = $zip->open($zipDir.$zipFileName, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
+            
             foreach ($fileList as $file) {
                 $imageFileName = basename($file);
         
                 // add image to zip
-                $zip->addFromString($imageFileName, file_get_contents($file));
-                // $zip->addFile($file);
+                // $zip->addFromString("images/" . $imageFileName, file_get_contents($file));
+                $zip->addFile( $file, "images/" . $imageFileName);
             }
+            $zip->addFromString("tmp.txt", "ダミーファイル");
     
             $zip->close();
     
-            // ストリームに出力
-            header('Content-Type: application/zip; name="' . $zipFileName . '"');
-            header('Content-Disposition: attachment; filename="' . $zipFileName . '"');
-            header('Content-Length: '.filesize($zipDir.$zipFileName));
-            echo file_get_contents($zipDir.$zipFileName);
+            // // ストリームに出力
+            // header('Content-Type: application/zip; name="' . $zipFileName . '"');
+            // header('Content-Disposition: attachment; filename="' . $zipFileName . '"');
+            // header('Content-Length: '.filesize($zipDir.$zipFileName));
+            // echo file_get_contents($zipDir.$zipFileName);
         
             // 一時ファイルを削除しておく
-            unlink($zipDir.$zipFileName);
-        
-            ob_end_clean();
+            // unlink($zipDir.$zipFileName);
+
+            return \response()->download($zipDir.$zipFileName)->deleteFileAfterSend();
+            // ob_end_clean();
         } else {
             return false;
         }

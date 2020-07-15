@@ -32,6 +32,7 @@
         </div>
         <input class="btn btn-primary" type="submit" name="csv_export" value="csv出力">
         <input class="btn btn-success" type="submit" name="image_export" value="画像zip出力">
+        <input class="btn btn-secondary" type="submit" name="csv_export_delivery" value="納品用csv出力">
     </div>
 </div>
 </form>
