@@ -137,7 +137,12 @@
             <p>表示件数　：　{{ $event_data->total() }}</p>
         </div> --}}
        <example-component :event-data='@json($event_data)'></example-component>
-        <div>
+        <div style="padding-left: 15px" class="d-block d-sm-none">
+            <div>
+            {{ $event_data->links('vendor.pagination.original_pagination_view') }}
+            </div>
+        </div>
+        <div class="d-none d-sm-block">
             {{ $event_data->links() }}
         </div>
     </div>
