@@ -463,10 +463,19 @@ class EventBankController extends Controller
         $preEvent = Event::find($request->event_id);
         $event = $preEvent->replicate();
         $event->image_url = null;
+        $event->release_date = null;
 
         DB::transaction(function () use ($event, $request){
             $event->save();
 
+            // Genre01
+            $event->genre01s()->attach($request->genre01);
+
+            // Genre
+            if ($request->genre01) {
+                $genreIdList = Genre01::whereIn('id', $request->genre01)->pluck('genre_id')->unique();
+                $event->genres()->attach($genreIdList);
+            }
             // genre_map insert
             // $result = EventGenre::saveGenreMap($event->id, $request);
         });

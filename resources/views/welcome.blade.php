@@ -139,7 +139,7 @@
        <example-component :event-data='@json($event_data)'></example-component>
         <div style="padding-left: 15px" class="d-block d-sm-none">
             <div>
-            {{ $event_data->links('vendor.pagination.original_pagination_view') }}
+                {{ $event_data->links('vendor.pagination.original_pagination_view') }}
             </div>
         </div>
         <div class="d-none d-sm-block">

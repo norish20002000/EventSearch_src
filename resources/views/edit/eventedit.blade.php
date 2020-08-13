@@ -30,7 +30,7 @@
                     ele.setAttribute('name', 'copyevent')
                     ele.setAttribute('value', 'copyevent')
                     document.myForm.appendChild(ele)
-                }()));" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>画像</br>ジャンル</br>はコピーされません。" data-html="true">イベントコピー
+                }()));" class="btn btn-primary"　data-toggle="tooltip" data-placement="bottom" title="開催日<br/>画像</br>公開日</br>はコピーされません。" data-html="true">イベントコピー
                 </button>
             </div>
             <div>
@@ -303,7 +303,7 @@
             </div>
             <div class="input_area">
                 <div class="form-group">
-                    <div class="input-group date datetimepicker" id="due_date" data-target-input="nearest">
+                    <div class="input-group date datetimepicker release_date" id="due_date" data-target-input="nearest">
                       <input type="text" name="release_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" value="{{old('release_date') ? old('release_date') : (isset($event_data->release_date) ? $event_data->release_date : '')}}" />
                       <div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
