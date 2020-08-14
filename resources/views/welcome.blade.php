@@ -139,11 +139,31 @@
        <example-component :event-data='@json($event_data)'></example-component>
         <div style="padding-left: 15px" class="d-block d-sm-none">
             <div>
-                {{ $event_data->links('vendor.pagination.original_pagination_view') }}
+                @if ($search_type == "strSearch")
+                    {{ $event_data->appends(['search' => $search])->links('vendor.pagination.original_pagination_view') }}
+                @elseif ($search_type == "today")
+                    {{ $event_data->appends(['today' => "today"])->links('vendor.pagination.original_pagination_view') }}
+                @elseif ($search_type == "tomorrow")
+                    {{ $event_data->appends(['tomorrow' => "tomorrow"])->links('vendor.pagination.original_pagination_view') }}
+                @elseif ($search_type == "weekend")
+                    {{ $event_data->appends(['weekend' => "weekend"])->links('vendor.pagination.original_pagination_view') }}
+                @else
+                    {{ $event_data->links('vendor.pagination.original_pagination_view') }}
+                @endif
             </div>
         </div>
         <div class="d-none d-sm-block">
-            {{ $event_data->links() }}
+            @if ($search_type == "strSearch")
+                {{ $event_data->appends(['search' => $search])->links() }}
+            @elseif ($search_type == "today")
+                {{ $event_data->appends(['today' => "today"])->links() }}
+            @elseif ($search_type == "tomorrow")
+                {{ $event_data->appends(['tomorrow' => "tomorrow"])->links() }}
+            @elseif ($search_type == "weekend")
+                {{ $event_data->appends(['weekend' => "weekend"])->links() }}
+            @else
+                {{ $event_data->links() }}
+            @endif
         </div>
     </div>
 </div>
