@@ -278,14 +278,16 @@ class Event extends Model
         if ($request->st_date || $request->end_date) {
             $eventIdList = EventDate::getEventIdDates(date('Y-m-d', strtotime($request->st_date)), $request->end_date);
             $eventIdStr = implode(',', $eventIdList->toArray());
-            $eventQuery->whereIn('id', $eventIdList)
-                        ->orderByRaw("FIELD(id, $eventIdStr)");
+            $eventQuery->whereIn('id', $eventIdList);
+                        // ->orderByRaw("FIELD(id, $eventIdStr)");
         }
 
         if ($request->release_date_st || $request->release_date_end) {
             $request->release_date_st ? $eventQuery->where('release_date', '>=', date('Y-m-d', strtotime($request->release_date_st))) : "";
             $request->release_date_end ? $eventQuery->where('release_date', '<=', $request->release_date_end) : "";
         }
+
+        $eventQuery->orderBy("id", "desc");
 
         $eventData = $eventQuery->paginate(config('app.PAGINATE.LINK_NUM_OPE'));
         $eventData = self::getDaysAllday($eventData);
