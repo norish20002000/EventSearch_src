@@ -137,7 +137,7 @@ class EventBankController extends Controller
 
             return $result;
         } elseif ($request->csv_export_delivery) {
-            $result = $this->csvExportDelivery($eventData);
+            $result = $this->csvExportDelivery($eventData->where('status', 0));
         }
 
         // $columns = Schema::getColumnListing('events');
