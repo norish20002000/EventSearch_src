@@ -42,7 +42,7 @@ class EventFormSendRequest extends FormRequest
             "fee" => "max:255",
             'event_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
             "reference_name" => "max:255",
-            "reference_url" => "url|max:255",
+            "reference_url" => "nullable|url|max:255",
             "release_date" => 'required|date_format:"Y-m-d"',
             "genre_id" => "",
             "target" => "",
