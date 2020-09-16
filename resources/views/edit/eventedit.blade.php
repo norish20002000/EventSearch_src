@@ -53,7 +53,8 @@
         @endif
         <div class="label_input">
             <div class="label_edit" style="display:flex; ">
-                <label class='edit_label require'>タイトル</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    タイトル</label>
             </div>
             <div class="input_area">
                 <input name="title" type="text" value="{{old('title') ? : (isset($event_data->title) ? $event_data->title : '')}}">
@@ -65,10 +66,11 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>本文</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="10000文字以内" data-html="true">
+                    本文</label>
             </div>
             <div class="input_area">
-                <textarea class="textarea" name="introduction" type="text" >{{old('introduction') ? old('introduction') : (isset($event_data->introduction) ? $event_data->introduction : '')}}</textarea>
+                <textarea class="textarea" name="introduction" type="text"  placeholder="1000文字以内">{{old('introduction') ? old('introduction') : (isset($event_data->introduction) ? $event_data->introduction : '')}}</textarea>
                 @if ($errors->first('introduction'))
                     <p class="validation">※{{$errors->first('introduction')}}</p>
                 @endif
@@ -193,7 +195,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>日時備考</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    日時備考</label>
             </div>
             <div class="input_area">
                 <input name="summary_date" type="text" value="{{old('summary_date') ? old('summary_date') : (isset($event_data->summary_date) ? $event_data->summary_date : '')}}">
@@ -204,7 +207,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>視聴サイト名</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    視聴サイト名</label>
             </div>
             <div class="input_area">
                 <input name="web_name" type="text" value="{{old('web_name') ? old('web_name') : (isset($event_data->web_name) ? $event_data->web_name : '')}}">
@@ -215,7 +219,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>視聴URL</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    視聴URL</label>
             </div>
             <div class="input_area">
                 <input name="web_url" type="text" value="{{old('web_url') ? old('web_url') : (isset($event_data->web_url) ? $event_data->web_url : '')}}">
@@ -250,7 +255,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>料金</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    料金</label>
             </div>
             <div class="input_area">
                 <input name="fee" type="text" value="{{old('fee') ? old('fee') : (isset($event_data->fee) ? $event_data->fee : '')}}">
@@ -277,7 +283,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>参考サイト名</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    参考サイト名</label>
             </div>
             <div class="input_area">
                 <input name="reference_name" type="text" value="{{old('reference_name') ? old('reference_name') : (isset($event_data->reference_name) ? $event_data->reference_name : '')}}">
@@ -288,7 +295,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>参考URL</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    参考URL</label>
             </div>
             <div class="input_area">
                 <input name="reference_url" type="text" value="{{old('reference_url') ? old('reference_url') : (isset($event_data->reference_url) ? $event_data->reference_url : '')}}">
@@ -362,7 +370,8 @@
 --}}
         <div class="label_input">
             <div>
-                <label class='edit_label require'>登録者団体名</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    登録者団体名</label>
             </div>
             <div class="input_area">
                 <input name="regi_group_name" type="text" value="{{old('regi_group_name') ? old('regi_group_name') : (isset($event_data->regi_group_name) ? $event_data->regi_group_name : '')}}">
@@ -373,7 +382,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>登録者担当名</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    登録者担当名</label>
             </div>
             <div class="input_area">
                 <input name="regi_name" type="text" value="{{old('regi_name') ? old('regi_name') : (isset($event_data->regi_name) ? $event_data->regi_name : '')}}">
@@ -384,7 +394,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>登録者電話番号</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    登録者電話番号</label>
             </div>
             <div class="input_area">
                 <input name="regi_tel" type="text" value="{{old('regi_tel') ? old('regi_tel') : (isset($event_data->regi_tel) ? $event_data->regi_tel : '')}}">
@@ -395,7 +406,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label require'>登録者mail</label>
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                    登録者mail</label>
             </div>
             <div class="input_area">
                 <input name="regi_mail" type="text" value="{{old('regi_mail') ? old('regi_mail') : (isset($event_data->regi_mail) ? $event_data->regi_mail : '')}}">
@@ -417,7 +429,8 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>備考</label>
+                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="3000文字以内" data-html="true">
+                    備考</label>
             </div>
             <div class="input_area">
                 <textarea class="textarea" name="remarks" type="text">{{old('remarks') ? old('remarks') : (isset($event_data->remarks) ? $event_data->remarks : '')}}</textarea>
