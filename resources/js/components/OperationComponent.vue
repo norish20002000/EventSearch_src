@@ -93,6 +93,7 @@
         <div>
             <h5>{{eventCount}}件</h5>
             <h5>{{eventType}}</h5>
+            <h5>{{eventType}}</h5>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-4 col-xs-12" v-for="event in events.data" :key="event.id">
@@ -100,11 +101,11 @@
                     <div class="card-header">{{event.id}}</div>
                     <div class="card-body">
                         <div class="icon fl">
-                            <a :href="'/eventbank/event/edit/' + event.id" target="blank">
+                            <a :href="'/eventbank/event/edit/' + event.id" target="_blank">
                                 <img class="thumb_img" :src="event.image_url"/>
                             </a>
                         </div>
-                            <a :href="'/eventbank/event/edit/' + event.id" target="blank">
+                            <a :href="'/eventbank/event/edit/' + event.id" target="_blank">
                                 <div class="fl">
                                     <div>{{event.title | truncate(30, '...')}}</div>
                                     <div class="days">

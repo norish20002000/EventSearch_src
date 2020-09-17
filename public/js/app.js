@@ -2381,6 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Vue.filter('truncate', function(value, length, omission) {
 //     var length = length ? parseInt(length, 10) : 20;
 //     var ommision = omission ? omission.toString() : '...';
@@ -71266,6 +71267,8 @@ var render = function() {
     _c("div", [
       _c("h5", [_vm._v(_vm._s(_vm.eventCount) + "件")]),
       _vm._v(" "),
+      _c("h5", [_vm._v(_vm._s(_vm.eventType))]),
+      _vm._v(" "),
       _c("h5", [_vm._v(_vm._s(_vm.eventType))])
     ]),
     _vm._v(" "),
@@ -71286,7 +71289,7 @@ var render = function() {
                   {
                     attrs: {
                       href: "/eventbank/event/edit/" + event.id,
-                      target: "blank"
+                      target: "_blank"
                     }
                   },
                   [
@@ -71303,7 +71306,7 @@ var render = function() {
                 {
                   attrs: {
                     href: "/eventbank/event/edit/" + event.id,
-                    target: "blank"
+                    target: "_blank"
                   }
                 },
                 [
