@@ -102,13 +102,13 @@ class WelcomeController extends Controller
         $tomorrow = date("Y-m-d", strtotime('+1 day'));
         $nextSaturday = date("Y-m-d", strtotime('next Saturday'));
         $nextSunday = date("Y-m-d", strtotime('next Sunday'));
-
+// var_dump(date('w'));exit;
         // weekday or suturday or sunday
         if (1 <= date('w') && date('w') <= 5) {
             $data['event_data'] = Event::getEventByDays($request, $nextSaturday, $nextSunday);
-        } elseif (date('w') === 6) {
+        } elseif (date('w') == 6) {
             $data['event_data'] = Event::getEventByDays($request, $today, $tomorrow);
-        } elseif (date('w') === 0) {
+        } elseif (date('w') == 0) {
             $data['event_data'] = Event::getEventByDate($request, $today);
         }
 
