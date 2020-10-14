@@ -93,7 +93,6 @@
         <div>
             <h5>{{eventCount}}件</h5>
             <h5>{{eventType}}</h5>
-            <h5>{{eventType}}</h5>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-4 col-xs-12" v-for="event in events.data" :key="event.id">
