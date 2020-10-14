@@ -39,7 +39,7 @@ class EventFormSendRequest extends FormRequest
             "web_name" => "required|max:255",
             "web_url" => "nullable|url|max:255",
             // "fee_type" => "required",
-            "fee" => "max:255",
+            "fee" => "required|max:255",
             'event_image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
             "reference_name" => "max:255",
             "reference_url" => "nullable|url|max:255",
@@ -50,7 +50,8 @@ class EventFormSendRequest extends FormRequest
             "regi_name" => "required|max:255",
             "regi_tel" => "max:255",
             "regi_mail" => "required|email|max:255",
-            "remarks" => "max:3000"
+            "remarks" => "max:3000",
+            "genre01" => "required",
         ];
     }
 
@@ -84,7 +85,8 @@ class EventFormSendRequest extends FormRequest
             "regi_name" => "登録者担当名",
             "regi_tel" => "登録者電話番号",
             "regi_mail" => "登録者mail",
-            "remarks" => "備考"
+            "remarks" => "備考",
+            "genre01" => "ジャンル"
         ];
     }
 
@@ -104,6 +106,7 @@ class EventFormSendRequest extends FormRequest
             "introduction.max" => ":attributeは、:max文字数以内で入力してください。",
             "web_name.max" => ":attributeは、:max文字数以内で入力してください。",
             "web_url.max" => ":attributeは、:max文字数以内で入力してください。",
+            "fee.required" => ":attributeは、必ず入力してください。",
             "fee.max" => ":attributeは、:max文字数以内で入力してください。",
             "reference_name.max" => ":attributeは、:max文字数以内で入力してください。",
             "reference_url.max" => ":attributeは、:max文字数以内で入力してください。",
@@ -112,6 +115,7 @@ class EventFormSendRequest extends FormRequest
             "regi_tell.max" => ":attributeは、:max文字数以内で入力してください。",
             "regi_mail.max" => ":attributeは、:max文字数以内で入力してください。",
             "remarks.max" => ":attributeは、:max文字数以内で入力してください。",
+            "genre01.required" => ":attributeは、必ず一つは指定してください。"
         ];
     }
 }

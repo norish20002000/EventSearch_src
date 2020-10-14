@@ -255,7 +255,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
+                <label class='edit_label require' data-toggle="tooltip" data-placement="bottom" title="255文字以内" data-html="true">
                     料金</label>
             </div>
             <div class="input_area">
@@ -326,7 +326,7 @@
         </div>
         <div class="label_input">
             <div>
-                <label class='edit_label'>ジャンル</label>
+                <label class='edit_label require'>ジャンル</label>
             </div>
                 {{-- <select class="custom-select" name="genre_id" value="{{isset($event_data->genre) && isset($event_data->genre->genre_id) ? $event_data->genre->genre_id : ''}}">
                     @foreach($genre as $g)
