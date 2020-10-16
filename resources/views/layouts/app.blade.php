@@ -67,6 +67,17 @@
 
     <!-- vuejs-datepicker -->
     <script src="https://unpkg.com/vuejs-datepicker"></script>
+
+    @if (!Request::is('eventbank/*'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-18528724-4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-18528724-4');
+        </script>
+    @endif
 </head>
 <body>
     <a name="TOP"></a>
