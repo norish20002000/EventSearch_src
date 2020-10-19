@@ -3,12 +3,16 @@
 @if ($search_type == "")
     @section('breadcrumbs', Breadcrumbs::render('home'))
 @elseif ($search_type == "today")
+    @section('title', 'ライブ配信開始（今日）' . '｜EventBank ライブ')
     @section('breadcrumbs', Breadcrumbs::render('today', $event_data))
 @elseif ($search_type == "tomorrow")
+    @section('title', 'ライブ配信開始（明日）' . '｜EventBank ライブ')
     @section('breadcrumbs', Breadcrumbs::render('tomorrow', $event_data))
 @elseif ($search_type == "weekend")
+    @section('title', 'ライブ配信開始（今週末）' . '｜EventBank ライブ')
     @section('breadcrumbs', Breadcrumbs::render('weekend', $event_data))
 @else
+    @section('title', 'フリーワード検索結果' . '｜EventBank ライブ')
     @section('breadcrumbs', Breadcrumbs::render('home'))
 @endif
 <form class="formsearch" method="GET" action="/">

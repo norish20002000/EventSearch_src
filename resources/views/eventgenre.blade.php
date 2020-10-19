@@ -1,4 +1,4 @@
-@section('title', '検索結果｜EventBank ライブ')
+@section('title', $event_data->genre->disp_name . '｜EventBank ライブ')
 @extends('layouts.app')
 @section('content')
 @section('breadcrumbs', Breadcrumbs::render('genres', $event_data))
