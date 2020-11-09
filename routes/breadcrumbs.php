@@ -52,3 +52,9 @@ Breadcrumbs::for('request', function ($trail) {
     $trail->parent('home');
     $trail->push("情報掲載申し込み", url('request/'));
 });
+
+// ホーム > 提携メディア募集
+Breadcrumbs::for('alliance', function ($trail) {
+    $trail->parent('home');
+    $trail->push("提携メディア募集", url('alliance/'));
+});

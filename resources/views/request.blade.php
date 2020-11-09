@@ -12,7 +12,9 @@
     <div class="article_title">
         <div class="company_block">
             {{-- <img src="/image/icon/building.png" class="icon_com"> --}}
-            <h2 class="company_title"><i class="far fa-envelope"></i> 情報掲載申し込み</h2>
+            <h2 class="company_title">
+                {{-- <i class="far fa-envelope"></i>  --}}
+                情報掲載申し込み</h2>
         </div>
         <div>
             <p>ライブ配信イベントのまとめサイト「EventBank ライブ」に掲載するライブ配信情報を受け付けています。掲載をご希望の方は、注意事項をお読みのうえ、下記の情報をお寄せください。掲載は無料です。</p>
@@ -34,6 +36,9 @@
         </div>
         <div>
             <div>
+                下記のアドレスに必要情報をメールでお送りください。
+            </div>
+            <div>
                 info★eventbank.jp　（★を半角@に置き換えてください）
             </div>
             <div>
@@ -44,7 +49,7 @@
             注意事項
         </div>
         <div class="ope_service">
-            <li>掲載対象はライブ配信イベントのみです（アーカイブ動画は対象外）</li>
+            <li>掲載対象はライブ配信（生配信）イベントのみです（アーカイブ動画は対象外）</li>
             <div>（ライブ配信後にアーカイブされるのは構いません）</div>
             <li>ライブ配信の主催者または広報ご担当者からの情報のみ受け付けています</li>
             <li>お寄せいただいた情報からイベントバンクがセレクトして掲載します（掲載無料）</li>
@@ -55,6 +60,24 @@
             <li>情報が変更になった場合（中止含む）はイベントバンクまでご連絡ください</li>
             <li>イベントバンクよりメールまたは電話で内容のお問い合わせをすることがあります</li>
             <li>お寄せいただいた情報はイベントバンクで適切に取り扱います</li>
+        </div>
+        <div class="company_block2">
+            提携サイト
+        </div>
+        <div class="ope_service">
+            お送りいただいたイベント情報（ライブ配信イベント／オンラインイベント）は、本サイト「EventBank ライブ」のほか、イベントバンクが提携する下記のサイトなどに掲載されることがあります。
+        </div>
+        <div class="ope_service_1">
+            <li>
+                <a href="https://www.walkerplus.com/online_list/" target="_blank">
+                    ウォーカープラス（オンラインイベント）
+                </a>
+            </li>
+            <li>
+                <a href="https://iko-yo.net/topics/online_event" target="_blank">
+                    いこーよ（おうち時間に！オンラインイベント特集）
+                </a>
+            </li>
         </div>
     </div>
 </div>

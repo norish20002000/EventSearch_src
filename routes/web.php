@@ -29,6 +29,7 @@ Route::get('tomorrowevent', 'WelcomeController@searchTomorrow')->name('tomorrowe
 Route::get('weekendevent', 'WelcomeController@searchWeekend')->name('weekendevent');
 Route::get('request', 'WelcomeController@request')->name('request');
 Route::get('company', 'WelcomeController@company')->name('company');
+Route::get('alliance', 'WelcomeController@alliance')->name('alliance');
 Route::get('eventdetail/{id}', 'EventController@show')->name('eventdetail');
 Route::get('eventgenre/{genre_id}', 'EventController@genre')->name('eventgenre');
 

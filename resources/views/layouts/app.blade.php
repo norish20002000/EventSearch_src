@@ -101,10 +101,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('company')}}">会社概要</a>
+                            <a class="nav-link" style="color:#3490dc;" href="{{route('request')}}">情報掲載申し込み</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('request')}}">情報掲載申し込み</a>
+                            <a class="nav-link" style="color:#3490dc;" href="{{route('company')}}">運営会社</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest

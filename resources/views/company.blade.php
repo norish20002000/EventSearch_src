@@ -11,7 +11,7 @@
 <div class='container'>
     <div class="article_title">
         <div class="company_block">
-            <img src="/image/icon/building.png" class="icon_com">
+            {{-- <img src="/image/icon/building.png" class="icon_com"> --}}
             <h2 class="company_title">運営会社</h2>
         </div>
         <div>

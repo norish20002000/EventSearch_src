@@ -70,6 +70,14 @@ class WelcomeController extends Controller
     }
 
     /**
+     * alliance page
+     */
+    public function alliance(Request $request)
+    {
+        return view('alliance');
+    }
+
+    /**
      * today event
      * @param Request $request
      */
