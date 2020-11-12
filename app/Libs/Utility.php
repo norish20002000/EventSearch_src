@@ -39,7 +39,8 @@ class Utility {
 // var_dump($diffDays);
 // exit;
         if($stTime && $diffDays == 0 && $now <= $st) {
-            $resultStr = "開催まで " . $diff->format('%H:%I:%S');
+            // $resultStr = "開催まで " . $diff->format('%H:%I:%S');
+            $resultStr = "開催まで " . $diff->format('%H:%I');
         } elseif ($stTime && $st <= $now && $now <= $end) {
             $resultStr = "開催中";
         } elseif ($endTime && $end < $now) {
