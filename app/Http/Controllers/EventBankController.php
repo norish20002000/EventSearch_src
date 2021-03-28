@@ -137,7 +137,18 @@ class EventBankController extends Controller
 
             return $result;
         } elseif ($request->csv_export_delivery) {
-            $result = $this->csvExportDelivery($eventData->where('status', 0));
+            $result = $this->csvExportDelivery($eventData
+                                                ->where('status', 0)
+                                                ->where('release_date', '<=', date('Y-m-d')));
+        } elseif ($request->image_export_delivery) {
+            $result = $this->imageZipExport($eventData
+                                            ->where('status', 0)
+                                            ->where('release_date', '<=', date('Y-m-d')));
+            if ($result == false) {
+                return redirect()->route('eventexport');
+            }
+
+            return $result;
         }
 
         // $columns = Schema::getColumnListing('events');
