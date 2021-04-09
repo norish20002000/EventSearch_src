@@ -22,8 +22,8 @@
             株式会社イベントバンク
         </div>
         <div>
-            <span>〒102-0073</span><br>
-            <p>東京都千代田区九段北1-12-3　井門九段北ビル4F</p>
+            <span>〒101-0051</span><br>
+            <p>東京都千代田区神田神保町2-48　3510（サンコードー）ビル2F</p>
             <a href="https://www.eventbank.jp/about/inquiry.do?act=input" target="blank"><p>お問い合わせ</p></a>
 
             <div>
