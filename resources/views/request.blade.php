@@ -24,7 +24,7 @@
                 なお、休止後は従来のメールでの掲載受付を廃止します。
             </div>
             <div>
-                <a href="https://kanri.eventbank.jp/" target="_blank">「EventBank プレス」</a>
+                <a href="https://www.eventbank.jp/" target="_blank">「EventBank プレス」</a>
                 から情報をご登録ください。
             </div>
             <div  class="mainte_date">
