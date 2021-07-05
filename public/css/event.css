@@ -557,6 +557,20 @@ h1.title {
     margin: 4px 2px 2px 4px;
 }
 
+.mainte_div {
+    color: red;
+    font-size: medium;
+    /* line-height: 1.4; */
+}
+
+.mainte_date {
+    margin-top: 1em;
+}
+
+.company_title_detail {
+    margin-top: 20px;
+}
+
 .company_block2 {
     margin: 30px 2px 30px 4px;
     padding: 20px 0 0 0 ;

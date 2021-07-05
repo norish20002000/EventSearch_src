@@ -16,7 +16,27 @@
                 {{-- <i class="far fa-envelope"></i>  --}}
                 情報掲載申し込み</h2>
         </div>
-        <div>
+        <div class="mainte_div">
+            <div>
+                本サイトは機能改善のためのメンテナンスのため、オンラインイベントの掲載受付・更新を一時休止しています。
+            </div>
+            <div>
+                なお、休止後は従来のメールでの掲載受付を廃止します。
+            </div>
+            <div>
+                <a href="https://kanri.eventbank.jp/" target="_blank">「EventBank プレス」</a>
+                から情報をご登録ください。
+            </div>
+            <div  class="mainte_date">
+                <div>
+                    受付・更新の休止：7月1日（木）～7月11日（日）
+                </div>
+                <div>
+                    EventBank プレス登録開始：7月12日（月）～
+                </div>
+            </div>
+        </div>
+        <div class="company_title_detail">
             <p>ライブ配信イベントのまとめサイト「EventBank ライブ」に掲載するライブ配信情報を受け付けています。掲載をご希望の方は、注意事項をお読みのうえ、下記の情報をお寄せください。掲載は無料です。</p>
         </div>
         <div class="company_block2">
