@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule
         ->command('command:importCsvEventBankPress')
         ->withoutOverlapping()
-        ->everyMinute()
+        // ->everyMinute()
         // ->dailyAt('4:00')
         ;
     }
