@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\EventDate;
 use App\Models\Genre;
 use App\Models\Genre01;
+use App\Models\EventGenre;
+use App\Models\EventGenre01;
+
 use App\Libs\Utility;
 
 class Event extends Model
@@ -296,6 +299,88 @@ class Event extends Model
     }
 
     /**
+     * insert events
+     */
+    public static function insertEventsDb($data) {
+        $event = new Event();
+        $event->id = $data[0];
+        $event->title = $data[1];
+        $event->catchcopy = $data[2];
+        $event->introduction = $data[3];
+        $event->st_time = $data[14] != "--" && $data[15] != "--" ? $data[14].":".$data[15] : null;
+        $event->end_time = $data[16] != "--" && $data[17] != "--" ? $data[16].":".$data[17] : null;
+        $event->summary_date = $data[18];
+        $event->web_name = $data[10];
+        $event->web_url = $data[11];
+        $event->fee_type = $data[7];
+        $event->fee = $data[8];
+        $event->viewer = $data[9];
+        $event->pic_height = $data[5];
+        $event->pic_copyright = $data[6];
+        $event->reference_name = $data[12];
+        $event->reference_url = $data[13];
+        $event->release_date = $data[19]."-".$data[20]."-".$data[21];
+        $event->status = 0;
+        $event->created_at = $data[23];
+        $event->updated_at = $data[24];
+
+        $genre01IdList = self::convertCsvToDbData($data[22], self::$genre01CategoryList);
+
+        DB::transaction(function () use ($event, $data, $genre01IdList) {
+            $event->save();
+
+            // image_url
+            if ($data[6] == 0) {
+                $imagePath = config('app.DIR.EVENT_IMAGE_STORAGE') . "$event->id/$event->id.jpg";
+                $event->image_url = $imagePath;
+                $event->save();
+            }
+
+            foreach(\explode(",", $data[25]) as $date) {
+                $event_date["event_date"] = $date;
+                EventDate::saveEventDate($event->id, $event_date);
+            }
+
+            // Genre01
+            $event->genre01s()->detach();
+            $event->genre01s()->attach($genre01IdList);
+
+            // Genre
+            if ($genre01IdList) {
+                $genreIdList = Genre01::whereIn('id', $genre01IdList)->pluck('genre_id')->unique();
+                $event->genres()->detach();
+                $event->genres()->attach($genreIdList);
+            } else {
+                $event->genres()->detach();
+            }
+        });
+    }
+
+    private static function convertCsvToDbData($csvCategoryStr, $genre01CategoryList) {
+        $genre01IdList = [];
+
+        $categoryList = \explode(",", $csvCategoryStr);
+        foreach ($categoryList as $category) {
+            $genre01IdList[] = array_search($category, $genre01CategoryList);
+        }
+
+        return $genre01IdList;
+    }
+
+    /**
+     * all delete events
+     */
+    public static function deleteAllEventsRelation() 
+    {
+        DB::transaction(function () {
+            Event::query()->delete();
+            EventDate::query()->delete();
+            EventGenre::query()->delete();
+            EventGenre01::query()->delete();
+        });
+    }
+
+    /**
      * save event data
      * @param Request $request
      */
@@ -522,4 +607,54 @@ $eventData->id = 1;
                                     'event_id',
                                     'genre_01_id');
     }
+
+    private static $genre01CategoryList = [
+        1 => "1010",
+        2 => "1020",
+        3 => "1030",
+        4 => "1040",
+        5 => "1050",
+        6 => "1060",
+        7 => "1070",
+        8 => "1080",
+        9 => "1090",
+        10 => "1099",
+        11 => "2010",
+        12 => "2020",
+        13 => "2030",
+        14 => "2040",
+        15 => "2099",
+        16 => "3010",
+        17 => "3015",
+        18 => "3020",
+        19 => "3025",
+        20 => "3030",
+        21 => "3035",
+        22 => "3040",
+        23 => "3045",
+        24 => "3050",
+        25 => "3055",
+        26 => "3060",
+        27 => "3065",
+        28 => "3099",
+        29 => "4010",
+        30 => "4020",
+        31 => "4030",
+        32 => "4040",
+        33 => "4050",
+        34 => "4060",
+        35 => "4070",
+        36 => "4099",
+        37 => "5010",
+        38 => "5020",
+        39 => "5099",
+        40 => "6010",
+        41 => "6020",
+        42 => "6099",
+        43 => "7010",
+        44 => "7020",
+        45 => "7030",
+        46 => "7040",
+        47 => "7099"
+    ];
 }
