@@ -214,6 +214,19 @@ class EventDate extends Model
     }
 
     /**
+     * delete by event_id
+     * @param int event_id
+     */
+    public static function deleteByEventId($event_id)
+    {
+        $result = DB::transaction(function () use ($event_id) {
+            $result = EventDate::
+                        where('event_id', $event_id)
+                        ->delete();
+        });
+    }
+
+    /**
      * events
      */
     public function events()

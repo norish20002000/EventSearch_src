@@ -16,6 +16,7 @@ class Event extends Model
 {
     protected $fillable = [
         "title",
+        "catchcopy",
         "introduction",
         "st_time",
         "end_time",
@@ -24,7 +25,10 @@ class Event extends Model
         "web_url",
         "fee_type",
         "fee",
+        "viewer",
         "image_url",
+        "pic_height",
+        "pic_copyright",
         "reference_name",
         "reference_url",
         "release_date",
@@ -34,6 +38,8 @@ class Event extends Model
         "regi_mail",
         "status",
         "remarks",
+        "created_at",
+        "updated_at",
     ];
 
     /**
@@ -299,11 +305,37 @@ class Event extends Model
     }
 
     /**
+     * eventdata csv import
+     */
+    public static function importEventData($file) {
+
+        DB::transaction(function () use ($file) { 
+            // 全件置き換え用
+            // event関連DB全削除
+            // Event::deleteAllEventsRelation();
+
+            $header = [];
+            foreach ($file as $row) {
+                if (empty($header)) {
+                    $header = $row;
+                    continue;
+                }
+    
+                Event::insertEventsDb($row);
+            }
+        });
+    }
+
+    /**
      * insert events
      */
     public static function insertEventsDb($data) {
-        $event = new Event();
-        $event->id = $data[0];
+        $event = Event::firstOrNew(['id' => $data[0]]);
+
+        if (!$event->exists) {
+            $event->id = $data[0];
+        }
+
         $event->title = $data[1];
         $event->catchcopy = $data[2];
         $event->introduction = $data[3];
@@ -328,14 +360,43 @@ class Event extends Model
 
         DB::transaction(function () use ($event, $data, $genre01IdList) {
             $event->save();
+            // $event = Event::updateOrCreate(['id' => $data[0]]
+            //                                 , [
+            //                                     'id' => $data[0],
+            //                                     'title' => $data[1],
+            //                                     'catchcopy' => $data[2],
+            //                                     'introduction' => $data[3],
+            //                                     'st_time' => $data[14] != "--" && $data[15] != "--" ? $data[14].":".$data[15] : null,
+            //                                     'end_time' => $data[16] != "--" && $data[17] != "--" ? $data[16].":".$data[17] : null,
+            //                                     'summary_date' => $data[18],
+            //                                     'web_name' => $data[10],
+            //                                     'web_url' => $data[11],
+            //                                     'fee_type' => $data[7],
+            //                                     'fee' => $data[8],
+            //                                     'viewer' => $data[9],
+            //                                     'pic_height' => $data[5],
+            //                                     'pic_copyright' => $data[6],
+            //                                     'reference_name' => $data[12],
+            //                                     'reference_url' => $data[13],
+            //                                     'release_date' => $data[19]."-".$data[20]."-".$data[21],
+            //                                     'status' => 0,
+            //                                     'created_at' => $data[23],
+            //                                     'updated_at' => $data[24],
+            //                                 ]
+            //                             );
 
             // image_url
-            if ($data[6] == 0) {
+            if ($data[5] != 0) {
                 $imagePath = config('app.DIR.EVENT_IMAGE_STORAGE') . "$event->id/$event->id.jpg";
                 $event->image_url = $imagePath;
                 $event->save();
+            } else {
+                $event->image_url = "";
+                $event->save();
             }
 
+            // event_dates
+            EventDate::deleteByEventId($event->id);
             foreach(\explode(",", $data[25]) as $date) {
                 $event_date["event_date"] = $date;
                 EventDate::saveEventDate($event->id, $event_date);

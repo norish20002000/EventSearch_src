@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
@@ -11,11 +12,10 @@ use ZipArchive;
 class CsvEventBankController extends Controller
 {
     public static function importCsvEventBankPress(){
-        // 関連テーブル全件削除
-        // Event::deleteAllEventsRelation();
-
-        self::insertCsvData();
-        self::saveImage();
+        DB::transaction(function () { 
+            self::insertCsvData();
+            self::saveImage();
+        });
     }
 
     private static function insertCsvData() {
@@ -35,16 +35,19 @@ class CsvEventBankController extends Controller
         $filePath = \storage_path('app/') . $fileName;
         file_put_contents($filePath, $data);
 
-        // $file = new \SplFileObject($filePath);
-        // $file->setFlags(
-        //     \SplFileObject::READ_CSV |
-        //     \SplFileObject::READ_AHEAD |
-        //     \SplFileObject::SKIP_EMPTY |
-        //     \SplFileObject::DROP_NEW_LINE
-        // );
+        $file = new \SplFileObject($filePath);
+        $file->setFlags(
+            \SplFileObject::READ_CSV |
+            \SplFileObject::READ_AHEAD |
+            \SplFileObject::SKIP_EMPTY |
+            \SplFileObject::DROP_NEW_LINE
+        );
 
-        // // herder
-        // // "event_id","event_name","catchcopy","article","pic_path","pic_height","pic_copyright","fee_class","fee_text","viewer","view_site","view_url","ref_site","ref_url","start_time_h","start_time_m","end_time_h","end_time_m","time_text","release_y","release_m","release_d","category","reg_date","update_date","days"
+        // herder
+        // "event_id","event_name","catchcopy","article","pic_path","pic_height","pic_copyright","fee_class","fee_text","viewer","view_site","view_url","ref_site","ref_url","start_time_h","start_time_m","end_time_h","end_time_m","time_text","release_y","release_m","release_d","category","reg_date","update_date","days"
+        
+        Event::importEventData($file);
+
         // $header = [];
         // foreach ($file as $row) {
         //     if (empty($header)) {
@@ -100,24 +103,23 @@ class CsvEventBankController extends Controller
         // Storage::deleteDirectory($imgDir);
         // Storage::makeDirectory($imgDir);
 
-        // foreach (Storage::files($tempDir) as $imgFile) {
-        //     $id = basename($imgFile, ".jpg");
-        //     $imgName = basename($imgFile);
+        foreach (Storage::files($tempDir) as $imgFile) {
+            $id = basename($imgFile, ".jpg");
+            $imgName = basename($imgFile);
 
-        //     if (!Storage::exists($imgDir . $id)){
-        //         $result = Storage::makeDirectory($imgDir . $id, 0775, true);
-        //     }
+            if (!Storage::exists($imgDir . $id)){
+                $result = Storage::makeDirectory($imgDir . $id, 0775, true);
+            }
 
-        //     if (!Storage::exists($imgDir . $id . "/" . $imgName)) {
-        //         Storage::copy($tempDir.$imgName, $imgDir . $id . "/" . $imgName);
-        //     } else {
-        //         Storage::delete($imgDir . $id . "/" . $imgName);
-        //         Storage::copy($tempDir.$imgName, $imgDir . $id . "/" . $imgName);
-        //     }
-        // }
+            if (!Storage::exists($imgDir . $id . "/" . $imgName)) {
+                Storage::copy($tempDir.$imgName, $imgDir . $id . "/" . $imgName);
+            } else {
+                Storage::delete($imgDir . $id . "/" . $imgName);
+                Storage::copy($tempDir.$imgName, $imgDir . $id . "/" . $imgName);
+            }
+        }
 
         // Storage::deleteDirectory($tempDir);
-        // Storage::makeDirectory($tempDir);
         // Storage::delete($fileName);
     }
 

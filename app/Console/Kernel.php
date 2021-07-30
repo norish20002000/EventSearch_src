@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         ->command('command:importCsvEventBankPress')
         ->withoutOverlapping()
         // ->everyMinute()
-        // ->dailyAt('4:00')
+        ->dailyAt('4:00')
         ;
     }
 
