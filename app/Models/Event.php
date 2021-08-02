@@ -312,7 +312,7 @@ class Event extends Model
         DB::transaction(function () use ($file) { 
             // 全件置き換え用
             // event関連DB全削除
-            // Event::deleteAllEventsRelation();
+            Event::deleteAllEventsRelation();
 
             $header = [];
             foreach ($file as $row) {
