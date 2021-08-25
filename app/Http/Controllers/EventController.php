@@ -75,7 +75,6 @@ class EventController extends Controller
         } else {
             $data['event_data']->prePage = "";
         }
-// var_dump($data['event_data']);exit;
 
         return View('event', $data);
     }

@@ -25,6 +25,9 @@
         @endif
     </div>
 </section>
+<div　class='pic_copy'>
+    {{$event_data->pic_copyright}}
+</div>
 <div class='container'>
     <div class="article_title">
         @if ($event_data->genres)
@@ -68,6 +71,9 @@
         </div>
     </div>
     <div class="article_content">
+        <div class="catchcopy">
+            {{$event_data->catchcopy}}
+        </div>
         <div>
             <div><p> {!! nl2br($event_data->introduction) !!} </p></div>
         </div>
