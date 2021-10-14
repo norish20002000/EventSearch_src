@@ -58,11 +58,6 @@
                     いこーよ（オンラインイベント特集）
                 </a>
             </li>
-            <li>
-                <a href="https://hitoshia.com/events/search/?e_categories=72" target="_blank">
-                    ヒトシア（オンラインイベント）
-                </a>
-            </li>
         </div>
     </div>
 </div>
