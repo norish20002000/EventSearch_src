@@ -54,27 +54,11 @@ class WelcomeController extends Controller
     }
 
     /**
-     * request page
-     */
-    public function request(Request $request)
-    {
-        return view("request");
-    }
-
-    /**
      * company page
      */
     public function company(Request $request)
     {
         return view('company');
-    }
-
-    /**
-     * alliance page
-     */
-    public function alliance(Request $request)
-    {
-        return view('alliance');
     }
 
     /**

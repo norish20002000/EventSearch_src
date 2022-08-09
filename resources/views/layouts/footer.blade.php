@@ -20,7 +20,7 @@
 <div class="footer">
     <div class="copywrite">
         <div>
-            <a href="/">TOP</a> ｜ <a href="{{route('request')}}">情報掲載申し込み</a> ｜ <a href="{{route('alliance')}}">提携メディア募集</a> ｜ <a href="{{route('company')}}">運営会社</a>
+            <a href="/">TOP</a> ｜ <a href="{{route('company')}}">運営会社</a>
         </div>
         <div>
             <p>Copyright© 2020 EventBank Corporation. All Rights Reserved.</p>
